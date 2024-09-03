@@ -25,13 +25,14 @@ class TrainingController extends Controller
         if ($startDate->format('F Y') === $endDate->format('F Y')) {
             $formattedStartDate = $startDate->format('j');
             $formattedEndDate = $endDate->format('j');
-            $formattedMonthYear = $startDate->translatedFormat('F Y');
+            $formattedMonth = $startDate->translatedFormat('F');
+            $formattedYear = $startDate->translatedFormat('Y');
 
-            $data->formatted_tanggal = "{$formattedStartDate} - {$formattedEndDate} {$formattedMonthYear}";
+            $data->formatted_tanggal = "{$formattedMonth} {$formattedStartDate} - {$formattedEndDate} , {$formattedYear}";
         } else {
             // Different months
-            $formattedStartDate = $startDate->format('j F');
-            $formattedEndDate = $endDate->format('j F Y');
+            $formattedStartDate = $startDate->format('F j');
+            $formattedEndDate = $endDate->format('F j ,Y');
 
             $data->formatted_tanggal = "{$formattedStartDate} - {$formattedEndDate}";
         }
