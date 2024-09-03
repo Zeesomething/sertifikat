@@ -78,7 +78,7 @@ class SertifikatController extends Controller
     {
         $sertifikat = Sertifikat::FindOrFail($id);
         $training = training::all();
-        return view('sertifikat.edit', compact('sertifikat', 'training'));
+        return view('sertifikat.show', compact('sertifikat', 'training'));
 
     }
 

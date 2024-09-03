@@ -85,7 +85,6 @@ class TrainingController extends Controller
     public function show($id)
     {
         $training = Training::FindOrFail($id);
-
         return view('training.show', compact('training'));
 
     }

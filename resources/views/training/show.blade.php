@@ -90,7 +90,7 @@
                                                         <input type="text" class="form-control" disabled
                                                             id="basic-icon-default-fullname"
                                                             placeholder="AI Development" aria-label="John Doe"
-                                                            name="nama_training"
+                                                            name="nama_training" style="padding-left: 15px;"
                                                             aria-describedby="basic-icon-default-fullname2"
                                                             value="{{ $training->nama_training }}" />
                                                     </div>
@@ -105,7 +105,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai" disabled
-                                                            id="html5-date-input"
+                                                            id="html5-date-input" style="padding-left: 15px;"
                                                             value="{{ $training->tanggal_mulai }}" />
                                                     </div>
                                                 </div>
@@ -119,7 +119,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" name="tanggal_selesai" disabled
-                                                            type="date" id="html5-date-input"
+                                                            type="date" id="html5-date-input" style="padding-left: 15px;"
                                                             value="{{ $training->tanggal_selesai }}" />
                                                     </div>
                                                 </div>
@@ -131,8 +131,8 @@
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-message2" disabled
                                                             class="input-group-text"><i
-                                                                class="bx bx-comment"></i></span>
-                                                        <textarea id="basic-icon-default-message" disabled class="form-control" name="konten" 
+                                                                class="bx bx-comment"></i></span> 
+                                                        <textarea id="basic-icon-default-message" disabled class="form-control" name="konten" style="padding-left: 15px;"
                                                             >{{ $training->konten }}</textarea>
                                                     </div>
                                                 </div>
