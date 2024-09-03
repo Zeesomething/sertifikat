@@ -82,8 +82,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Jenis Training</th>
-                                                <th>Tanggal Mulai</th>
-                                                <th>Tanggal Selesai</th>
+                                                <th>tanggal</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -93,8 +92,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->nama_training }}</b></td>
-                                                    <td>{{ $data->tanggal_mulai }}</td>
-                                                    <td>{{ $data->tanggal_selesai }}</td>
+                                                    <td>{{ $data->formatted_tanggal }}</td>
                                                     <form action="{{ route('training.destroy', $data->id) }}"
                                                         method="POST">
                                                         @csrf

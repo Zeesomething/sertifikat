@@ -102,7 +102,7 @@
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" type="date" name="tanggal_mulai"
+                                                        <input class="form-control" type="date" name="tanggal_mulai" id="tanggal_mulai"
                                                             value="2021-06-18" id="html5-date-input" />
                                                     </div>
                                                 </div>
@@ -115,7 +115,7 @@
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" name="tanggal_selesai"
+                                                        <input class="form-control" name="tanggal_selesai" id="tanggal_selesai"
                                                             type="date" value="2021-06-18" id="html5-date-input" />
                                                     </div>
                                                 </div>
@@ -178,6 +178,16 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    {{-- date range --}}
+    {{-- <script>
+        $(function() {
+            $('#date_range').daterangepicker({
+                locale: {
+                    format: 'DD MMMM YYYY'
+                }
+            });
+        });
+    </script> --}}
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
