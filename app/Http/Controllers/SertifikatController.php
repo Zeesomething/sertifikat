@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Sertifikat;
 use App\Models\Training;
 use Carbon\Carbon;
@@ -10,10 +8,6 @@ use setasign\Fpdi\Fpdi;
 
 class SertifikatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     public function index()
     {
         // Retrieve all trainings ordered by the created date
@@ -44,9 +38,6 @@ class SertifikatController extends Controller
         return view('sertifikat.index', compact('sertifikat'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $sertifikat = Sertifikat::all();
@@ -55,9 +46,6 @@ class SertifikatController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $sertifikat = new Sertifikat;
@@ -73,9 +61,6 @@ class SertifikatController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
@@ -84,9 +69,6 @@ class SertifikatController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
@@ -95,9 +77,6 @@ class SertifikatController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
@@ -112,10 +91,7 @@ class SertifikatController extends Controller
         return redirect()->route('sertifikat.index')->with('success', 'Data berhasil ditambahkan');
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy($id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
@@ -171,26 +147,26 @@ class SertifikatController extends Controller
         // Nama Penerima
         $pdf->SetFont('Helvetica', 'IB', 35);
         $pdf->SetTextColor(0, 0, 0); // Set warna teks ke hitam (0, 0, 0)
-        $pdf->SetXY(5, 90); // Set posisi X ke 0 untuk memusatkan horizontal
+        $pdf->SetXY(5, 90);
         $pdf->Cell(0, 10, $sertifikat->nama_penerima, 0, 1, 'C'); // 'C' untuk center alignment
 
         // Nomor Sertifikat
         $pdf->SetFont('Helvetica', 'B', 15);
-        $pdf->SetTextColor(255, 255, 255); // Set warna teks ke putih (255, 255, 255)
-        $pdf->SetXY(113, 66); // Set posisi X dan Y sesuai kebutuhan
+        $pdf->SetTextColor(255, 255, 255); 
+        $pdf->SetXY(113, 66); 
         $pdf->Write(0, $sertifikat->nomor_sertifikat);
 
-        // Nama Penerima
+        // Nama Pelatihan
         $pdf->SetFont('Helvetica', '', 15.5);
-        $pdf->SetTextColor(0, 0, 0); // Set warna teks ke hitam (0, 0, 0)
-        $pdf->SetXY(4, 115); // Set posisi X ke 0 untuk memusatkan horizontal
+        $pdf->SetTextColor(0, 0, 0); 
+        $pdf->SetXY(4, 115); 
         $pdf->Cell(0, 10, ('for ') . $sertifikat->training->nama_training, 0, 1, 'C');
 
-        // Menambahkan tanggal, posisikan di tengah
+        // Tanggal
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->SetTextColor(0, 0, 0); // Set warna teks ke hitam (0, 0, 0)
-        $pdf->SetXY(4, 132.5); // Set posisi X dan Y sesuai kebutuhan
-        $pdf->Cell(0, 10, ('on ') . $formattedTanggal, 0, 1, 'C'); // 'C' untuk center alignment
+        $pdf->SetTextColor(0, 0, 0); 
+        $pdf->SetXY(4, 132.5); 
+        $pdf->Cell(0, 10, ('on ') . $formattedTanggal, 0, 1, 'C'); 
 
         // Output PDF
         return response($pdf->Output('S'), 200)

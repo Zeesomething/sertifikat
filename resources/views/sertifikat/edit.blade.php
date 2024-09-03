@@ -61,7 +61,7 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sertifikat/</span> Add Data
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sertifikat/</span> Edit Data
                         </h4>
 
                         <!-- Basic Layout & Basic with Icons -->
@@ -196,16 +196,6 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    {{-- date range --}}
-    {{-- <script>
-        $(function() {
-            $('#date_range').daterangepicker({
-                locale: {
-                    format: 'DD MMMM YYYY'
-                }
-            });
-        });
-    </script> --}}
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>

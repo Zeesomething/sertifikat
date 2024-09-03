@@ -72,12 +72,12 @@
                                 </div>
                                 <div class="col-2">
                                     <a href="{{ route('training.create') }}" style="margin-top: 15px;"
-                                        class="btn btn-info"><i class='bx bx-plus-circle'></i> Add</a>
+                                        class="btn btn-info"><i class='bx bx-plus-circle'></i> Add Data</a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
-                                    <table class="table table-bordered">
+                                    <table class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -99,12 +99,19 @@
                                                         @method('DELETE')
                                                         <td>
                                                             <a href="{{ route('training.show', $data->id) }}"
-                                                                class="btn btn-sm btn-warning"><i
+                                                                class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                                data-bs-offset="0,4" data-bs-placement="top"
+                                                                data-bs-html="true" title="<span>Show</span>"><i
                                                                     class='bx bx-show-alt'></i></a>
                                                             <a href="{{ route('training.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-primary"><i
+                                                                class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+                                                                data-bs-offset="0,4" data-bs-placement="top"
+                                                                data-bs-html="true" title="<span>Edit</span>"><i
                                                                     class='bx bxs-edit-alt'></i></a>
                                                             <button class="btn btn-sm btn-danger" type="submit"
+                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                data-bs-placement="top" data-bs-html="true"
+                                                                title="<span>Delete</span>"
                                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
