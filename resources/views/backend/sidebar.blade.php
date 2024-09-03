@@ -91,6 +91,13 @@
                   </a>
                 </li>
               </ul>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{{route('sertifikat.index')}}" class="menu-link">
+                    <div data-i18n="Account">Sertifikat</div>
+                  </a>
+                </li>
+              </ul>
             </li>
 
 

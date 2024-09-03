@@ -12,3 +12,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\TrainingController;
 Route::resource('training', TrainingController::class);
+
+use App\Http\Controllers\SertifikatController;
+Route::resource('sertifikat', SertifikatController::class);
