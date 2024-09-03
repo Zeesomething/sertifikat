@@ -15,3 +15,6 @@ Route::resource('training', TrainingController::class);
 
 use App\Http\Controllers\SertifikatController;
 Route::resource('sertifikat', SertifikatController::class);
+Route::get('/sertifikat/print/{id}', [SertifikatController::class, 'printCertificate']);
+
+
