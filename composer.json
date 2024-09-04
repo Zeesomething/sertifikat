@@ -13,6 +13,7 @@
         "nesbot/carbon": "^3.8",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
+        "spatie/pdf-to-image": "^1.2",
         "tecnickcom/tcpdf": "^6.7",
         "yajra/laravel-datatables-oracle": "11.0"
     },

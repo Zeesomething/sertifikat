@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Models\Sertifikat;
 use App\Models\Training;
 use Carbon\Carbon;
@@ -91,7 +92,7 @@ class SertifikatController extends Controller
         return redirect()->route('sertifikat.index')->with('success', 'Data berhasil ditambahkan');
 
     }
-    
+
     public function destroy($id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
@@ -103,7 +104,7 @@ class SertifikatController extends Controller
 
     public function printCertificate($id)
     {
-        // Ambil data sertifikat dari database berdasarkan ID
+        // Ambil data sertifikat dari database berdasarkan ID, termasuk data relasi dengan 'training'
         $sertifikat = Sertifikat::with('training')->findOrFail($id);
 
         // Format tanggal
@@ -152,25 +153,30 @@ class SertifikatController extends Controller
 
         // Nomor Sertifikat
         $pdf->SetFont('Helvetica', 'B', 15);
-        $pdf->SetTextColor(255, 255, 255); 
-        $pdf->SetXY(113, 66); 
+        $pdf->SetTextColor(255, 255, 255);
+        $pdf->SetXY(113, 66);
         $pdf->Write(0, $sertifikat->nomor_sertifikat);
 
         // Nama Pelatihan
         $pdf->SetFont('Helvetica', '', 15.5);
-        $pdf->SetTextColor(0, 0, 0); 
-        $pdf->SetXY(4, 115); 
-        $pdf->Cell(0, 10, ('for ') . $sertifikat->training->nama_training, 0, 1, 'C');
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetXY(4, 115);
+        $pdf->Cell(0, 10, 'for ' . $sertifikat->training->nama_training, 0, 1, 'C');
 
         // Tanggal
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->SetTextColor(0, 0, 0); 
-        $pdf->SetXY(4, 132.5); 
-        $pdf->Cell(0, 10, ('on ') . $formattedTanggal, 0, 1, 'C'); 
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetXY(4, 132.5);
+        $pdf->Cell(0, 10, 'on ' . $formattedTanggal, 0, 1, 'C');
+
+        // Nama file sesuai dengan nama penerima
+        $fileName = "{$sertifikat->nama_penerima}_Sertifikat.pdf";
 
         // Output PDF
         return response($pdf->Output('S'), 200)
             ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'attachment; filename="certificate.pdf"');
+            ->header('Content-Disposition', "inline; filename=\"{$fileName}\"");
+
     }
+
 }

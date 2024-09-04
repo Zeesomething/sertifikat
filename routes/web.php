@@ -15,6 +15,8 @@ Route::resource('training', TrainingController::class);
 
 use App\Http\Controllers\SertifikatController;
 Route::resource('sertifikat', SertifikatController::class);
-Route::get('/sertifikat/print/{id}', [SertifikatController::class, 'printCertificate']);
+Route::get('/sertifikat/{id}/preview', [SertifikatController::class, 'printCertificate'])->name('sertifikat.preview')->defaults('isPreview', true);
+Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
+
 
 

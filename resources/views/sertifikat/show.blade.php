@@ -136,9 +136,9 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date"
-                                                            id="html5-date-input" disabled style="padding-left: 15px;"
-                                                            value="{{ $sertifikat->tanggal_selesai }}" /> 
+                                                            id="tanggal_selesai" type="date" id="html5-date-input"
+                                                            disabled style="padding-left: 15px;"
+                                                            value="{{ $sertifikat->tanggal_selesai }}" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,7 +154,7 @@
                                                             name="id_training" disabled>
                                                             <option>Default select</option>
                                                             @foreach ($training as $data)
-                                                                <option disabled value="{{ $data->id }}" 
+                                                                <option disabled value="{{ $data->id }}"
                                                                     {{ $data->id == $sertifikat->id_training ? 'selected' : '' }}>
                                                                     {{ $data->nama_training }}</option>
                                                             @endforeach
@@ -170,6 +170,15 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl">
+                                <div class="card" style="height: 820px">
+                                    <!-- Embed PDF preview in an iframe -->
+                                    <iframe style="height: 200%; border-radius: 10px" src="{{ route('sertifikat.preview', $sertifikat->id) }}" width="100%"
+                                        height="500px"></iframe>
                                 </div>
                             </div>
                         </div>
