@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-company">Jenis Pelatihan</label>
+                                                    for="basic-icon-default-company">Nama Pelatihan</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2"
