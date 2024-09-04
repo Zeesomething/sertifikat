@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_training');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->string('kode');
             $table->longtext('konten');
             $table->string('cover');
             $table->timestamps();

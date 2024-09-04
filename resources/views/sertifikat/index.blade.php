@@ -67,7 +67,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    
+
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sertifikat /</span> Data Table
                         </h4>
@@ -123,58 +123,7 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-fullname">Nomor
-                                                                        Sertifikat</label>
-                                                                    <div class="col-sm-10">
-                                                                        <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-fullname2"
-                                                                                class="input-group-text"><i
-                                                                                    class='bx bx-category'></i></span>
-                                                                            <input type="text" class="form-control"
-                                                                                id="basic-icon-default-fullname"
-                                                                                placeholder="NO. 001/DEV-AIDEV/VI/2024"
-                                                                                aria-label="John Doe"
-                                                                                name="nomor_sertifikat"
-                                                                                aria-describedby="basic-icon-default-fullname2" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-company">Tanggal
-                                                                        Mulai</label>
-                                                                    <div class="col-sm-10">
-                                                                        <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-company2"
-                                                                                class="input-group-text"><i
-                                                                                    class="bx bx-buildings"></i></span>
-                                                                            <input class="form-control" type="date"
-                                                                                name="tanggal_mulai"
-                                                                                id="tanggal_mulai" value="2024-01-01"
-                                                                                id="html5-date-input" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-company">Tanggal
-                                                                        Selesai</label>
-                                                                    <div class="col-sm-10">
-                                                                        <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-company2"
-                                                                                class="input-group-text"><i
-                                                                                    class="bx bx-buildings"></i></span>
-                                                                            <input class="form-control"
-                                                                                name="tanggal_selesai"
-                                                                                id="tanggal_selesai" type="date"
-                                                                                value="2024-01-01"
-                                                                                id="html5-date-input" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-company">Jenis
+                                                                        for="basic-icon-default-company">Nama
                                                                         Pelatihan</label>
                                                                     <div class="col-sm-10">
                                                                         <div class="input-group input-group-merge">
@@ -184,7 +133,7 @@
                                                                             <select id="defaultSelect"
                                                                                 class="form-select"
                                                                                 name="id_training">
-                                                                                <option>Pilih Jenis Pelatihan</option>
+                                                                                <option>Pilih Pelatihan</option>
                                                                                 @foreach ($training as $data)
                                                                                     <option
                                                                                         value="{{ $data->id }}">
@@ -219,9 +168,8 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Penerima</th>
-                                                <th>Nomor Sertifikat</th>
-                                                <th>Tanggal</th>
-                                                <th>Jenis Training</th>
+                                                <th>Nama Pelatihan</th>
+                                                <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -231,14 +179,15 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->nama_penerima }}</b></td>
-                                                    <td>{{ $data->nomor_sertifikat }}</td>
-                                                    <td>{{ $data->formatted_tanggal }}</td>
                                                     <td><b>{{ $data->training->nama_training }}</b></td>
-                                                    <form action="{{ route('sertifikat.destroy', $data->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <td>
+                                                    <td>{{ $data->status ? 'Selesai' : 'Belum Selesai' }}</td>
+                                                    <!-- Ganti $sertifikat menjadi $data -->
+                                                    <td>
+                                                        <!-- Form untuk hapus sertifikat -->
+                                                        <form action="{{ route('sertifikat.destroy', $data->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
                                                             <a href="{{ route('sertifikat.show', $data->id) }}"
                                                                 class="btn btn-sm btn-warning"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
@@ -258,12 +207,13 @@
                                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
+                                                        </form>
 
-                                                        </td>
-                                                    </form>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
+
                                     </table>
                                 </div>
                             </div>

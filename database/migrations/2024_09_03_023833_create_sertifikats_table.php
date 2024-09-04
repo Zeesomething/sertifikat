@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('sertifikats', function (Blueprint $table) {
             $table->id();
             $table->string('nama_penerima');
-            $table->string('nomor_sertifikat');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
             $table->unsignedBigInteger('id_training');
+            $table->boolean('status')->default(0);
+
             $table->timestamps();
 
             $table->foreign('id_training')->references('id')->on('trainings')->onDelete('cascade');

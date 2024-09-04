@@ -6,13 +6,21 @@ use App\Models\Training;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
-use RealRashid\SweetAlert\Facades\Alert;
-
 
 class SertifikatController extends Controller
 {
+
+    public function status($id)
+    {
+        $sertifikat = Sertifikat::findOrFail($id); // Cari sertifikat berdasarkan ID
+        $sertifikat->status = !$sertifikat->status; // Ganti status: on menjadi off atau sebaliknya
+        $sertifikat->save(); // Simpan perubahan
+
+        return redirect()->back()->with('success', 'Status sertifikat berhasil diubah!');
+    }
+
     public function index()
-    {   
+    {
         $training = training::all();
 
         // Retrieve all trainings ordered by the created date
@@ -40,7 +48,7 @@ class SertifikatController extends Controller
             }
         }
 
-        return view('sertifikat.index', compact('sertifikat' , 'training'));
+        return view('sertifikat.index', compact('sertifikat', 'training'));
     }
 
     public function create()
@@ -53,16 +61,14 @@ class SertifikatController extends Controller
 
     public function store(Request $request)
     {
+
         $sertifikat = new Sertifikat;
         $sertifikat->nama_penerima = $request->nama_penerima;
-        $sertifikat->nomor_sertifikat = $request->nomor_sertifikat;
-        $sertifikat->tanggal_mulai = $request->tanggal_mulai;
-        $sertifikat->tanggal_selesai = $request->tanggal_selesai;
         $sertifikat->id_training = $request->id_training;
 
         $sertifikat->save();
 
-        toast('Data has been submited!', 'success')->position('bottom-end');;
+        toast('Data has been submited!', 'success')->position('bottom-end');
         return redirect()->route('sertifikat.index');
 
     }
@@ -89,10 +95,8 @@ class SertifikatController extends Controller
     {
         $sertifikat = Sertifikat::FindOrFail($id);
         $sertifikat->nama_penerima = $request->nama_penerima;
-        $sertifikat->nomor_sertifikat = $request->nomor_sertifikat;
-        $sertifikat->tanggal_mulai = $request->tanggal_mulai;
-        $sertifikat->tanggal_selesai = $request->tanggal_selesai;
         $sertifikat->id_training = $request->id_training;
+        $sertifikat->status = $request->status;
 
         $sertifikat->save();
 
@@ -115,9 +119,17 @@ class SertifikatController extends Controller
         // Ambil data sertifikat dari database berdasarkan ID, termasuk data relasi dengan 'training'
         $sertifikat = Sertifikat::with('training')->findOrFail($id);
 
-        // Format tanggal
-        $startDate = Carbon::parse($sertifikat->tanggal_mulai);
-        $endDate = Carbon::parse($sertifikat->tanggal_selesai);
+        // Ambil data training terkait
+        $training = $sertifikat->training;
+
+        // Pastikan ada data training
+        if (!$training) {
+            return abort(404, 'Training data not found');
+        }
+
+        // Format tanggal dari data training
+        $startDate = Carbon::parse($training->tanggal_mulai);
+        $endDate = Carbon::parse($training->tanggal_selesai);
 
         if ($startDate->format('F Y') === $endDate->format('F Y')) {
             $formattedStartDate = $startDate->format('j');
@@ -132,6 +144,21 @@ class SertifikatController extends Controller
 
             $formattedTanggal = "{$formattedStartDate} - {$formattedEndDate}";
         }
+
+        // Mengubah bulan ke format Romawi
+        $bulanRomawi = [
+            1 => 'I', 2 => 'II', 3 => 'III', 4 => 'IV', 5 => 'V', 6 => 'VI',
+            7 => 'VII', 8 => 'VIII', 9 => 'IX', 10 => 'X', 11 => 'XI', 12 => 'XII',
+        ];
+        $bulanRomaji = $bulanRomawi[$startDate->format('n')]; // 'n' menghasilkan angka bulan tanpa leading zero
+
+        $nomorSertifikat = sprintf(
+            'NO. %03d/%s/%s/%d',
+            $sertifikat->id, // ID Nama Penerima
+            $training->kode, // Kode dari tabel training
+            $bulanRomaji, // Bulan dalam format Romawi
+            $startDate->year// Tahun
+        );
 
         // Path ke template PDF
         $templatePath = public_path('assets/img/sertifikat/template.pdf');
@@ -163,7 +190,7 @@ class SertifikatController extends Controller
         $pdf->SetFont('Helvetica', 'B', 15);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->SetXY(113, 66);
-        $pdf->Write(0, $sertifikat->nomor_sertifikat);
+        $pdf->Write(0, $nomorSertifikat);
 
         // Nama Pelatihan
         $pdf->SetFont('Helvetica', '', 15.5);

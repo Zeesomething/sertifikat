@@ -49,6 +49,7 @@ class TrainingController extends Controller
         $training->nama_training = $request->nama_training;
         $training->tanggal_mulai = $request->tanggal_mulai;
         $training->tanggal_selesai = $request->tanggal_selesai;
+        $training->kode = $request->kode;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');
@@ -85,6 +86,7 @@ class TrainingController extends Controller
         $training->nama_training = $request->nama_training;
         $training->tanggal_mulai = $request->tanggal_mulai;
         $training->tanggal_selesai = $request->tanggal_selesai;
+        $training->kode = $request->kode;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');

@@ -108,7 +108,7 @@
 
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-fullname">Jenis
+                                                                        for="basic-icon-default-fullname">Nama
                                                                         Training</label>
                                                                     <div class="col-sm-10">
                                                                         <div class="input-group input-group-merge">
@@ -154,6 +154,23 @@
                                                                                 id="tanggal_selesai" type="date"
                                                                                 value="2024-01-01"
                                                                                 id="html5-date-input" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-fullname">Kode</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-category'></i></span>
+                                                                            <input type="text" class="form-control"
+                                                                                id="basic-icon-default-fullname"
+                                                                                placeholder="AI Development"
+                                                                                aria-label="John Doe"
+                                                                                name="kode"
+                                                                                aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -208,7 +225,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Jenis Training</th>
+                                                <th>Nama Pelatihan</th>
                                                 <th>tanggal</th>
                                                 <th>Actions</th>
                                             </tr>

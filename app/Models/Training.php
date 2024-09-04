@@ -14,6 +14,7 @@ class Training extends Model
         'nama_training' ,
         'tanggal_mulai' ,
         'tanggal_selesai' ,
+        'kode' ,
         'konten' ,
         'cover'
     ];

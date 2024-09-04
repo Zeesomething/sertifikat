@@ -75,7 +75,7 @@
                                         <small class="text-muted float-end">Merged input group</small>
                                     </div>
                                     <div class="card-body">
-                                        <form action="{{ route('sertifikat.update' , $sertifikat->id) }}" method="post"
+                                        <form action="{{ route('sertifikat.update', $sertifikat->id) }}" method="post"
                                             role="form" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
@@ -98,52 +98,6 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-fullname">Nomor Sertifikat</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-fullname2"
-                                                            class="input-group-text"><i
-                                                                class='bx bx-category'></i></span>
-                                                        <input type="text" class="form-control"
-                                                            id="basic-icon-default-fullname"
-                                                            placeholder="AI Development" aria-label="John Doe"
-                                                            name="nomor_sertifikat"
-                                                            aria-describedby="basic-icon-default-fullname2"
-                                                            value="{{ $sertifikat->nomor_sertifikat }}" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-company">Tanggal Mulai</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" type="date" name="tanggal_mulai"
-                                                            id="tanggal_mulai" id="html5-date-input"
-                                                            value="{{ $sertifikat->tanggal_mulai }}" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-company">Tanggal Selesai</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-company2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date"
-                                                            id="html5-date-input"
-                                                            value="{{ $sertifikat->tanggal_selesai }}" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label"
                                                     for="basic-icon-default-company">Jenis Pelatihan</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
@@ -151,8 +105,7 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-category'></i></span>
                                                         <select id="defaultSelect" class="form-select"
-                                                            name="id_training"
-                                                            value="{{ $sertifikat->id_training }}">
+                                                            name="id_training" value="{{ $sertifikat->id_training }}">
                                                             <option>Default select</option>
                                                             @foreach ($training as $data)
                                                                 <option value="{{ $data->id }}"
@@ -163,6 +116,46 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-icon-default-company">Status</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-fullname2"
+                                                            class="input-group-text"><i
+                                                                class='bx bx-category'></i></span>
+                                                        <select class="form-control" id="status" name="status"
+                                                            aria-describedby="basic-icon-default-fullname2">
+                                                            <option value="0"
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Belum
+                                                                Selesai</option>
+                                                            <option value="1"
+                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}>
+                                                                Selesai</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label"
+                                                    for="basic-icon-default-company">Status</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-group-merge">
+                                                        <span id="basic-icon-default-fullname2"
+                                                            class="input-group-text"><i
+                                                                class='bx bx-category'></i></span>
+                                                        <select class="form-control" id="status" name="status"
+                                                            aria-describedby="basic-icon-default-fullname2">
+                                                            <option value="0"
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Belum
+                                                                Selesai</option>
+                                                            <option value="1"
+                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}>
+                                                                Selesai</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
                                             <div class="row">
                                                 <div class="col-sm-5" style="margin-left: 16.6%;">
                                                     <a href="{{ route('sertifikat.index') }}"
