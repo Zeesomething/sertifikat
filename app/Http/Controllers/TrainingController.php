@@ -61,7 +61,8 @@ class TrainingController extends Controller
 
         $training->save();
 
-        return redirect()->route('training.index')->with('success', 'Data berhasil ditambahkan');
+        toast('Data has been Created!', 'success')->position('bottom-end');
+        return redirect()->route('training.index');
     }
 
     public function show($id)
@@ -96,7 +97,8 @@ class TrainingController extends Controller
 
         $training->save();
 
-        return redirect()->route('training.index')->with('success', 'Data berhasil ditambahkan');
+        toast('Data has been Updated!', 'success')->position('bottom-end');
+        return redirect()->route('training.index');
 
     }
     
@@ -104,8 +106,9 @@ class TrainingController extends Controller
     {
         $training = Training::FindOrFail($id);
         $training->delete();
-        return redirect()->route('training.index')
-            ->with('success', 'data berhasil dihapus');
+
+        toast('Data has been Deleted!', 'success')->position('bottom-end');
+        return redirect()->route('training.index');
 
     }
 }

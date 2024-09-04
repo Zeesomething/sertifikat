@@ -43,8 +43,8 @@
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
         rel="stylesheet">
-    
-        <!-- Helpers -->
+
+    <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -53,6 +53,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -66,7 +67,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
+                    
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sertifikat /</span> Data Table
                         </h4>
@@ -77,9 +78,138 @@
                                 <div class="col-10">
                                     <h5 class="card-header">Data Sertifikat Tables</h5>
                                 </div>
+                                {{-- CREATE DATA --}}
                                 <div class="col-2">
-                                    <a href="{{ route('sertifikat.create') }}" style="margin-top: 15px;"
-                                        class="btn btn-info"><i class='bx bx-plus-circle'></i> Add Data</a>
+                                    <div class="mt-3">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalCenter">
+                                            <i class='bx bx-plus-circle'></i> Add Data
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalCenterTitle">Add Data
+                                                            Sertifikat
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="{{ route('sertifikat.store') }}" method="post"
+                                                        role="form" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-fullname">Nama
+                                                                        Penerima</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-category'></i></span>
+                                                                            <input type="text" class="form-control"
+                                                                                id="basic-icon-default-fullname"
+                                                                                placeholder="Enter Name"
+                                                                                aria-label="John Doe"
+                                                                                name="nama_penerima"
+                                                                                aria-describedby="basic-icon-default-fullname2" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-fullname">Nomor
+                                                                        Sertifikat</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-category'></i></span>
+                                                                            <input type="text" class="form-control"
+                                                                                id="basic-icon-default-fullname"
+                                                                                placeholder="NO. 001/DEV-AIDEV/VI/2024"
+                                                                                aria-label="John Doe"
+                                                                                name="nomor_sertifikat"
+                                                                                aria-describedby="basic-icon-default-fullname2" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-company">Tanggal
+                                                                        Mulai</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-company2"
+                                                                                class="input-group-text"><i
+                                                                                    class="bx bx-buildings"></i></span>
+                                                                            <input class="form-control" type="date"
+                                                                                name="tanggal_mulai"
+                                                                                id="tanggal_mulai" value="2024-01-01"
+                                                                                id="html5-date-input" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-company">Tanggal
+                                                                        Selesai</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-company2"
+                                                                                class="input-group-text"><i
+                                                                                    class="bx bx-buildings"></i></span>
+                                                                            <input class="form-control"
+                                                                                name="tanggal_selesai"
+                                                                                id="tanggal_selesai" type="date"
+                                                                                value="2024-01-01"
+                                                                                id="html5-date-input" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-company">Jenis
+                                                                        Pelatihan</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-category'></i></span>
+                                                                            <select id="defaultSelect"
+                                                                                class="form-select"
+                                                                                name="id_training">
+                                                                                <option>Pilih Jenis Pelatihan</option>
+                                                                                @foreach ($training as $data)
+                                                                                    <option
+                                                                                        value="{{ $data->id }}">
+                                                                                        {{ $data->nama_training }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -110,14 +240,16 @@
                                                         @method('DELETE')
                                                         <td>
                                                             <a href="{{ route('sertifikat.show', $data->id) }}"
-                                                                class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                                data-bs-offset="0,4" data-bs-placement="top"
-                                                                data-bs-html="true" title="<span>Show</span>"><i
+                                                                class="btn btn-sm btn-warning"
+                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                data-bs-placement="top" data-bs-html="true"
+                                                                title="<span>Show</span>"><i
                                                                     class='bx bx-show-alt'></i></a>
                                                             <a href="{{ route('sertifikat.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
-                                                                data-bs-offset="0,4" data-bs-placement="top"
-                                                                data-bs-html="true" title="<span>Edit</span>"><i
+                                                                class="btn btn-sm btn-primary"
+                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                data-bs-placement="top" data-bs-html="true"
+                                                                title="<span>Edit</span>"><i
                                                                     class='bx bxs-edit-alt'></i></a>
                                                             <button class="btn btn-sm btn-danger" type="submit"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
@@ -126,6 +258,7 @@
                                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
+
                                                         </td>
                                                     </form>
                                                 </tr>
@@ -188,6 +321,10 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Toast SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

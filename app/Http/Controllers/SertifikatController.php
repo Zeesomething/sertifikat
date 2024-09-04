@@ -6,11 +6,15 @@ use App\Models\Training;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class SertifikatController extends Controller
 {
     public function index()
-    {
+    {   
+        $training = training::all();
+
         // Retrieve all trainings ordered by the created date
         $sertifikat = Sertifikat::orderBy('created_at', 'desc')->get();
 
@@ -36,7 +40,7 @@ class SertifikatController extends Controller
             }
         }
 
-        return view('sertifikat.index', compact('sertifikat'));
+        return view('sertifikat.index', compact('sertifikat' , 'training'));
     }
 
     public function create()
@@ -58,7 +62,8 @@ class SertifikatController extends Controller
 
         $sertifikat->save();
 
-        return redirect()->route('sertifikat.index')->with('success', 'Data berhasil ditambahkan');
+        toast('Data has been submited!', 'success')->position('bottom-end');;
+        return redirect()->route('sertifikat.index');
 
     }
 
@@ -74,6 +79,8 @@ class SertifikatController extends Controller
     {
         $sertifikat = Sertifikat::FindOrFail($id);
         $training = training::all();
+
+        toast('Data has been Updated!', 'success')->position('bottom-end');
         return view('sertifikat.edit', compact('sertifikat', 'training'));
 
     }
@@ -97,8 +104,9 @@ class SertifikatController extends Controller
     {
         $sertifikat = Sertifikat::FindOrFail($id);
         $sertifikat->delete();
-        return redirect()->route('sertifikat.index')
-            ->with('success', 'data berhasil dihapus');
+
+        toast('Data has been Deleted!', 'success')->position('bottom-end');
+        return redirect()->route('sertifikat.index');
 
     }
 

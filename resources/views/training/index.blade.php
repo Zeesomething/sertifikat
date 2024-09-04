@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
 
-     <!-- Datatables CSS -->
+    <!-- Datatables CSS -->
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
         rel="stylesheet">
@@ -55,6 +55,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -79,10 +80,127 @@
                                 <div class="col-10">
                                     <h5 class="card-header">Data Training Tables</h5>
                                 </div>
+
+                                {{-- CREATE DATA --}}
                                 <div class="col-2">
-                                    <a href="{{ route('training.create') }}" style="margin-top: 15px;"
-                                        class="btn btn-info"><i class='bx bx-plus-circle'></i> Add Data</a>
+                                    <div class="mt-3">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalCenter">
+                                            <i class='bx bx-plus-circle'></i> Add Data
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true" >
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalCenterTitle">Add Data Training
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="{{ route('training.store') }}" method="post"
+                                                        role="form" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="row">
+
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-fullname">Jenis
+                                                                        Training</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-category'></i></span>
+                                                                            <input type="text" class="form-control"
+                                                                                id="basic-icon-default-fullname"
+                                                                                placeholder="AI Development"
+                                                                                aria-label="John Doe"
+                                                                                name="nama_training"
+                                                                                aria-describedby="basic-icon-default-fullname2" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-company">Tanggal
+                                                                        Mulai</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-company2"
+                                                                                class="input-group-text"><i
+                                                                                    class="bx bx-buildings"></i></span>
+                                                                            <input class="form-control" type="date"
+                                                                                name="tanggal_mulai"
+                                                                                id="tanggal_mulai" value="2024-01-01"
+                                                                                id="html5-date-input" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-company">Tanggal
+                                                                        Selesai</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-company2"
+                                                                                class="input-group-text"><i
+                                                                                    class="bx bx-buildings"></i></span>
+                                                                            <input class="form-control"
+                                                                                name="tanggal_selesai"
+                                                                                id="tanggal_selesai" type="date"
+                                                                                value="2024-01-01"
+                                                                                id="html5-date-input" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 form-label"
+                                                                        for="basic-icon-default-phone">Cover</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-phone2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-image'></i></span>
+                                                                            <input class="form-control" type="file"
+                                                                                id="formFile" name="cover" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 form-label"
+                                                                        for="basic-icon-default-message">Deskripsi</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-message2"
+                                                                                class="input-group-text"><i
+                                                                                    class="bx bx-comment"></i></span>
+                                                                            <textarea id="basic-icon-default-message" class="form-control" name="konten"
+                                                                                aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
@@ -108,14 +226,16 @@
                                                         @method('DELETE')
                                                         <td>
                                                             <a href="{{ route('training.show', $data->id) }}"
-                                                                class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                                data-bs-offset="0,4" data-bs-placement="top"
-                                                                data-bs-html="true" title="<span>Show</span>"><i
+                                                                class="btn btn-sm btn-warning"
+                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                data-bs-placement="top" data-bs-html="true"
+                                                                title="<span>Show</span>"><i
                                                                     class='bx bx-show-alt'></i></a>
                                                             <a href="{{ route('training.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
-                                                                data-bs-offset="0,4" data-bs-placement="top"
-                                                                data-bs-html="true" title="<span>Edit</span>"><i
+                                                                class="btn btn-sm btn-primary"
+                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                data-bs-placement="top" data-bs-html="true"
+                                                                title="<span>Edit</span>"><i
                                                                     class='bx bxs-edit-alt'></i></a>
                                                             <button class="btn btn-sm btn-danger" type="submit"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
