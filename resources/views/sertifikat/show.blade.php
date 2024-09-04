@@ -121,7 +121,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai"
-                                                            disabled id="tanggal_mulai" value="2021-06-18" style="padding-left: 15px;"
+                                                            disabled id="tanggal_mulai" style="padding-left: 15px;"
                                                             id="html5-date-input"
                                                             value="{{ $sertifikat->tanggal_mulai }}" />
                                                     </div>
@@ -136,7 +136,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date" value="2021-06-18"
+                                                            id="tanggal_selesai" type="date"
                                                             id="html5-date-input" disabled style="padding-left: 15px;"
                                                             value="{{ $sertifikat->tanggal_selesai }}" /> 
                                                     </div>

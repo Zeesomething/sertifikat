@@ -122,7 +122,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai"
-                                                            id="tanggal_mulai" value="2021-06-18" id="html5-date-input"
+                                                            id="tanggal_mulai" id="html5-date-input"
                                                             value="{{ $sertifikat->tanggal_mulai }}" />
                                                     </div>
                                                 </div>
@@ -136,7 +136,7 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date" value="2021-06-18"
+                                                            id="tanggal_selesai" type="date"
                                                             id="html5-date-input"
                                                             value="{{ $sertifikat->tanggal_selesai }}" />
                                                     </div>

@@ -88,7 +88,7 @@
                                                                 class='bx bx-category'></i></span>
                                                         <input type="text" class="form-control"
                                                             id="basic-icon-default-fullname"
-                                                            placeholder="AI Development" aria-label="John Doe"
+                                                            placeholder="Enter Name" aria-label="John Doe"
                                                             name="nama_penerima"
                                                             aria-describedby="basic-icon-default-fullname2" />
                                                     </div>
@@ -104,7 +104,7 @@
                                                                 class='bx bx-category'></i></span>
                                                         <input type="text" class="form-control"
                                                             id="basic-icon-default-fullname"
-                                                            placeholder="AI Development" aria-label="John Doe"
+                                                            placeholder="NO. 001/DEV-AIDEV/VI/2024" aria-label="John Doe"
                                                             name="nomor_sertifikat"
                                                             aria-describedby="basic-icon-default-fullname2" />
                                                     </div>
@@ -148,7 +148,7 @@
                                                                 class='bx bx-category'></i></span>
                                                         <select id="defaultSelect" class="form-select"
                                                             name="id_training">
-                                                            <option>Default select</option>
+                                                            <option>Pilih Jenis Pelatihan</option>
                                                             @foreach ($training as $data)
                                                                 <option value="{{ $data->id }}">
                                                                     {{ $data->nama_training }}
