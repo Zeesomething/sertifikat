@@ -136,26 +136,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-company">Status</label>
-                                                <div class="col-sm-10">
-                                                    <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-fullname2"
-                                                            class="input-group-text"><i
-                                                                class='bx bx-category'></i></span>
-                                                        <select class="form-control" id="status" name="status"
-                                                            aria-describedby="basic-icon-default-fullname2">
-                                                            <option value="0"
-                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Belum
-                                                                Selesai</option>
-                                                            <option value="1"
-                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}>
-                                                                Selesai</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                             <div class="row">
                                                 <div class="col-sm-5" style="margin-left: 16.6%;">
                                                     <a href="{{ route('sertifikat.index') }}"

@@ -180,10 +180,11 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->nama_penerima }}</b></td>
                                                     <td><b>{{ $data->training->nama_training }}</b></td>
-                                                    <td>{{ $data->status ? 'Selesai' : 'Belum Selesai' }}</td>
-                                                    <!-- Ganti $sertifikat menjadi $data -->
+                                                    <td
+                                                        style="color: {{ $data->status ? 'green' : 'red' }}; font-weight: bold">
+                                                        {{ $data->status ? 'Selesai' : 'Belum Selesai' }}
+                                                    </td>
                                                     <td>
-                                                        <!-- Form untuk hapus sertifikat -->
                                                         <form action="{{ route('sertifikat.destroy', $data->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf

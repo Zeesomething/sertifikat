@@ -126,11 +126,11 @@
                                                             style="padding-left: 15px;"
                                                             aria-describedby="basic-icon-default-fullname2" disabled>
                                                             <option value="0"
-                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Belum
-                                                                Selesai</option>
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}><b style="color: red">Belum
+                                                                Selesai<b></option>
                                                             <option value="1"
-                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}>
-                                                                Selesai</option>
+                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}><b style="color: green">
+                                                                Selesai</b></option>
                                                         </select>
                                                     </div>
                                                 </div>

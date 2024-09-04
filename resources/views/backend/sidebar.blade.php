@@ -32,7 +32,7 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('training.index') }}" class="menu-link">
-                        <div data-i18n="Account">Training</div>
+                        <div data-i18n="Account">Pelatihan</div>
                     </a>
                 </li>
             </ul>

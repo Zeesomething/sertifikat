@@ -8,6 +8,24 @@ use Illuminate\Support\Carbon;
 
 class TrainingController extends Controller
 {
+    private function formatWithOrdinal($date)
+    {
+        $day = $date->day;
+
+        // Tentukan suffix
+        if ($day % 10 == 1 && $day != 11) {
+            $suffix = 'st';
+        } elseif ($day % 10 == 2 && $day != 12) {
+            $suffix = 'nd';
+        } elseif ($day % 10 == 3 && $day != 13) {
+            $suffix = 'rd';
+        } else {
+            $suffix = 'th';
+        }
+
+        return $date->format('j') . $suffix;
+    }
+
     public function index()
     {
         // Retrieve all trainings ordered by the created date
@@ -18,10 +36,12 @@ class TrainingController extends Controller
             $startDate = Carbon::parse($data->tanggal_mulai);
             $endDate = Carbon::parse($data->tanggal_selesai);
 
+            // Format dates with ordinal suffix
+            $formattedStartDate = $this->formatWithOrdinal($startDate);
+            $formattedEndDate = $this->formatWithOrdinal($endDate);
+
             // Check if the start and end dates are in the same month
             if ($startDate->format('F Y') === $endDate->format('F Y')) {
-                $formattedStartDate = $startDate->format('j');
-                $formattedEndDate = $endDate->format('j');
                 $formattedMonth = $startDate->translatedFormat('F');
                 $formattedYear = $startDate->translatedFormat('Y');
 
@@ -37,6 +57,7 @@ class TrainingController extends Controller
 
         return view('training.index', compact('training'));
     }
+
     public function create()
     {
         return view('training.create');
@@ -103,7 +124,7 @@ class TrainingController extends Controller
         return redirect()->route('training.index');
 
     }
-    
+
     public function destroy($id)
     {
         $training = Training::FindOrFail($id);

@@ -114,6 +114,24 @@ class SertifikatController extends Controller
 
     }
 
+    private function formatWithOrdinal($date)
+    {
+        $day = $date->day;
+
+        // Tentukan suffix
+        if ($day % 10 == 1 && $day != 11) {
+            $suffix = 'st';
+        } elseif ($day % 10 == 2 && $day != 12) {
+            $suffix = 'nd';
+        } elseif ($day % 10 == 3 && $day != 13) {
+            $suffix = 'rd';
+        } else {
+            $suffix = 'th';
+        }
+
+        return $date->format('j') . $suffix;
+    }
+
     public function printCertificate($id)
     {
         // Ambil data sertifikat dari database berdasarkan ID, termasuk data relasi dengan 'training'
@@ -131,9 +149,11 @@ class SertifikatController extends Controller
         $startDate = Carbon::parse($training->tanggal_mulai);
         $endDate = Carbon::parse($training->tanggal_selesai);
 
+// Format tanggal dengan suffix ordinal
+        $formattedStartDate = $this->formatWithOrdinal($startDate);
+        $formattedEndDate = $this->formatWithOrdinal($endDate);
+
         if ($startDate->format('F Y') === $endDate->format('F Y')) {
-            $formattedStartDate = $startDate->format('j');
-            $formattedEndDate = $endDate->format('j');
             $formattedMonth = $startDate->translatedFormat('F');
             $formattedYear = $startDate->translatedFormat('Y');
 
