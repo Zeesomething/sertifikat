@@ -61,6 +61,9 @@ class SertifikatController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_penerima' => 'required|string|max:255',
+        ]);
 
         $sertifikat = new Sertifikat;
         $sertifikat->nama_penerima = $request->nama_penerima;
@@ -149,7 +152,7 @@ class SertifikatController extends Controller
         $startDate = Carbon::parse($training->tanggal_mulai);
         $endDate = Carbon::parse($training->tanggal_selesai);
 
-// Format tanggal dengan suffix ordinal
+        // Format tanggal dengan suffix ordinal
         $formattedStartDate = $this->formatWithOrdinal($startDate);
         $formattedEndDate = $this->formatWithOrdinal($endDate);
 
@@ -187,11 +190,17 @@ class SertifikatController extends Controller
             return abort(404, 'Template PDF not found');
         }
 
-        // Inisialisasi FPDI dan FPDF
+        // Inisialisasi FPDF
         $pdf = new Fpdi();
 
+        // Inisialisasi FPDI dan FPDF
+        define('FPDF_FONTPATH', public_path('fonts/'));
+
+        // Daftarkan font
+        $pdf->AddFont('AlexBrush-Regular', '', 'AlexBrush-Regular.php');
+
         // Menambahkan halaman dengan orientasi horizontal (landscape)
-        $pdf->AddPage('L'); // 'L' untuk landscape, 'P' untuk portrait
+        $pdf->AddPage('L');
 
         // Set sumber file
         $pdf->setSourceFile($templatePath);
@@ -201,8 +210,8 @@ class SertifikatController extends Controller
         $pdf->useTemplate($tplIdx);
 
         // Nama Penerima
-        $pdf->SetFont('Helvetica', 'IB', 35);
-        $pdf->SetTextColor(0, 0, 0); // Set warna teks ke hitam (0, 0, 0)
+        $pdf->SetFont('AlexBrush-Regular', '', 45);
+        $pdf->SetTextColor(0, 0, 0); // Set warna teks ke hitam
         $pdf->SetXY(5, 90);
         $pdf->Cell(0, 10, $sertifikat->nama_penerima, 0, 1, 'C'); // 'C' untuk center alignment
 
@@ -211,6 +220,7 @@ class SertifikatController extends Controller
         $pdf->SetTextColor(255, 255, 255);
         $pdf->SetXY(113, 66);
         $pdf->Write(0, $nomorSertifikat);
+
 
         // Nama Pelatihan
         $pdf->SetFont('Helvetica', '', 15.5);

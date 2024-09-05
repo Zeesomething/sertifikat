@@ -91,7 +91,7 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true" >
+                                        <div class="modal fade"  id="modalCenter" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -123,6 +123,11 @@
                                                                                 aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
                                                                     </div>
+                                                                    @error('nama_training')
+                                                                        <div class="alert alert-danger mt-2">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 col-form-label"
@@ -168,11 +173,15 @@
                                                                             <input type="text" class="form-control"
                                                                                 id="basic-icon-default-fullname"
                                                                                 placeholder="AI Development"
-                                                                                aria-label="John Doe"
-                                                                                name="kode"
+                                                                                aria-label="John Doe" name="kode"
                                                                                 aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
                                                                     </div>
+                                                                    @error('kode')
+                                                                        <div class="alert alert-danger mt-2">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 form-label"
@@ -205,9 +214,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-outline-secondary"
-                                                                data-bs-dismiss="modal">
-                                                                Cancel
-                                                            </button>
+                                                                data-bs-dismiss="modal">Cancel</button>
                                                             <button type="submit"
                                                                 class="btn btn-primary">Submit</button>
                                                         </div>
@@ -288,6 +295,16 @@
     </div>
     <!-- / Layout wrapper -->
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->any())
+                var myModal = new bootstrap.Modal(document.getElementById('modalCenter'));
+                myModal.show();
+            @endif
+        });
+    </script>
+
+    </script>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

@@ -114,7 +114,7 @@
                                                                                     class='bx bx-category'></i></span>
                                                                             <input type="text" class="form-control"
                                                                                 id="basic-icon-default-fullname"
-                                                                                placeholder="Enter Name"
+                                                                                placeholder="Enter Name" required
                                                                                 aria-label="John Doe"
                                                                                 name="nama_penerima"
                                                                                 aria-describedby="basic-icon-default-fullname2" />
@@ -181,8 +181,8 @@
                                                     <td><b>{{ $data->nama_penerima }}</b></td>
                                                     <td><b>{{ $data->training->nama_training }}</b></td>
                                                     <td
-                                                        style="color: {{ $data->status ? 'green' : 'red' }}; font-weight: bold">
-                                                        {{ $data->status ? 'Selesai' : 'Belum Selesai' }}
+                                                        style="color: {{ $data->status ? 'green' : 'blue' }}; font-weight: bold">
+                                                        {{ $data->status ? 'Selesai Pelatihan' : 'Terdaftar' }}
                                                     </td>
                                                     <td>
                                                         <form action="{{ route('sertifikat.destroy', $data->id) }}"

@@ -40,7 +40,6 @@ class TrainingController extends Controller
             $formattedStartDate = $this->formatWithOrdinal($startDate);
             $formattedEndDate = $this->formatWithOrdinal($endDate);
 
-            // Check if the start and end dates are in the same month
             if ($startDate->format('F Y') === $endDate->format('F Y')) {
                 $formattedMonth = $startDate->translatedFormat('F');
                 $formattedYear = $startDate->translatedFormat('Y');
@@ -66,6 +65,11 @@ class TrainingController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_training' => 'required|string|max:255|unique:trainings,nama_training',
+            'kode' => 'required|string|max:50|unique:trainings,kode',
+        ]);
+
         $training = new Training;
         $training->nama_training = $request->nama_training;
         $training->tanggal_mulai = $request->tanggal_mulai;
@@ -102,6 +106,11 @@ class TrainingController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_training' => 'required|string|max:255|unique:trainings,nama_training',
+            'kode' => 'required|string|max:50|unique:trainings,kode',
+        ]);
+
         $training = Training::FindOrFail($id);
 
         $training->nama_training = $request->nama_training;

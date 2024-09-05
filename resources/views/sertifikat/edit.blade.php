@@ -127,11 +127,10 @@
                                                         <select class="form-control" id="status" name="status"
                                                             aria-describedby="basic-icon-default-fullname2">
                                                             <option value="0"
-                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Belum
-                                                                Selesai</option>
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}>Terdaftar</option>
                                                             <option value="1"
                                                                 {{ $sertifikat->status == 1 ? 'selected' : '' }}>
-                                                                Selesai</option>
+                                                                Selesai Pelatihan</option>
                                                         </select>
                                                     </div>
                                                 </div>
