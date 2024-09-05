@@ -36,13 +36,6 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -80,7 +73,7 @@
                                             @method('PUT')
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-fullname">Nama Penerima</label>
+                                                    for="basic-icon-default-fullname">Nama Peserta</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2"
@@ -166,7 +159,7 @@
                                 <div class="col-xxl">
                                     <div class="card" style="height: 100px">
                                         <!-- Embed PDF preview in an iframe -->
-                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta belum selesai pelatihan</h3></center>
+                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta <b>belum</b> selesai pelatihan</h3></center>
                                     </div>
                                 </div>
                             </div>
@@ -199,6 +192,13 @@
             });
         });
     </script> --}}
+    <!-- Helpers -->
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
