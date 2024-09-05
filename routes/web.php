@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
 });
 
+    Route::get('/check-certificate', [SertifikatController::class, 'checkCertificate'])->name('checkCertificate');
+
 
 
 
