@@ -126,11 +126,13 @@
                                                             style="padding-left: 15px;"
                                                             aria-describedby="basic-icon-default-fullname2" disabled>
                                                             <option value="0"
-                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}><b style="color: red">Terdaftar
-                                                                <b></option>
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}><b
+                                                                    style="color: red">Terdaftar
+                                                                    <b></option>
                                                             <option value="1"
-                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}><b style="color: green">
-                                                                Selesai Pelatihan</b></option>
+                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}><b
+                                                                    style="color: green">
+                                                                    Selesai Pelatihan</b></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -156,6 +158,15 @@
                                         <iframe style="height: 200%; border-radius: 10px"
                                             src="{{ route('sertifikat.preview', $sertifikat->id) }}" width="100%"
                                             height="500px"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-xxl">
+                                    <div class="card" style="height: 100px">
+                                        <!-- Embed PDF preview in an iframe -->
+                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta belum selesai pelatihan</h3></center>
                                     </div>
                                 </div>
                             </div>
