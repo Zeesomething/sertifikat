@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{asset ('assets/img/favicon/favicon.ico"') }}" />
 
     {{-- Bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -53,7 +53,7 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -204,8 +204,9 @@
                                                             <button class="btn btn-sm btn-danger" type="submit"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
                                                                 data-bs-placement="top" data-bs-html="true"
+                                                                data-confirm-delete="true"
                                                                 title="<span>Delete</span>"
-                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                                >
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
                                                         </form>
@@ -261,6 +262,7 @@
     <script
         src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
     </script>
+    @include('sweetalert::alert')
     <script>
         let table = new DataTable('#myTable');
     </script>

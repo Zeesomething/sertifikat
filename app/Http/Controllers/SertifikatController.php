@@ -222,7 +222,6 @@ class SertifikatController extends Controller
         $pdf->SetXY(113, 66);
         $pdf->Write(0, $nomorSertifikat);
 
-
         // Nama Pelatihan
         $pdf->SetFont('Helvetica', '', 15.5);
         $pdf->SetTextColor(0, 0, 0);
@@ -245,4 +244,54 @@ class SertifikatController extends Controller
 
     }
 
+    public function checkCertificate(Request $request)
+    {
+        // Ambil input nomor sertifikat dari form
+        $nomorSertifikatInput = $request->input('nomor_sertifikat');
+
+        // Pecahkan input nomor sertifikat untuk mendapatkan bagian-bagian yang diperlukan
+        $parts = explode('/', str_replace('NO. ', '', $nomorSertifikatInput));
+
+        if (count($parts) !== 4) {
+            // Jika format tidak sesuai
+            return view('certificate-check', [
+                'status' => 'error',
+                'message' => 'Format nomor sertifikat tidak valid. Silakan cek kembali.',
+            ]);
+        }
+
+        // Ambil data berdasarkan bagian-bagian nomor sertifikat
+        $idNamaPenerima = intval($parts[0]); // Bagian ID Nama Penerima
+        $kodeTraining = $parts[1]; // Bagian Kode Training
+
+        // Cek di database apakah sertifikat dengan ID penerima dan kode training ada
+        $sertifikat = Sertifikat::where('id', $idNamaPenerima)->first();
+        $training = Training::where('kode', $kodeTraining)->first();
+
+        if ($sertifikat && $training) {
+            // Sertifikat ditemukan
+            $message ="
+            <table style='width: 100%; border-collapse: collapse;'>
+                <tr>
+                    <td style='padding: 8px;'><strong>Nama Penerima:</strong></td>
+                    <td style='padding: 8px;'>{$sertifikat->nama_penerima}</td>
+                </tr>
+                <tr>
+                    <td style='padding: 8px;'><strong>Pelatihan yang Diambil:</strong></td>
+                    <td style='padding: 8px;'>{$training->nama_training}</td>
+                </tr>
+            </table>
+        ";
+            return view('layouts/user', [
+                'status' => 'success',
+                'message' => $message,
+            ]);
+        } else {
+            // Sertifikat tidak ditemukan
+            return view('layouts/user', [
+                'status' => 'error',
+                'message' => 'Sertifikat tidak ditemukan. Silakan cek kembali.',
+            ]);
+        }
+    }
 }
