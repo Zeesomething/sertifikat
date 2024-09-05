@@ -131,7 +131,7 @@
                                                                                 class="input-group-text"><i
                                                                                     class='bx bx-category'></i></span>
                                                                             <select id="defaultSelect"
-                                                                                class="form-select"
+                                                                                class="form-select" required
                                                                                 name="id_training">
                                                                                 <option>Pilih Pelatihan</option>
                                                                                 @foreach ($training as $data)
