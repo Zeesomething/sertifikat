@@ -12,11 +12,13 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset ('assets/img/favicon/favicon.ico"')}}' />
+    <link rel="icon" type="image/x-icon"
+        href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
     {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -90,7 +92,7 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade"  id="modalCenter" tabindex="-1" aria-hidden="true">
+                                        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -136,7 +138,7 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-company2"
                                                                                 class="input-group-text"><i
-                                                                                    class="bx bx-buildings"></i></span>
+                                                                                    class='bx bx-calendar'></i></span>
                                                                             <input class="form-control" type="date"
                                                                                 name="tanggal_mulai"
                                                                                 id="tanggal_mulai" value="2024-01-01"
@@ -152,7 +154,7 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-company2"
                                                                                 class="input-group-text"><i
-                                                                                    class="bx bx-buildings"></i></span>
+                                                                                    class='bx bx-calendar'></i></span>
                                                                             <input class="form-control"
                                                                                 name="tanggal_selesai"
                                                                                 id="tanggal_selesai" type="date"
@@ -168,10 +170,10 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-fullname2"
                                                                                 class="input-group-text"><i
-                                                                                    class='bx bx-category'></i></span>
+                                                                                    class='bx bx-lock-open-alt'></i></span>
                                                                             <input type="text" class="form-control"
                                                                                 id="basic-icon-default-fullname"
-                                                                                placeholder="AI Development"
+                                                                                placeholder="XX-XXXX"
                                                                                 aria-label="John Doe" name="kode"
                                                                                 aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>

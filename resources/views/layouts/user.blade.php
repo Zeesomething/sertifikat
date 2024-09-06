@@ -129,7 +129,6 @@
         </div>
         <!-- Carousel End -->
 
-
         <div class="container-fluid sertifikat py-5 mb-5" id="sertifikat">
             <div class="container py-5 mt-5 mb-5" style="margin-bottom: 9.7rem;">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px">
@@ -171,7 +170,7 @@
                     <h1 class="display-4"> Offering the Best Consulting & Investa Services</h1>
                 </div>
                 <div class="row g-4 justify-content-center text-center">
-                    
+
                     @foreach ($limitTraining as $data)
                         <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item bg-light rounded">
@@ -201,6 +200,39 @@
         </div>
         <!-- Services End -->
 
+        <!-- Cek Sertifikat Start -->
+        <div class="container-fluid sertifikat py-5 mb-5" id="sertifikat">
+            <div class="container py-5 mt-5 mb-5" style="margin-bottom: 9.7rem;">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px">
+                    <h4 class="text-primary">Sertifikat</h4>
+                    <h1 class="display-4">Konfirmasi Sertifikat Kamu</h1>
+                    <p class="fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                </div>
+                <div class="row g-4 justify-content-center mt-5">
+                    <div class="container justify-content-center"></div>
+                    <div class="col-lg-8 wow fadeInUp text-center" data-wow-delay="0.1s">
+                        <!-- Form untuk mengecek sertifikat -->
+                        <form action="{{ route('checkCertificate') }}" method="GET">
+                            <label for="no_sertifikat" class="form-label text-center"><h3>Masukan No. Sertifikat</h3></label>
+                            <input type="text" class="form-control text-center nomor_sertifikat" placeholder="NO. XXX/XX-XXX/XX/XXXX"
+                                id="no_sertifikat" name="nomor_sertifikat" style="width:855px;">
+                            <button class="btn btn-primary mt-4 w-100" type="submit">Cek</button>
+                        </form>
+                        <!-- Tempat untuk menampilkan hasil -->
+                        <div id="result" class="mt-4">
+                            @if (isset($message))
+                                @if ($status == 'success')
+                                    <div class="alert alert-success">{!! $message !!}</div>
+                                @else
+                                    <div class="alert alert-danger">{!! $message !!}</div>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cek Sertifikat End -->
 
         <!-- About Start -->
         <div class="container-fluid about bg-light py-5" id="about">

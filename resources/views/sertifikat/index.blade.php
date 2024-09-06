@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset ('assets/img/favicon/favicon.ico"') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico"') }}" />
 
     {{-- Bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -43,6 +43,14 @@
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
         rel="stylesheet">
+
+    {{-- tooltip --}}
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -105,7 +113,8 @@
                                                             <div class="row">
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-fullname">Nama Peserta</label>
+                                                                        for="basic-icon-default-fullname">Nama
+                                                                        Peserta</label>
                                                                     <div class="col-sm-10">
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-fullname2"
@@ -168,7 +177,7 @@
                                                 <th>No</th>
                                                 <th>Nama Penerima</th>
                                                 <th>Nama Pelatihan</th>
-                                                <th>Status</th>
+                                                <th>Status Pelatihan</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -188,24 +197,144 @@
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
+
+                                                            {{-- SHOW DATA --}}
                                                             <a href="{{ route('sertifikat.show', $data->id) }}"
                                                                 class="btn btn-sm btn-warning"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
                                                                 data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Show</span>"><i
-                                                                    class='bx bx-show-alt'></i></a>
-                                                            <a href="{{ route('sertifikat.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-primary"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Edit</span>"><i
-                                                                    class='bx bxs-edit-alt'></i></a>
+                                                                title="Show">
+                                                                <i class='bx bx-show-alt'></i>
+                                                            </a>
+
+                                                            {{-- EDIT DATA --}}
+                                                            <!-- Button yang nge-trigger modal -->
+                                                            <button type="button" class="btn btn-sm btn-primary"
+                                                                data-bs-target="#Edit{{ $data->id }}"
+                                                                data-bs-toggle="modal">
+                                                                <i class='bx bx-edit' data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top" title="Edit"
+                                                                    data-bs-offset="0,4" data-bs-html="true"></i>
+                                                            </button>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="Edit{{ $data->id }}"
+                                                                    tabindex="-1" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered"
+                                                                        role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="EditTitle">
+                                                                                    Edit Data Sertifikat</h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <form
+                                                                                action="{{ route('sertifikat.update', $data->id) }}"
+                                                                                method="post" role="form"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                @method('PUT')
+                                                                                <div class="modal-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col mb-3">
+                                                                                            <label for="nameWithTitle"
+                                                                                                class="form-label">Nama
+                                                                                                Peserta</label>
+                                                                                            <div
+                                                                                                class="input-group input-group-merge">
+                                                                                                <span
+                                                                                                    id="basic-icon-default-fullname2"
+                                                                                                    class="input-group-text"><i
+                                                                                                        class='bx bx-user'></i></span>
+                                                                                                <input
+                                                                                                    style="font-weight: bold"
+                                                                                                    type="text"
+                                                                                                    id="nameWithTitle"
+                                                                                                    required
+                                                                                                    class="form-control"
+                                                                                                    name="nama_penerima"
+                                                                                                    value="{{ $data->nama_penerima }}" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col mb-3">
+                                                                                            <label for="nameWithTitle"
+                                                                                                class="form-label">Nama
+                                                                                                Pelatihan</label>
+                                                                                            <div
+                                                                                                class="input-group input-group-merge">
+                                                                                                <span
+                                                                                                    id="basic-icon-default-fullname2"
+                                                                                                    class="input-group-text"><i
+                                                                                                        class='bx bx-category'></i></span>
+                                                                                                <select id="defaultSelect"
+                                                                                                    class="form-select"
+                                                                                                    name="id_training"
+                                                                                                    value="{{ $data->id_training }}">
+                                                                                                    <option>Default select
+                                                                                                    </option>
+                                                                                                    @foreach ($training as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->id }}"
+                                                                                                            {{ $item->id == $data->id_training ? 'selected' : '' }}>
+                                                                                                            {{ $item->nama_training }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col mb-3">
+                                                                                            <label for="nameWithTitle"
+                                                                                                class="form-label">Status
+                                                                                                Pelatihan</label>
+                                                                                            <div
+                                                                                                class="input-group input-group-merge">
+                                                                                                <span
+                                                                                                    id="basic-icon-default-fullname2"
+                                                                                                    class="input-group-text"><i
+                                                                                                        class='bx bx-category'></i></span>
+                                                                                                <select id="defaultSelect"
+                                                                                                    class="form-select"
+                                                                                                    name="status"
+                                                                                                    aria-describedby="basic-icon-default-fullname2">
+                                                                                                    <option value="0"
+                                                                                                        {{ $data->status == 0 ? 'selected' : '' }}>
+                                                                                                        Terdaftar</option>
+                                                                                                    <option value="1"
+                                                                                                        {{ $data->status == 1 ? 'selected' : '' }}>
+                                                                                                        Selesai Pelatihan
+                                                                                                    </option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-outline-secondary"
+                                                                                        data-bs-dismiss="modal">
+                                                                                        Close
+                                                                                    </button>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Save
+                                                                                        changes</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            {{-- DELETE DATA --}}
                                                             <button class="btn btn-sm btn-danger" type="submit"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
                                                                 data-bs-placement="top" data-bs-html="true"
-                                                                data-confirm-delete="true"
-                                                                title="<span>Delete</span>"
-                                                                >
+                                                                data-confirm-delete="true" title="Delete">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
                                                         </form>
@@ -254,6 +383,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+
+    <!-- Tooltip JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+
 
     <!-- Datatables JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>

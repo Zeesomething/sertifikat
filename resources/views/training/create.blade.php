@@ -101,9 +101,10 @@
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" type="date" name="tanggal_mulai" id="tanggal_mulai"
-                                                            value="2024-01-01" id="html5-date-input" />
+                                                                class='bx bx-calendar'></i></span>
+                                                        <input class="form-control" type="date" name="tanggal_mulai"
+                                                            id="tanggal_mulai" value="2024-01-01"
+                                                            id="html5-date-input" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -114,9 +115,10 @@
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-company2"
                                                             class="input-group-text"><i
-                                                                class="bx bx-buildings"></i></span>
-                                                        <input class="form-control" name="tanggal_selesai" id="tanggal_selesai"
-                                                            type="date" value="2024-01-01" id="html5-date-input" />
+                                                                class='bx bx-calendar'></i></span>
+                                                        <input class="form-control" name="tanggal_selesai"
+                                                            id="tanggal_selesai" type="date" value="2024-01-01"
+                                                            id="html5-date-input" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +143,8 @@
                                                     for="basic-icon-default-phone">Cover</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                                        <span id="basic-icon-default-phone2"
+                                                            class="input-group-text"><i
                                                                 class='bx bx-image'></i></span>
                                                         <input class="form-control" type="file" id="formFile"
                                                             name="cover" />
