@@ -142,9 +142,12 @@
                         <!-- Form untuk mengecek sertifikat -->
                         <form action="{{ route('checkCertificate') }}" method="POST">
                             @csrf
-                            <label for="no_sertifikat" class="form-label text-center"><h3>Masukan No. Sertifikat</h3></label>
-                            <input type="text" class="form-control text-center nomor_sertifikat" placeholder="NO. XXX/XX-XXX/XX/XXXX"
-                                id="no_sertifikat" name="nomor_sertifikat" style="width:855px;">
+                            <label for="no_sertifikat" class="form-label text-center">
+                                <h3>Masukan No. Sertifikat</h3>
+                            </label>
+                            <input type="text" class="form-control text-center nomor_sertifikat"
+                                placeholder="NO. XXX/XX-XXX/XX/XXXX" id="no_sertifikat" name="nomor_sertifikat"
+                                style="width:855px;">
                             <button class="btn btn-primary mt-4 w-100" type="submit">Cek</button>
                         </form>
                         <!-- Tempat untuk menampilkan hasil -->
@@ -173,23 +176,26 @@
 
                     @foreach ($limitTraining as $data)
                         <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item bg-light rounded">
-                            <div class="service-img">
-                                <img src="{{ asset('images/training/' . $data->cover) }}" class="img-fluid w-100 rounded-top"
-                                    alt="">
-                            </div>
-                            <div class="service-content text-center p-4">
-                                <div class="service-content-inner">
-                                    <a href="#" class="h4 mb-4 d-inline-flex text-start"><i
-                                            class="fas fa-donate fa-2x me-2"></i>{{ $data->nama_training }}</a>
-                                    <p class="mb-4">
-                                        {{ $data->formatted_tanggal_training  }}
-                                    </p>
-                                    <a class="btn btn-light rounded-pill py-2 px-4" href="#">Read More</a>
+                            <a href="{{ url('pelatihan', $data->id) }}">
+                                <div class="service-item bg-light rounded">
+                                    <div class="service-img">
+                                        <img src="{{ asset('images/training/' . $data->cover) }}"
+                                            class="img-fluid w-100 rounded-top" alt="">
+                                    </div>
+                                    <div class="service-content text-center p-4">
+                                        <div class="service-content-inner">
+                                            <a href="#" class="h4 mb-4 d-inline-flex text-start"><i
+                                                    class="fas fa-donate fa-2x me-2"></i>{{ $data->nama_training }}</a>
+                                            <p class="mb-4">
+                                                {{ $data->formatted_tanggal_training }}
+                                            </p>
+                                            <a class="btn btn-light rounded-pill py-2 px-4" href="{{ url('pelatihan', $data->id) }}">Read
+                                                More</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </div>
                     @endforeach
                     <div class="col-12">
                         <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s"
@@ -199,40 +205,6 @@
             </div>
         </div>
         <!-- Services End -->
-
-        <!-- Cek Sertifikat Start -->
-        <div class="container-fluid sertifikat py-5 mb-5" id="sertifikat">
-            <div class="container py-5 mt-5 mb-5" style="margin-bottom: 9.7rem;">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px">
-                    <h4 class="text-primary">Sertifikat</h4>
-                    <h1 class="display-4">Konfirmasi Sertifikat Kamu</h1>
-                    <p class="fs-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                </div>
-                <div class="row g-4 justify-content-center mt-5">
-                    <div class="container justify-content-center"></div>
-                    <div class="col-lg-8 wow fadeInUp text-center" data-wow-delay="0.1s">
-                        <!-- Form untuk mengecek sertifikat -->
-                        <form action="{{ route('checkCertificate') }}" method="GET">
-                            <label for="no_sertifikat" class="form-label text-center"><h3>Masukan No. Sertifikat</h3></label>
-                            <input type="text" class="form-control text-center nomor_sertifikat" placeholder="NO. XXX/XX-XXX/XX/XXXX"
-                                id="no_sertifikat" name="nomor_sertifikat" style="width:855px;">
-                            <button class="btn btn-primary mt-4 w-100" type="submit">Cek</button>
-                        </form>
-                        <!-- Tempat untuk menampilkan hasil -->
-                        <div id="result" class="mt-4">
-                            @if (isset($message))
-                                @if ($status == 'success')
-                                    <div class="alert alert-success">{!! $message !!}</div>
-                                @else
-                                    <div class="alert alert-danger">{!! $message !!}</div>
-                                @endif
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Cek Sertifikat End -->
 
         <!-- About Start -->
         <div class="container-fluid about bg-light py-5" id="about">
@@ -770,34 +742,34 @@
         <script src="{{ asset('User/js/main.js') }}"></script>
 
         <script>
-$(document).ready(function () {
-    // Fungsi untuk menambahkan atau menghapus class active berdasarkan scroll
-    $(window).on('scroll', function () {
-        var scrollPosition = $(this).scrollTop();
+            $(document).ready(function() {
+                // Fungsi untuk menambahkan atau menghapus class active berdasarkan scroll
+                $(window).on('scroll', function() {
+                    var scrollPosition = $(this).scrollTop();
 
-        // Loop melalui setiap bagian untuk menambahkan class active pada nav-link yang sesuai
-        $('.navbar-nav .nav-link').each(function () {
-            var sectionOffset = $($(this).attr('href')).offset().top - 100;
+                    // Loop melalui setiap bagian untuk menambahkan class active pada nav-link yang sesuai
+                    $('.navbar-nav .nav-link').each(function() {
+                        var sectionOffset = $($(this).attr('href')).offset().top - 100;
 
-            if (scrollPosition >= sectionOffset) {
-                // Hapus class active dari semua link
-                $('.navbar-nav .nav-link').removeClass('active');
-                // Tambah class active pada link yang sesuai
-                $(this).addClass('active');
-            }
-        });
-    });
+                        if (scrollPosition >= sectionOffset) {
+                            // Hapus class active dari semua link
+                            $('.navbar-nav .nav-link').removeClass('active');
+                            // Tambah class active pada link yang sesuai
+                            $(this).addClass('active');
+                        }
+                    });
+                });
 
-    // Mengatur event click untuk semua item navbar
-    $('.navbar-nav .nav-link').on('click', function () {
-        // Menghapus class active dari semua nav-link
-        $('.navbar-nav .nav-link').removeClass('active');
-        
-        // Menambahkan class active ke nav-link yang diklik
-        $(this).addClass('active');
-    });
-});
-</script>
+                // Mengatur event click untuk semua item navbar
+                $('.navbar-nav .nav-link').on('click', function() {
+                    // Menghapus class active dari semua nav-link
+                    $('.navbar-nav .nav-link').removeClass('active');
+
+                    // Menambahkan class active ke nav-link yang diklik
+                    $(this).addClass('active');
+                });
+            });
+        </script>
 
     </body>
 

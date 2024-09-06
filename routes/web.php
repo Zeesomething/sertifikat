@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\TampilController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\WelcomeController;
 
 
@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
 });
+
+
+Route::get('/pelatihan/{id}', [PelatihanController::class, 'pelatihan']);
 
     
 
