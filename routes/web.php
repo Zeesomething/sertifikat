@@ -1,10 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// BACKEND
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
+
+// FRONTEND
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\MoreController;
 
 
 
@@ -25,8 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
 });
 
-
+// FRONTEND ROUTE
 Route::get('/pelatihan/{id}', [PelatihanController::class, 'pelatihan']);
+Route::get('/more', [App\Http\Controllers\MoreController::class, 'index'])->name('more');
+
 
     
 

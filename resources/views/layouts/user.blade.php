@@ -199,7 +199,7 @@
                     @endforeach
                     <div class="col-12">
                         <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s"
-                            href="#">Services More</a>
+                            href="{{ route('more') }}">Services More</a>
                     </div>
                 </div>
             </div>
