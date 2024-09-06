@@ -201,8 +201,8 @@
             </div>
             <div class="carousel-caption">
                 <div class="carousel-caption-inner text-start p-3">
-                    <h1 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated"
-                        data-animation="fadeInUp" data-delay="1.3s" style="animation-delay: 1.3s;">The most
+                    <h1 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated" data-animation="fadeInUp"
+                        data-delay="1.3s" style="animation-delay: 1.3s;">The most
                         prestigious Investments company in worldwide.</h1>
                     <p class="mb-5 fs-5 fadeInUp animate__animated" data-animation="fadeInUp" data-delay="1.5s"
                         style="animation-delay: 1.5s;">Lorem Ipsum is simply dummy text of the printing and
@@ -324,7 +324,7 @@
                 @endforeach
                 <div class="col-12">
                     <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s"
-                        href="#">Services More</a>
+                        href="{{ route('more') }}">Services More</a>
                 </div>
             </div>
         </div>
