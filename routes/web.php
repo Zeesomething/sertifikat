@@ -9,7 +9,8 @@ use App\Http\Controllers\WelcomeController;
 
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
-Route::get('/check-certificate', [App\Http\Controllers\WelcomeController::class, 'checkCertificate'])->name('checkCertificate');
+Route::post('/check-certificate', [WelcomeController::class, 'checkCertificate'])->name('checkCertificate');
+
 
 
 Auth::routes();

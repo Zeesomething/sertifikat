@@ -141,7 +141,8 @@
                     <div class="container justify-content-center"></div>
                     <div class="col-lg-8 wow fadeInUp text-center" data-wow-delay="0.1s">
                         <!-- Form untuk mengecek sertifikat -->
-                        <form action="{{ route('checkCertificate') }}" method="GET">
+                        <form action="{{ route('checkCertificate') }}" method="POST">
+                            @csrf
                             <label for="no_sertifikat" class="form-label text-center"><h3>Masukan No. Sertifikat</h3></label>
                             <input type="text" class="form-control text-center nomor_sertifikat" placeholder="NO. XXX/XX-XXX/XX/XXXX"
                                 id="no_sertifikat" name="nomor_sertifikat" style="width:855px;">
@@ -170,6 +171,7 @@
                     <h1 class="display-4"> Offering the Best Consulting & Investa Services</h1>
                 </div>
                 <div class="row g-4 justify-content-center text-center">
+                    
                     @foreach ($limitTraining as $data)
                         <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item bg-light rounded">
@@ -182,7 +184,7 @@
                                     <a href="#" class="h4 mb-4 d-inline-flex text-start"><i
                                             class="fas fa-donate fa-2x me-2"></i>{{ $data->nama_training }}</a>
                                     <p class="mb-4">
-                                        {{ $data->formatted_tanggal }}
+                                        {{ $data->formatted_tanggal_training  }}
                                     </p>
                                     <a class="btn btn-light rounded-pill py-2 px-4" href="#">Read More</a>
                                 </div>
