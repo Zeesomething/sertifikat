@@ -9,7 +9,6 @@ use setasign\Fpdi\Fpdi;
 
 class SertifikatController extends Controller
 {
-
     public function status($id)
     {
         $sertifikat = Sertifikat::findOrFail($id); // Cari sertifikat berdasarkan ID
@@ -87,23 +86,24 @@ class SertifikatController extends Controller
 
     public function edit($id)
     {
-        $sertifikat = Sertifikat::FindOrFail($id);
+        $sertifikat = Sertifikat::findOrFail($id);
         $training = Training::all();
 
-        toast('Data has been Updated!', 'success')->position('bottom-end');
-        return view('sertifikat.edit', compact('sertifikat', 'training'));
+        
+       return view('sertifikat.edit', compact('sertifikat', 'training'));
 
     }
 
     public function update(Request $request, $id)
     {
-        $sertifikat = Sertifikat::FindOrFail($id);
+        $sertifikat = Sertifikat::findOrFail($id);
         $sertifikat->nama_penerima = $request->nama_penerima;
         $sertifikat->id_training = $request->id_training;
         $sertifikat->status = $request->status;
 
         $sertifikat->save();
 
+        toast('Data has been Updated!', 'success')->position('bottom-end');
         return redirect()->route('sertifikat.index')->with('success', 'Data berhasil ditambahkan');
 
     }
@@ -245,47 +245,47 @@ class SertifikatController extends Controller
     }
 
     public function checkCertificate(Request $request)
-   {
-    // Ambil input nomor sertifikat dari form
-    $nomorSertifikatInput = $request->input('nomor_sertifikat');
+    {
+        // Ambil input nomor sertifikat dari form
+        $nomorSertifikatInput = $request->input('nomor_sertifikat');
 
-    // Pecahkan input nomor sertifikat untuk mendapatkan bagian-bagian yang diperlukan
-    $parts = explode('/', str_replace('NO. ', '', $nomorSertifikatInput));
+        // Pecahkan input nomor sertifikat untuk mendapatkan bagian-bagian yang diperlukan
+        $parts = explode('/', str_replace('NO. ', '', $nomorSertifikatInput));
 
-    if (count($parts) !== 4) {
-        // Jika format tidak sesuai
-        return view('certificate-check', [
-            'status' => 'error',
-            'message' => 'Format nomor sertifikat tidak valid. Silakan cek kembali.',
-        ]);
-    }
-
-    $idNamaPenerima = intval($parts[0]); // Bagian ID Nama Penerima
-    $kodeTraining = $parts[1]; // Bagian Kode Training
-
-    // Cek di database apakah sertifikat dengan ID penerima dan kode training ada
-    $sertifikat = Sertifikat::with('training')->where('id', $idNamaPenerima)->first();
-    $training = Training::where('kode', $kodeTraining)->first();
-
-    if ($sertifikat && $training) {
-        $startDate = Carbon::parse($training->tanggal_mulai);
-        $endDate = Carbon::parse($training->tanggal_selesai);
-
-        // Format tanggal dengan suffix ordinal
-        $formattedStartDate = $this->formatWithOrdinal($startDate);
-        $formattedEndDate = $this->formatWithOrdinal($endDate);
-
-        if ($startDate->format('F Y') === $endDate->format('F Y')) {
-            $formattedMonth = $startDate->translatedFormat('F');
-            $formattedYear = $startDate->translatedFormat('Y');
-            $formattedTanggal = "{$formattedMonth} {$formattedStartDate} - {$formattedEndDate}, {$formattedYear}";
-        } else {
-            $formattedStartDate = $startDate->format('F j');
-            $formattedEndDate = $endDate->format('F j, Y');
-            $formattedTanggal = "{$formattedStartDate} - {$formattedEndDate}";
+        if (count($parts) !== 4) {
+            // Jika format tidak sesuai
+            return view('certificate-check', [
+                'status' => 'error',
+                'message' => 'Format nomor sertifikat tidak valid. Silakan cek kembali.',
+            ]);
         }
 
-        $message = "
+        $idNamaPenerima = intval($parts[0]); // Bagian ID Nama Penerima
+        $kodeTraining = $parts[1]; // Bagian Kode Training
+
+        // Cek di database apakah sertifikat dengan ID penerima dan kode training ada
+        $sertifikat = Sertifikat::with('training')->where('id', $idNamaPenerima)->first();
+        $training = Training::where('kode', $kodeTraining)->first();
+
+        if ($sertifikat && $training) {
+            $startDate = Carbon::parse($training->tanggal_mulai);
+            $endDate = Carbon::parse($training->tanggal_selesai);
+
+            // Format tanggal dengan suffix ordinal
+            $formattedStartDate = $this->formatWithOrdinal($startDate);
+            $formattedEndDate = $this->formatWithOrdinal($endDate);
+
+            if ($startDate->format('F Y') === $endDate->format('F Y')) {
+                $formattedMonth = $startDate->translatedFormat('F');
+                $formattedYear = $startDate->translatedFormat('Y');
+                $formattedTanggal = "{$formattedMonth} {$formattedStartDate} - {$formattedEndDate}, {$formattedYear}";
+            } else {
+                $formattedStartDate = $startDate->format('F j');
+                $formattedEndDate = $endDate->format('F j, Y');
+                $formattedTanggal = "{$formattedStartDate} - {$formattedEndDate}";
+            }
+
+            $message = "
             <table style='width:700px;'>
                 <tr>
                     <th>Nama Penerima</th>
@@ -304,17 +304,18 @@ class SertifikatController extends Controller
                 </tr>
             </table>
         ";
-        return view('layouts.user', [
-            'status' => 'success',
-            'message' => $message,
-        ]);
-    } else {
-        // Sertifikat tidak ditemukan
-        return view('layouts.user', [
-            'status' => 'error',
-            'message' => 'Sertifikat tidak ditemukan. Silakan cek kembali.',
-        ]);
+            return view('layouts.user', [
+                'status' => 'success',
+                'message' => $message,
+            ]);
+        } else {
+            // Sertifikat tidak ditemukan
+            return view('layouts.user', [
+                'status' => 'error',
+                'message' => 'Sertifikat tidak ditemukan. Silakan cek kembali.',
+            ]);
+        }
+
     }
-}
 
 }
