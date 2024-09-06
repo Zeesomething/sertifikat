@@ -36,13 +36,6 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -80,7 +73,7 @@
                                             @method('PUT')
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label"
-                                                    for="basic-icon-default-fullname">Nama Penerima</label>
+                                                    for="basic-icon-default-fullname">Nama Peserta</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-fullname2"
@@ -126,11 +119,13 @@
                                                             style="padding-left: 15px;"
                                                             aria-describedby="basic-icon-default-fullname2" disabled>
                                                             <option value="0"
-                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}><b style="color: red">Terdaftar
-                                                                <b></option>
+                                                                {{ $sertifikat->status == 0 ? 'selected' : '' }}><b
+                                                                    style="color: red">Terdaftar
+                                                                    <b></option>
                                                             <option value="1"
-                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}><b style="color: green">
-                                                                Selesai Pelatihan</b></option>
+                                                                {{ $sertifikat->status == 1 ? 'selected' : '' }}><b
+                                                                    style="color: green">
+                                                                    Selesai Pelatihan</b></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -156,6 +151,15 @@
                                         <iframe style="height: 200%; border-radius: 10px"
                                             src="{{ route('sertifikat.preview', $sertifikat->id) }}" width="100%"
                                             height="500px"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-xxl">
+                                    <div class="card" style="height: 100px">
+                                        <!-- Embed PDF preview in an iframe -->
+                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta <b>belum</b> selesai pelatihan</h3></center>
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +192,13 @@
             });
         });
     </script> --}}
+    <!-- Helpers -->
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>

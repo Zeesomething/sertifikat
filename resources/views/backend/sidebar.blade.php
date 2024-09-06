@@ -22,12 +22,12 @@
         </li>
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
+            <span class="menu-header-text">Halaman</span>
         </li>
         <li class="menu-item {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-data'></i>
-                <div data-i18n="Account Settings">Data Table</div>
+                <div data-i18n="Account Settings">Tabel Data</div>
             </a>
             <ul class="menu-sub {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'show' : '' }}">
                 <li class="menu-item {{ request()->routeIs('training.index') ? 'active' : '' }}">

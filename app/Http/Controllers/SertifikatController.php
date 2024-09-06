@@ -21,7 +21,7 @@ class SertifikatController extends Controller
 
     public function index()
     {
-        $training = training::all();
+        $training = Training::all();
 
         // Retrieve all trainings ordered by the created date
         $sertifikat = Sertifikat::orderBy('created_at', 'desc')->get();
@@ -88,7 +88,7 @@ class SertifikatController extends Controller
     public function edit($id)
     {
         $sertifikat = Sertifikat::FindOrFail($id);
-        $training = training::all();
+        $training = Training::all();
 
         toast('Data has been Updated!', 'success')->position('bottom-end');
         return view('sertifikat.edit', compact('sertifikat', 'training'));

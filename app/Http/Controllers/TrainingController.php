@@ -106,10 +106,6 @@ class TrainingController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_training' => 'required|string|max:255|unique:trainings,nama_training',
-            'kode' => 'required|string|max:50|unique:trainings,kode',
-        ]);
 
         $training = Training::FindOrFail($id);
 
