@@ -50,10 +50,10 @@
 
 
         <!-- Modal Search Start -->
-        
+
 
         <!-- Carousel Start -->
-        
+
         <!-- About End -->
 
 
@@ -441,7 +441,7 @@
 
 
         <!-- Back to Top -->
-        
+
 
 
         <!-- JavaScript Libraries -->
@@ -486,6 +486,23 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('User/js/main.js') }}"></script>
+        <script>
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        </script>
+
 
         <script>
             $(document).ready(function() {
@@ -516,6 +533,7 @@
                 });
             });
         </script>
+        
 
     </body>
 
