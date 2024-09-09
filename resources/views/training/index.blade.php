@@ -12,6 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
     <link rel="icon" type="image/x-icon"
         href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
