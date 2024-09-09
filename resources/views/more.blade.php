@@ -1,30 +1,48 @@
 @extends('layouts.user')
 
 @section('content')
-<body>
-    <div class="container my-5 bg-light">
-        <h1 class="text-center mb-4" style="font-family: monospace;">Daftar Training</h1>
-        <div class="row g-4">
-            @foreach($training as $data)
-                <div class="col-md-4">
-                    <div class="card shadow-sm h-100">
-                        <img src="{{ asset('images/training/' . $data->cover) }}" class="card-img-top" alt="{{ $data->nama_training }}" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ $data->nama_training }}</h5>
-                            <p class="card-text">{{ $data->formatted_tanggal }}</p>
-                            <p class="card-text">{{ \Illuminate\Support\Str::limit($data->konten, 50) }}</p>
-                            <a href="{{ url('pelatihan', $data->id) }}" class="btn btn-primary mt-auto">Detail</a>
+
+    <body>
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="bg-breadcrumb-single"></div>
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Training List</h4>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item active text-primary">Training</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Header End -->
+
+        {{-- resources\views\more.blade.php --}}
+        <div class="container my-5">
+            <div class="row g-4">
+                <center><div style="width: 60%"><h1 style="font-size: 30px; color: #102147" class="display-5 mb-4">Discover a range of training programs designed to enhance your skills and broaden your horizons toward success.</h1></div></center>
+                @foreach ($training as $data)
+                    <div class="col-md-3">
+                        <div class="card shadow-sm h-100 wow fadeInUp" data-wow-delay="0.1s">
+                            <img src="{{ asset('images/training/' . $data->cover) }}" class="card-img-top"
+                                alt="{{ $data->nama_training }}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ $data->nama_training }}</h5>
+                                <p class="card-text">{{ $data->formatted_tanggal }}</p>
+                                <p class="card-text">{{ \Illuminate\Support\Str::limit($data->konten, 75) }}</p>
+                                <a href="{{ url('pelatihan', $data->id) }}" class="btn btn-primary mt-auto">Detail</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ route('welcome') }}" class="btn btn-secondary btn-lg"
+                    style="width: 50%; margin-bottom: 15.5rem; margin-top:4rem;">Kembali</a>
+            </div>
         </div>
-        <div class="d-flex justify-content-center mt-4">
-            <a href="{{ route('welcome') }}" class="btn btn-secondary btn-lg" style="width: 50%; margin-bottom: 15.5rem; margin-top:4rem;">Kembali</a>
-        </div>
-    </div>
 
-    <!-- Optional: Tambahkan Bootstrap JS jika diperlukan -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+
+    </body>
 @endsection
