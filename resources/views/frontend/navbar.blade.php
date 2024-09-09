@@ -37,7 +37,7 @@
     </div>
     <div class="container px-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-white py-3 px-4">
-            <a href="index.html" class="navbar-brand p-0">
+            <a href="{{ url('/') }}#up" class="navbar-brand p-0">
                 <img src="{{ asset('assets/img/icons/logo-bartech.png') }}"
                     style="display: block; max-width: 100%; margin: auto; z-index: 10; height: 45px" alt="">
                 <!-- <img src="img/logo.png" alt="Logo"> -->

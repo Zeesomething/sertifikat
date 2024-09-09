@@ -2,7 +2,7 @@
 
 @section('content')
 <body>
-    <div class="container my-5">
+    <div class="container my-5 bg-light">
         <h1 class="text-center mb-4" style="font-family: monospace;">Daftar Training</h1>
         <div class="row g-4">
             @foreach($training as $data)

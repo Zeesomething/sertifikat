@@ -3,10 +3,12 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Investa - Investment Website Template</title>
+        <title>Certificate Check System</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
+
+        <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
 
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -440,7 +442,9 @@
         @include('frontend/footer')
 
 
-        <!-- Back to Top -->
+        <!-- Back to Top -->    
+
+        
 
 
 
@@ -533,7 +537,7 @@
                 });
             });
         </script>
-        
+
 
     </body>
 
