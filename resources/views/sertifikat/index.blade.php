@@ -51,9 +51,59 @@
     <!-- Bootstrap JS Bundle (includes Popper) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+    <!-- jQuery (jika diperlukan) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <style>
+        .swal2-container {
+            z-index: 9999 !important;
+            /* Atur z-index tinggi agar SweetAlert menutupi semua elemen lain */
+        }
+    </style>
+
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!-- SweetAlert2 -->
+    <!-- Pastikan jQuery dan SweetAlert2 sudah di-include di bagian <head> atau sebelum script ini -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Event handler untuk tombol delete
+            $('button[id^="deleteButton"]').on('click', function(e) {
+                e.preventDefault();
+
+                // Mengambil ID form dari tombol yang diklik
+                var formId = $(this).closest('form').attr('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form jika user mengonfirmasi penghapusan
+                        $('#' + formId).submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -61,7 +111,6 @@
 </head>
 
 <body>
-
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -141,7 +190,8 @@
                                                                             <select id="defaultSelect"
                                                                                 class="form-select" required
                                                                                 name="id_training">
-                                                                                <option>Pilih Pelatihan</option>
+                                                                                <option value="">Pilih Pelatihan
+                                                                                </option>
                                                                                 @foreach ($training as $data)
                                                                                     <option
                                                                                         value="{{ $data->id }}">
@@ -193,153 +243,149 @@
                                                         {{ $data->status ? 'Selesai Pelatihan' : 'Terdaftar' }}
                                                     </td>
                                                     <td>
-                                                        <form action="{{ route('sertifikat.destroy', $data->id) }}"
+                                                        {{-- SHOW DATA --}}
+                                                        <a href="{{ route('sertifikat.show', $data->id) }}"
+                                                            class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                            data-bs-offset="0,4" data-bs-placement="top"
+                                                            data-bs-html="true" title="Show">
+                                                            <i class='bx bx-show-alt'></i>
+                                                        </a>
+
+                                                        {{-- EDIT DATA --}}
+                                                        <!-- Button yang nge-trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-primary"
+                                                            data-bs-target="#Edit{{ $data->id }}"
+                                                            data-bs-toggle="modal">
+                                                            <i class='bx bx-edit' data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Edit"
+                                                                data-bs-offset="0,4" data-bs-html="true"></i>
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="Edit{{ $data->id }}"
+                                                            tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="EditTitle">Edit
+                                                                            Data Sertifikat</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ route('sertifikat.update', $data->id) }}"
+                                                                        method="post" role="form"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Nama
+                                                                                        Peserta</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-user'></i></span>
+                                                                                        <input
+                                                                                            style="font-weight: bold"
+                                                                                            type="text"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control"
+                                                                                            name="nama_penerima"
+                                                                                            value="{{ $data->nama_penerima }}" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Nama
+                                                                                        Pelatihan</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-category'></i></span>
+                                                                                        <select id="defaultSelect"
+                                                                                            class="form-select"
+                                                                                            name="id_training">
+                                                                                            <option>Default select
+                                                                                            </option>
+                                                                                            @foreach ($training as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}"
+                                                                                                    {{ $item->id == $data->id_training ? 'selected' : '' }}>
+                                                                                                    {{ $item->nama_training }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Status
+                                                                                        Pelatihan</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-category'></i></span>
+                                                                                        <select id="defaultSelect"
+                                                                                            class="form-select"
+                                                                                            required name="status"
+                                                                                            aria-describedby="basic-icon-default-fullname2">
+                                                                                            <option value="0"
+                                                                                                {{ $data->status == 0 ? 'selected' : '' }}>
+                                                                                                Terdaftar</option>
+                                                                                            <option value="1"
+                                                                                                {{ $data->status == 1 ? 'selected' : '' }}>
+                                                                                                Selesai Pelatihan
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-outline-secondary"
+                                                                                data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Save
+                                                                                changes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- DELETE DATA --}}
+                                                        <form id="deleteForm{{ $data->id }}"
+                                                            action="{{ route('sertifikat.destroy', $data->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
-
-                                                            {{-- SHOW DATA --}}
-                                                            <a href="{{ route('sertifikat.show', $data->id) }}"
-                                                                class="btn btn-sm btn-warning"
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                id="deleteButton{{ $data->id }}"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
                                                                 data-bs-placement="top" data-bs-html="true"
-                                                                title="Show">
-                                                                <i class='bx bx-show-alt'></i>
-                                                            </a>
-
-                                                            {{-- EDIT DATA --}}
-                                                            <!-- Button yang nge-trigger modal -->
-                                                            <button type="button" class="btn btn-sm btn-primary"
-                                                                data-bs-target="#Edit{{ $data->id }}"
-                                                                data-bs-toggle="modal">
-                                                                <i class='bx bx-edit' data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="Edit"
-                                                                    data-bs-offset="0,4" data-bs-html="true"></i>
-                                                            </button>
-                                                                <!-- Modal -->
-                                                                <div class="modal fade" id="Edit{{ $data->id }}"
-                                                                    tabindex="-1" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered"
-                                                                        role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="EditTitle">
-                                                                                    Edit Data Sertifikat</h5>
-                                                                                <button type="button" class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    aria-label="Close"></button>
-                                                                            </div>
-                                                                            <form
-                                                                                action="{{ route('sertifikat.update', $data->id) }}"
-                                                                                method="post" role="form"
-                                                                                enctype="multipart/form-data">
-                                                                                @csrf
-                                                                                @method('PUT')
-                                                                                <div class="modal-body">
-                                                                                    <div class="row">
-                                                                                        <div class="col mb-3">
-                                                                                            <label for="nameWithTitle"
-                                                                                                class="form-label">Nama
-                                                                                                Peserta</label>
-                                                                                            <div
-                                                                                                class="input-group input-group-merge">
-                                                                                                <span
-                                                                                                    id="basic-icon-default-fullname2"
-                                                                                                    class="input-group-text"><i
-                                                                                                        class='bx bx-user'></i></span>
-                                                                                                <input
-                                                                                                    style="font-weight: bold"
-                                                                                                    type="text"
-                                                                                                    id="nameWithTitle"
-                                                                                                    required
-                                                                                                    class="form-control"
-                                                                                                    name="nama_penerima"
-                                                                                                    value="{{ $data->nama_penerima }}" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col mb-3">
-                                                                                            <label for="nameWithTitle"
-                                                                                                class="form-label">Nama
-                                                                                                Pelatihan</label>
-                                                                                            <div
-                                                                                                class="input-group input-group-merge">
-                                                                                                <span
-                                                                                                    id="basic-icon-default-fullname2"
-                                                                                                    class="input-group-text"><i
-                                                                                                        class='bx bx-category'></i></span>
-                                                                                                <select id="defaultSelect"
-                                                                                                    class="form-select"
-                                                                                                    name="id_training"
-                                                                                                    value="{{ $data->id_training }}">
-                                                                                                    <option>Default select
-                                                                                                    </option>
-                                                                                                    @foreach ($training as $item)
-                                                                                                        <option
-                                                                                                            value="{{ $item->id }}"
-                                                                                                            {{ $item->id == $data->id_training ? 'selected' : '' }}>
-                                                                                                            {{ $item->nama_training }}
-                                                                                                        </option>
-                                                                                                    @endforeach
-                                                                                                </select>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col mb-3">
-                                                                                            <label for="nameWithTitle"
-                                                                                                class="form-label">Status
-                                                                                                Pelatihan</label>
-                                                                                            <div
-                                                                                                class="input-group input-group-merge">
-                                                                                                <span
-                                                                                                    id="basic-icon-default-fullname2"
-                                                                                                    class="input-group-text"><i
-                                                                                                        class='bx bx-category'></i></span>
-                                                                                                <select id="defaultSelect"
-                                                                                                    class="form-select"
-                                                                                                    name="status"
-                                                                                                    aria-describedby="basic-icon-default-fullname2">
-                                                                                                    <option value="0"
-                                                                                                        {{ $data->status == 0 ? 'selected' : '' }}>
-                                                                                                        Terdaftar</option>
-                                                                                                    <option value="1"
-                                                                                                        {{ $data->status == 1 ? 'selected' : '' }}>
-                                                                                                        Selesai Pelatihan
-                                                                                                    </option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-outline-secondary"
-                                                                                        data-bs-dismiss="modal">
-                                                                                        Close
-                                                                                    </button>
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-primary">Save
-                                                                                        changes</button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            {{-- DELETE DATA --}}
-                                                            <button class="btn btn-sm btn-danger" type="submit"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                data-confirm-delete="true" title="Delete">
+                                                                title="<span>Delete</span>">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
                                                         </form>
 
                                                     </td>
+
+
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -393,6 +439,24 @@
             });
         });
     </script>
+
+    <!-- dropdown -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdowns = document.querySelectorAll('.dropdown-toggle');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.addEventListener('click', function() {
+                    var menu = this.nextElementSibling;
+                    if (menu.classList.contains('show')) {
+                        menu.classList.remove('show');
+                    } else {
+                        menu.classList.add('show');
+                    }
+                });
+            });
+        });
+    </script>
+
 
 
     <!-- Datatables JS -->

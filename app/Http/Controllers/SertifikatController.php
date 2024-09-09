@@ -71,7 +71,7 @@ class SertifikatController extends Controller
 
         $sertifikat->save();
 
-        toast('Data has been submited!', 'success')->position('bottom-end');
+        toast('Data has been submited!', 'success')->position('top-end');
         return redirect()->route('sertifikat.index');
 
     }
@@ -103,7 +103,7 @@ class SertifikatController extends Controller
 
         $sertifikat->save();
 
-        toast('Data has been Updated!', 'success')->position('bottom-end');
+        toast('Data has been Updated!', 'success')->position('top-end');
         return redirect()->route('sertifikat.index')->with('success', 'Data berhasil ditambahkan');
 
     }
@@ -113,7 +113,7 @@ class SertifikatController extends Controller
         $sertifikat = Sertifikat::FindOrFail($id);
         $sertifikat->delete();
 
-        toast('Data has been Deleted!', 'success')->position('bottom-end');
+        toast('Data has been Deleted!', 'success')->position('top-end');
         return redirect()->route('sertifikat.index');
 
     }

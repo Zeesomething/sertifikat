@@ -1,22 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 // BACKEND
-use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\SertifikatController;
 
 // FRONTEND
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\MoreController;
-
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::post('/check-certificate', [WelcomeController::class, 'checkCertificate'])->name('checkCertificate');
-
-
 
 Auth::routes();
 
@@ -33,10 +27,3 @@ Route::middleware('auth')->group(function () {
 // FRONTEND ROUTE
 Route::get('/pelatihan/{id}', [PelatihanController::class, 'pelatihan']);
 Route::get('/more', [App\Http\Controllers\MoreController::class, 'index'])->name('more');
-
-
-    
-
-
-
-

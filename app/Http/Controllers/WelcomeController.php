@@ -77,7 +77,7 @@ class WelcomeController extends Controller
             }
         }
 
-        return view('layouts.user', compact('limitTraining'));
+        return view('welcome', compact('limitTraining'));
     }
     public function checkCertificate(Request $request)
     {
@@ -89,7 +89,7 @@ class WelcomeController extends Controller
 
         if (count($parts) !== 4) {
             // Jika format tidak sesuai
-            return view('layouts.user', [
+            return view('welcome', [
                 'status' => 'error',
                 'message' => 'Format nomor sertifikat tidak valid. Silakan cek kembali.',
             ]);
@@ -164,13 +164,13 @@ class WelcomeController extends Controller
             </tr>
         </table>
     ";
-            return view('layouts.user', [
+            return view('welcome', [
                 'status' => 'success',
                 'message' => $message,
             ], compact('limitTraining'));
         } else {
             // Sertifikat tidak ditemukan
-            return view('layouts.user', [
+            return view('welcome', [
                 'status' => 'error',
                 'message' => 'Sertifikat tidak ditemukan. Silakan cek kembali.',
             ], compact('limitTraining'));
