@@ -67,7 +67,6 @@
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
     <!-- SweetAlert2 -->
-    <!-- Pastikan jQuery dan SweetAlert2 sudah di-include di bagian <head> atau sebelum script ini -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -382,10 +381,7 @@
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
                                                         </form>
-
                                                     </td>
-
-
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -439,25 +435,6 @@
             });
         });
     </script>
-
-    <!-- dropdown -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var dropdowns = document.querySelectorAll('.dropdown-toggle');
-            dropdowns.forEach(function(dropdown) {
-                dropdown.addEventListener('click', function() {
-                    var menu = this.nextElementSibling;
-                    if (menu.classList.contains('show')) {
-                        menu.classList.remove('show');
-                    } else {
-                        menu.classList.add('show');
-                    }
-                });
-            });
-        });
-    </script>
-
-
 
     <!-- Datatables JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
