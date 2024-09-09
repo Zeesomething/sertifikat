@@ -20,7 +20,7 @@
 
 
     </style>
-    <div class="container mt-5">
+    <div class="container mt-5 bg-light">
         <div class="row justify-content-center">
             <div class="col">
                 <!-- Card untuk gambar dan konten -->
@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- Tombol kembali ke halaman sebelumnya -->
-                <<div class="text-center mt-4 mb-5">
+                <div class="text-center mt-4 mb-5">
                     <a href="{{ route('welcome') }}" class="btn btn-primary btn-lg" style="width: 50%; margin-bottom: 15rem; margin-top:6rem; ">
                         Kembali ke halaman sebelumnya
                     </a>
