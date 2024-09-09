@@ -139,4 +139,5 @@ class TrainingController extends Controller
         return redirect()->route('training.index');
 
     }
+    
 }

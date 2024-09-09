@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::post('/check-certificate', [WelcomeController::class, 'checkCertificate'])->name('checkCertificate');
+Route::get('/more', [App\Http\Controllers\MoreController::class, 'index'])->name('more');
+Route::get('/pelatihan/{id}', [PelatihanController::class, 'pelatihan']);
 
 Auth::routes();
 
@@ -25,5 +27,16 @@ Route::middleware('auth')->group(function () {
 });
 
 // FRONTEND ROUTE
+
+
+
+
+    
+
+
+
+
+
 Route::get('/pelatihan/{id}', [PelatihanController::class, 'pelatihan']);
 Route::get('/more', [App\Http\Controllers\MoreController::class, 'index'])->name('more');
+
