@@ -42,7 +42,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-
     <!-- Datatables CSS -->
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
@@ -142,7 +141,8 @@
                                                                                     class='bx bx-calendar'></i></span>
                                                                             <input class="form-control" type="date"
                                                                                 name="tanggal_mulai"
-                                                                                id="tanggal_mulai" value="{{date('y-m-d')}}"
+                                                                                id="tanggal_mulai"
+                                                                                value="{{ date('y-m-d') }}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>
@@ -159,7 +159,7 @@
                                                                             <input class="form-control"
                                                                                 name="tanggal_selesai"
                                                                                 id="tanggal_selesai" type="date"
-                                                                                value="{{date('y-m-d')}}"
+                                                                                value="{{ date('y-m-d') }}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>
@@ -201,11 +201,8 @@
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 form-label"
                                                                         for="basic-icon-default-message">Deskripsi</label>
-                                                                    <div class="col-sm-10">
+                                                                    <div class="col-sm-9" style="width: 200px; ">
                                                                         <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-message2"
-                                                                                class="input-group-text"><i
-                                                                                    class="bx bx-comment"></i></span>
                                                                             <textarea id="basic-icon-default-message" class="form-control" name="konten"
                                                                                 aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
                                                                         </div>
@@ -295,7 +292,18 @@
 
 
     </div>
-    <!-- / Layout wrapper -->
+
+    <!-- / CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#basic-icon-default-message'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
