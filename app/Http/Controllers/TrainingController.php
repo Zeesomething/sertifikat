@@ -6,7 +6,6 @@ use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-
 class TrainingController extends Controller
 {
     private function formatWithOrdinal($date)
@@ -88,7 +87,7 @@ class TrainingController extends Controller
 
         $training->save();
 
-        toast('Data has been Created!', 'success')->position('top-end');
+        toast('Data has been Created!', 'success')->position('bottom-end');
         return redirect()->route('training.index');
     }
 
