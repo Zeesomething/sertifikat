@@ -12,6 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
     <link rel="icon" type="image/x-icon"
         href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
@@ -141,7 +142,7 @@
                                                                                     class='bx bx-calendar'></i></span>
                                                                             <input class="form-control" type="date"
                                                                                 name="tanggal_mulai"
-                                                                                id="tanggal_mulai" value="2024-01-01"
+                                                                                id="tanggal_mulai" value="{{date('y-m-d')}}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>
@@ -158,7 +159,7 @@
                                                                             <input class="form-control"
                                                                                 name="tanggal_selesai"
                                                                                 id="tanggal_selesai" type="date"
-                                                                                value="2024-01-01"
+                                                                                value="{{date('y-m-d')}}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>

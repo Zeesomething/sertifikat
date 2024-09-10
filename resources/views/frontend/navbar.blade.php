@@ -46,7 +46,7 @@
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
+                <div class="navbar-nav ms-auto py-0" style="font-weight: bold">
                     <a href="{{ url('/') }}#up" class="nav-item nav-link active">Home</a>
                     <a href="{{ url('/') }}#sertifikat" class="nav-item nav-link">Sertifikat</a>
                     <a href="{{ url('/') }}#service" class="nav-item nav-link">Training</a>
