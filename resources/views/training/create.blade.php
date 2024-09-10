@@ -104,7 +104,7 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-calendar'></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai"
-                                                            id="tanggal_mulai" value="2024-01-01"
+                                                            id="tanggal_mulai" value="{{date('y-m-d')}}"
                                                             id="html5-date-input" />
                                                     </div>
                                                 </div>
@@ -118,7 +118,7 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-calendar'></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date" value="2024-01-01"
+                                                            id="tanggal_selesai" type="date" value="{{date('y-m-d')}}"
                                                             id="html5-date-input" />
                                                     </div>
                                                 </div>
