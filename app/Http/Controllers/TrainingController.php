@@ -6,6 +6,7 @@ use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
+
 class TrainingController extends Controller
 {
     private function formatWithOrdinal($date)
@@ -87,7 +88,7 @@ class TrainingController extends Controller
 
         $training->save();
 
-        toast('Data has been Created!', 'success')->position('bottom-end');
+        toast('Data has been Created!', 'success')->position('top-end');
         return redirect()->route('training.index');
     }
 
@@ -125,7 +126,7 @@ class TrainingController extends Controller
 
         $training->save();
 
-        toast('Data has been Updated!', 'success')->position('bottom-end');
+        toast('Data has been Updated!', 'success')->position('top-end');
         return redirect()->route('training.index');
 
     }
@@ -135,7 +136,7 @@ class TrainingController extends Controller
         $training = Training::FindOrFail($id);
         $training->delete();
 
-        toast('Data has been Deleted!', 'success')->position('bottom-end');
+        toast('Data has been Deleted!', 'success')->position('top-end');
         return redirect()->route('training.index');
 
     }
