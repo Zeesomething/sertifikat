@@ -20,7 +20,7 @@
 
 
     </style>
-    <div class="container mt-5 bg-light">
+    <div class="container-fluid mt-5 bg-light">
         <div class="row justify-content-center">
             <div class="col">
                 <!-- Card untuk gambar dan konten -->

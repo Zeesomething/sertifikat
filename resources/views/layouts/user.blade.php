@@ -490,7 +490,6 @@
         <script src="{{ asset('User/lib/lightbox/js/lightbox.min.js') }}"></script>
 
 
-        <!-- Template Javascript -->
         <script src="{{ asset('User/js/main.js') }}"></script>
         <script>
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
