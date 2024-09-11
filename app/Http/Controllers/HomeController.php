@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
+use App\Models\Sertifikat;
+use App\Models\Training;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $total_sertifikat = Sertifikat::count('id');
+        $total_pelatihan = Training::count('id');
+        return view('home', compact('total_sertifikat', 'total_pelatihan'));
     }
+
 }

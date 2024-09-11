@@ -30,7 +30,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{{ $data->nama_training }}</h5>
                                 <p class="card-text">{{ $data->formatted_tanggal }}</p>
-                                <p class="card-text">{{ \Illuminate\Support\Str::limit($data->konten, 75) }}</p>
+                                <p class="card-text">{!! \Illuminate\Support\Str::limit($data->konten, 75) !!}</p>
                                 <a href="{{ url('pelatihan', $data->id) }}" class="btn btn-primary mt-auto">Detail</a>
                             </div>
                         </div>
