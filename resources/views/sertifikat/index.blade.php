@@ -238,7 +238,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->nama_penerima }}</b></td>
-                                                    <td><b>{{ $data->training->nama_training }}</b></td>
+                                                    <td><b>{{ Str::limit($data->training->nama_training, 25) }}</b></td>
                                                     <td
                                                         style="color: {{ $data->status ? 'green' : 'blue' }}; font-weight: bold">
                                                         {{ $data->status ? 'Selesai Pelatihan' : 'Terdaftar' }}
@@ -408,6 +408,16 @@
 
 
     </div>
+
+    <!-- Datatables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
+    </script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
@@ -436,17 +446,6 @@
                 new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
-    </script>
-
-    <!-- Datatables JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script
-        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
-    </script>
-    @include('sweetalert::alert')
-    <script>
-        let table = new DataTable('#myTable');
     </script>
 
     <!-- Main JS -->
