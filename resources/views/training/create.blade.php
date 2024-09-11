@@ -104,7 +104,7 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-calendar'></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai"
-                                                            id="tanggal_mulai" value="{{date('y-m-d')}}"
+                                                            id="tanggal_mulai" value="{{ date('y-m-d') }}"
                                                             id="html5-date-input" />
                                                     </div>
                                                 </div>
@@ -118,8 +118,8 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-calendar'></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            id="tanggal_selesai" type="date" value="{{date('y-m-d')}}"
-                                                            id="html5-date-input" />
+                                                            id="tanggal_selesai" type="date"
+                                                            value="{{ date('y-m-d') }}" id="html5-date-input" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,13 +158,36 @@
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
                                                         <span id="basic-icon-default-message2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-comment"></i></span>
+                                                            class="input-group-text">
+                                                            <i class="bx bx-comment"></i>
+                                                        </span>
                                                         <textarea id="basic-icon-default-message" class="form-control" name="konten"
                                                             aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {{-- <!-- Include CKEditor 5 CDN -->
+                                            <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+                                            <!-- Initialize CKEditor 5 -->
+                                            <script>
+                                                ClassicEditor
+                                                    .create(document.querySelector('#basic-icon-default-message'))
+                                                    .catch(error => {
+                                                        console.error(error);
+                                                    });
+                                            </script> --}}
+
+
+                                            {{-- <!-- Include CKEditor CDN -->
+                                            <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+
+                                            <!-- Initialize CKEditor -->
+                                            <script>
+                                                CKEDITOR.replace('basic-icon-default-message');
+                                            </script> --}}
+
                                             <div class="row">
                                                 <div class="col-sm-5" style="margin-left: 16.6%;">
                                                     <a href="{{ route('training.index') }}"
@@ -199,15 +222,18 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     {{-- date range --}}
-    {{-- <script>
-        $(function() {
-            $('#date_range').daterangepicker({
-                locale: {
-                    format: 'DD MMMM YYYY'
-                }
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#basic-icon-default-message'))
+            .catch(error => {
+                console.error(error);
             });
-        });
-    </script> --}}
+    </script>
+
+
+
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>

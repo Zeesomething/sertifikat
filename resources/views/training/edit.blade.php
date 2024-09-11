@@ -76,8 +76,8 @@
                                         <small class="text-muted float-end">Merged input group</small>
                                     </div>
                                     <div class="card-body">
-                                        <form action="{{ route('training.update', $training->id) }}" method="post" role="form"
-                                            enctype="multipart/form-data">
+                                        <form action="{{ route('training.update', $training->id) }}" method="post"
+                                            role="form" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="row mb-3">
@@ -92,7 +92,8 @@
                                                             id="basic-icon-default-fullname"
                                                             placeholder="AI Development" aria-label="John Doe"
                                                             name="nama_training"
-                                                            aria-describedby="basic-icon-default-fullname2" value="{{ $training->nama_training }}"/>
+                                                            aria-describedby="basic-icon-default-fullname2"
+                                                            value="{{ $training->nama_training }}" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,7 +106,8 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" type="date" name="tanggal_mulai"
-                                                             id="html5-date-input" value="{{ $training->tanggal_mulai }}"/>
+                                                            id="html5-date-input"
+                                                            value="{{ $training->tanggal_mulai }}" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,7 +120,8 @@
                                                             class="input-group-text"><i
                                                                 class="bx bx-buildings"></i></span>
                                                         <input class="form-control" name="tanggal_selesai"
-                                                            type="date" id="html5-date-input" value="{{ $training->tanggal_selesai }}" />
+                                                            type="date" id="html5-date-input"
+                                                            value="{{ $training->tanggal_selesai }}" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,7 +134,7 @@
                                                             class="input-group-text"><i
                                                                 class='bx bx-category'></i></span>
                                                         <input type="text" class="form-control"
-                                                            id="basic-icon-default-fullname" 
+                                                            id="basic-icon-default-fullname"
                                                             placeholder="AI Development" aria-label="John Doe"
                                                             name="kode" value="{{ $training->kode }}"
                                                             aria-describedby="basic-icon-default-fullname2" />
@@ -143,7 +146,8 @@
                                                     for="basic-icon-default-phone">Cover</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                                        <span id="basic-icon-default-phone2"
+                                                            class="input-group-text"><i
                                                                 class='bx bx-image'></i></span>
                                                         <input class="form-control" type="file" id="formFile"
                                                             name="cover" />
@@ -152,12 +156,9 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 form-label"
-                                                    for="basic-icon-default-message">Isi Konten</label>
+                                                    for="basic-icon-default-message">Deskripsi</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group input-group-merge">
-                                                        <span id="basic-icon-default-message2"
-                                                            class="input-group-text"><i
-                                                                class="bx bx-comment"></i></span>
                                                         <textarea id="basic-icon-default-message" class="form-control" name="konten"
                                                             aria-describedby="basic-icon-default-message2">{{ $training->konten }}</textarea>
                                                     </div>
@@ -193,6 +194,16 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+
+    <!-- / CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#basic-icon-default-message'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

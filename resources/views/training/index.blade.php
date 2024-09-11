@@ -42,7 +42,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-
     <!-- Datatables CSS -->
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
@@ -51,6 +50,49 @@
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <style>
+        .swal2-container {
+            z-index: 9999 !important;
+            /* Atur z-index tinggi agar SweetAlert menutupi semua elemen lain */
+        }
+    </style>
+
+    <!-- SweetAlert2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Event handler untuk tombol delete
+            $('button[id^="deleteButton"]').on('click', function(e) {
+                e.preventDefault();
+
+                // Mengambil ID form dari tombol yang diklik
+                var formId = $(this).closest('form').attr('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form jika user mengonfirmasi penghapusan
+                        $('#' + formId).submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -142,7 +184,8 @@
                                                                                     class='bx bx-calendar'></i></span>
                                                                             <input class="form-control" type="date"
                                                                                 name="tanggal_mulai"
-                                                                                id="tanggal_mulai" value="{{date('y-m-d')}}"
+                                                                                id="tanggal_mulai"
+                                                                                value="{{ date('y-m-d') }}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>
@@ -159,7 +202,7 @@
                                                                             <input class="form-control"
                                                                                 name="tanggal_selesai"
                                                                                 id="tanggal_selesai" type="date"
-                                                                                value="{{date('y-m-d')}}"
+                                                                                value="{{ date('y-m-d') }}"
                                                                                 id="html5-date-input" />
                                                                         </div>
                                                                     </div>
@@ -201,11 +244,8 @@
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 form-label"
                                                                         for="basic-icon-default-message">Deskripsi</label>
-                                                                    <div class="col-sm-10">
+                                                                    <div class="col-sm-9" style="width: 200px; ">
                                                                         <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-message2"
-                                                                                class="input-group-text"><i
-                                                                                    class="bx bx-comment"></i></span>
                                                                             <textarea id="basic-icon-default-message" class="form-control" name="konten"
                                                                                 aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
                                                                         </div>
@@ -224,6 +264,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -246,32 +287,32 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->nama_training }}</b></td>
                                                     <td>{{ $data->formatted_tanggal }}</td>
-                                                    <form action="{{ route('training.destroy', $data->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <td>
-                                                            <a href="{{ route('training.show', $data->id) }}"
-                                                                class="btn btn-sm btn-warning"
+                                                    <td>
+                                                        <a href="{{ route('training.show', $data->id) }}"
+                                                            class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                                                            data-bs-offset="0,4" data-bs-placement="top"
+                                                            data-bs-html="true" title="<span>Show</span>"><i
+                                                                class='bx bx-show-alt'></i></a>
+                                                        <a href="{{ route('training.edit', $data->id) }}"
+                                                            class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+                                                            data-bs-offset="0,4" data-bs-placement="top"
+                                                            data-bs-html="true" title="<span>Edit</span>"><i
+                                                                class='bx bxs-edit-alt'></i></a>
+                                                        {{-- DELETE DATA --}}
+                                                        <form id="deleteForm{{ $data->id }}"
+                                                            action="{{ route('training.destroy', $data->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="btn btn-sm btn-danger"
+                                                                id="deleteButton{{ $data->id }}"
                                                                 data-bs-toggle="tooltip" data-bs-offset="0,4"
                                                                 data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Show</span>"><i
-                                                                    class='bx bx-show-alt'></i></a>
-                                                            <a href="{{ route('training.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-primary"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Edit</span>"><i
-                                                                    class='bx bxs-edit-alt'></i></a>
-                                                            <button class="btn btn-sm btn-danger" type="submit"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Delete</span>"
-                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                                title="<span>Delete</span>">
                                                                 <i class='bx bx-trash'></i>
                                                             </button>
-                                                        </td>
-                                                    </form>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -295,8 +336,20 @@
 
 
     </div>
-    <!-- / Layout wrapper -->
 
+    <!-- / CKEditor 5 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#basic-icon-default-message'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
+
+    <!-- Modal -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             @if ($errors->any())
@@ -330,7 +383,8 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
-    <!-- Page JS -->
+    <!-- Toast SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
