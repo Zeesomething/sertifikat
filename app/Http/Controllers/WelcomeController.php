@@ -158,7 +158,7 @@ class WelcomeController extends Controller
                 <th>{$training->nama_training}</th>
             </tr>
             <tr>
-                <th>Tanggal</th>
+                <th>Tanggal Pelatihan</th>
                 <th> : </th>
                 <th>{$formattedTanggal}</th>
             </tr>

@@ -21,7 +21,12 @@
         {{-- resources\views\more.blade.php --}}
         <div class="container my-5">
             <div class="row g-4">
-                <center><div style="width: 60%"><h1 style="font-size: 30px; color: #102147" class="display-5 mb-4">Discover a range of training programs designed to enhance your skills and broaden your horizons toward success.</h1></div></center>
+                <center>
+                    <div style="width: 60%">
+                        <h1 style="font-size: 30px; color: #102147" class="display-5 mb-4">Discover a range of training
+                            programs designed to enhance your skills and broaden your horizons toward success.</h1>
+                    </div>
+                </center>
                 @foreach ($training as $data)
                     <div class="col-md-3">
                         <div class="card shadow-sm h-100 wow fadeInUp" data-wow-delay="0.1s">
