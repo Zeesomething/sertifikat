@@ -87,7 +87,7 @@ class TrainingController extends Controller
 
         $training->save();
 
-        toast('Data has been Created!', 'success')->position('bottom-end');
+        toast('Data has been Created!', 'success')->position('top-end');
         return redirect()->route('training.index');
     }
 

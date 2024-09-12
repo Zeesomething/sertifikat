@@ -8,11 +8,10 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
     <meta name="description" content="" />
+    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
     <link rel="icon" type="image/x-icon"
         href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
@@ -39,7 +38,6 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Datatables CSS -->
@@ -337,6 +335,16 @@
 
     </div>
 
+    <!-- Datatables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
+    </script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+
     <!-- / CKEditor 5 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script>
@@ -346,7 +354,6 @@
                 console.error(error);
             });
     </script>
-
 
 
     <!-- Modal -->
@@ -365,20 +372,10 @@
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     @include('sweetalert::alert')
     <!-- endbuild -->
 
-    <!-- Datatables JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script
-        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
-    </script>
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

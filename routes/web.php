@@ -3,6 +3,7 @@
 // BACKEND
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\SertifikatController;
+use App\Http\Controllers\PenggunaController;
 
 // FRONTEND
 use App\Http\Controllers\PelatihanController;
@@ -11,14 +12,17 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// BACKEND ROUTE
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->group(function () {
     Route::resource('training', TrainingController::class);
     Route::resource('sertifikat', SertifikatController::class);
     Route::get('/sertifikat/{id}/preview', [SertifikatController::class, 'printCertificate'])->name('sertifikat.preview')->defaults('isPreview', true);
     Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
+
+    Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
 });
 
 // FRONTEND ROUTE

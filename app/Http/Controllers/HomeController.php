@@ -5,11 +5,14 @@ use App\Models\Sertifikat;
 use App\Models\Training;
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
+    public function home(){
+        if (auth()->user()->can('view_dashboard')) {
+            return view('home');
+        }
+        return abort(403);
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
