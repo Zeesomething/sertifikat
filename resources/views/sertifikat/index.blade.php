@@ -91,7 +91,7 @@
             });
         });
     </script>
-    
+
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -178,7 +178,8 @@
                                                                             <select id="defaultSelect"
                                                                                 class="form-select" required
                                                                                 name="id_training">
-                                                                                <option value="">Pilih Pelatihan
+                                                                                <option value="">Pilih
+                                                                                    Pelatihan
                                                                                 </option>
                                                                                 @foreach ($training as $data)
                                                                                     <option
@@ -256,7 +257,8 @@
                                                                 role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="EditTitle">Edit
+                                                                        <h5 class="modal-title" id="EditTitle">
+                                                                            Edit
                                                                             Data Sertifikat</h5>
                                                                         <button type="button" class="btn-close"
                                                                             data-bs-dismiss="modal"
@@ -304,7 +306,8 @@
                                                                                         <select id="defaultSelect"
                                                                                             class="form-select"
                                                                                             name="id_training">
-                                                                                            <option>Default select
+                                                                                            <option>Default
+                                                                                                select
                                                                                             </option>
                                                                                             @foreach ($training as $item)
                                                                                                 <option
@@ -334,10 +337,12 @@
                                                                                             aria-describedby="basic-icon-default-fullname2">
                                                                                             <option value="0"
                                                                                                 {{ $data->status == 0 ? 'selected' : '' }}>
-                                                                                                Terdaftar</option>
+                                                                                                Terdaftar
+                                                                                            </option>
                                                                                             <option value="1"
                                                                                                 {{ $data->status == 1 ? 'selected' : '' }}>
-                                                                                                Selesai Pelatihan
+                                                                                                Selesai
+                                                                                                Pelatihan
                                                                                             </option>
                                                                                         </select>
                                                                                     </div>
