@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // BACKEND ROUTE
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('training', TrainingController::class);
