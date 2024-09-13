@@ -36,6 +36,26 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+        <style>
+            .service-img {
+                height: 200px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .service-img img.fixed-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            #read_more {
+                position: relative;
+                z-index: 10;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -445,9 +465,9 @@
         @include('frontend/footer')
 
 
-        <!-- Back to Top -->    
+        <!-- Back to Top -->
 
-        
+
 
 
 
