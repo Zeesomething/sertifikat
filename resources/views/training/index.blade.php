@@ -8,11 +8,10 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
     <meta name="description" content="" />
+    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
     <link rel="icon" type="image/x-icon"
         href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
@@ -39,7 +38,6 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Datatables CSS -->
@@ -61,7 +59,6 @@
     <!-- SweetAlert2 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             // Event handler untuk tombol delete
@@ -288,16 +285,22 @@
                                                     <td><b>{{ $data->nama_training }}</b></td>
                                                     <td>{{ $data->formatted_tanggal }}</td>
                                                     <td>
+                                                        {{-- SHOW DATA --}}
                                                         <a href="{{ route('training.show', $data->id) }}"
                                                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                             data-bs-offset="0,4" data-bs-placement="top"
                                                             data-bs-html="true" title="<span>Show</span>"><i
-                                                                class='bx bx-show-alt'></i></a>
+                                                                class='bx bx-show-alt'></i>
+                                                        </a>
+
+                                                        {{-- EDIT DATA --}}
                                                         <a href="{{ route('training.edit', $data->id) }}"
                                                             class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
                                                             data-bs-offset="0,4" data-bs-placement="top"
                                                             data-bs-html="true" title="<span>Edit</span>"><i
-                                                                class='bx bxs-edit-alt'></i></a>
+                                                                class='bx bxs-edit-alt'></i>
+                                                        </a>
+
                                                         {{-- DELETE DATA --}}
                                                         <form id="deleteForm{{ $data->id }}"
                                                             action="{{ route('training.destroy', $data->id) }}"
@@ -337,6 +340,16 @@
 
     </div>
 
+    <!-- Datatables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
+    </script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+
     <!-- / CKEditor 5 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script>
@@ -346,8 +359,6 @@
                 console.error(error);
             });
     </script>
-
-
 
     <!-- Modal -->
     <script>
@@ -365,20 +376,9 @@
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     @include('sweetalert::alert')
     <!-- endbuild -->
-
-    <!-- Datatables JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script
-        src="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.js">
-    </script>
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

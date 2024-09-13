@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class UserSertifikatController extends Controller
 {
+    // Fungsi untuk mengecek nomor sertifikat
     public function cekSertifikat(Request $request)
     {
         // Validasi input

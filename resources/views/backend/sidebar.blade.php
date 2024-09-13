@@ -2,7 +2,8 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
-            <img src="{{ asset('assets/img/icons/logo-bartech.png') }}" style="display: block; max-width: 100%; margin: auto; z-index: 10" alt="">
+            <img src="{{ asset('assets/img/icons/logo-bartech.png') }}"
+                style="display: block; max-width: 100%; margin: auto; z-index: 10" alt="">
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -24,12 +25,14 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Halaman</span>
         </li>
-        <li class="menu-item {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'active open' : '' }}">
+        <li
+            class="menu-item {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-data'></i>
                 <div data-i18n="Account Settings">Tabel Data</div>
             </a>
-            <ul class="menu-sub {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'show' : '' }}">
+            <ul
+                class="menu-sub {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'show' : '' }}">
                 <li class="menu-item {{ request()->routeIs('training.index') ? 'active' : '' }}">
                     <a href="{{ route('training.index') }}" class="menu-link">
                         <div data-i18n="Account">Pelatihan</div>
@@ -42,6 +45,20 @@
                 </li>
             </ul>
         </li>
+        {{-- <li class="menu-item {{ request()->routeIs('pengguna') ? 'active open' : '' }} ">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-data'></i>
+                <div data-i18n="Account Settings">Role Access </div>
+            </a>
+            <ul class="menu-sub {{ request()->routeIs('pengguna') ? 'show' : '' }} ">
+                <li class="menu-item {{ request()->routeIs('pengguna') ? 'active' : '' }} ">
+                    <a href="{{ route('pengguna') }}" class="menu-link">
+                        <div data-i18n="Account">User</div>
+                    </a>
+
+                </li>
+            </ul>
+        </li> --}}
     </ul>
 </aside>
 <!-- / Menu -->

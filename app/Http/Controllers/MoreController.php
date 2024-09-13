@@ -8,23 +8,25 @@ use Illuminate\Http\Request;
 
 class MoreController extends Controller
 {
+    // Funtion untuk nge format tanggal dengan ordinal
     private function formatWithOrdinal($date)
     {
-    $day = $date->day;
+        $day = $date->day;
 
-    // Determine suffix
-    if ($day % 10 == 1 && $day != 11) {
-        $suffix = 'st';
-    } elseif ($day % 10 == 2 && $day != 12) {
-        $suffix = 'nd';
-    } elseif ($day % 10 == 3 && $day != 13) {
-        $suffix = 'rd';
-    } else {
-        $suffix = 'th';
+        // Determine suffix
+        if ($day % 10 == 1 && $day != 11) {
+            $suffix = 'st';
+        } elseif ($day % 10 == 2 && $day != 12) {
+            $suffix = 'nd';
+        } elseif ($day % 10 == 3 && $day != 13) {
+            $suffix = 'rd';
+        } else {
+            $suffix = 'th';
+        }
+
+        return $date->format('j') . $suffix;
     }
 
-    return $date->format('j') . $suffix;
-}
     public function index()
     {
         $training = Training::orderBy('created_at', 'desc')->get();

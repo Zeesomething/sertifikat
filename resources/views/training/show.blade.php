@@ -6,9 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
     <meta name="description" content="" />
 
     <!-- Favicon -->
@@ -32,10 +30,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-
-    <!-- Page CSS -->
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -194,7 +189,6 @@
                         </div>
                         <!-- / Content -->
 
-
                         <div class="content-backdrop fade"></div>
                     </div>
                     <!-- Content wrapper -->
@@ -209,13 +203,6 @@
 
         <!-- / CKEditor 5 -->
         <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
-        {{-- <script>
-            ClassicEditor
-                .create(document.querySelector('#basic-icon-default-message'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script> --}}
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -233,26 +220,19 @@
             });
         </script>
 
-
         <!-- Core JS -->
         <!-- build:js assets/vendor/js/core.js -->
         <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
         <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
         <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
         <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
         <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- endbuild -->
 
-        <!-- Vendors JS -->
 
         <!-- Main JS -->
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-
-        <!-- Page JS -->
-
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>    
 </body>
 
 </html>

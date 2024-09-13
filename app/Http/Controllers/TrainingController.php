@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 
 class TrainingController extends Controller
 {
+    // Fungsi untuk nge format tanggal dengan ordinal
     private function formatWithOrdinal($date)
     {
         $day = $date->day;
@@ -87,7 +88,7 @@ class TrainingController extends Controller
 
         $training->save();
 
-        toast('Data has been Created!', 'success')->position('bottom-end');
+        toast('Data has been Created!', 'success')->position('top-end');
         return redirect()->route('training.index');
     }
 
