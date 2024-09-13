@@ -57,7 +57,6 @@
     </style>
 
     <!-- SweetAlert2 -->
-    @include('sweetalert::alert')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
@@ -378,6 +377,7 @@
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+    @include('sweetalert::alert')
     <!-- endbuild -->
 
     <!-- Main JS -->
