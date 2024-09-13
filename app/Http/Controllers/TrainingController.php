@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 
 class TrainingController extends Controller
 {
+    // Fungsi untuk nge format tanggal dengan ordinal
     private function formatWithOrdinal($date)
     {
         $day = $date->day;

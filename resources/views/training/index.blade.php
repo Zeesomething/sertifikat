@@ -57,9 +57,9 @@
     </style>
 
     <!-- SweetAlert2 -->
+    @include('sweetalert::alert')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             // Event handler untuk tombol delete
@@ -286,16 +286,22 @@
                                                     <td><b>{{ $data->nama_training }}</b></td>
                                                     <td>{{ $data->formatted_tanggal }}</td>
                                                     <td>
+                                                        {{-- SHOW DATA --}}
                                                         <a href="{{ route('training.show', $data->id) }}"
                                                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                                             data-bs-offset="0,4" data-bs-placement="top"
                                                             data-bs-html="true" title="<span>Show</span>"><i
-                                                                class='bx bx-show-alt'></i></a>
+                                                                class='bx bx-show-alt'></i>
+                                                        </a>
+
+                                                        {{-- EDIT DATA --}}
                                                         <a href="{{ route('training.edit', $data->id) }}"
                                                             class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
                                                             data-bs-offset="0,4" data-bs-placement="top"
                                                             data-bs-html="true" title="<span>Edit</span>"><i
-                                                                class='bx bxs-edit-alt'></i></a>
+                                                                class='bx bxs-edit-alt'></i>
+                                                        </a>
+
                                                         {{-- DELETE DATA --}}
                                                         <form id="deleteForm{{ $data->id }}"
                                                             action="{{ route('training.destroy', $data->id) }}"
@@ -355,7 +361,6 @@
             });
     </script>
 
-
     <!-- Modal -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -373,9 +378,7 @@
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-    @include('sweetalert::alert')
     <!-- endbuild -->
-
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

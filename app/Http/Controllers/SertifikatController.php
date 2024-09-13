@@ -117,6 +117,7 @@ class SertifikatController extends Controller
 
     }
 
+    // Fungsi untuk nge format tanggal dengan ordinal
     private function formatWithOrdinal($date)
     {
         $day = $date->day;
@@ -135,6 +136,7 @@ class SertifikatController extends Controller
         return $date->format('j') . $suffix;
     }
 
+    // Fungsi untuk mencetak sertifikat
     public function printCertificate($id)
     {
         // Ambil data sertifikat dari database berdasarkan ID, termasuk data relasi dengan 'training'
@@ -243,6 +245,7 @@ class SertifikatController extends Controller
 
     }
 
+    // Fungsi untuk mengecek sertifikat
     public function checkCertificate(Request $request)
     {
         // Ambil input nomor sertifikat dari form

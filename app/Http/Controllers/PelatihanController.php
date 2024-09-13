@@ -6,6 +6,7 @@ use Illuminate\Support\Carbon;
 
 class PelatihanController extends Controller
 {
+    // Funtion untuk nge format tanggal dengan ordinal
     private function formatWithOrdinal($date)
     {
         $day = $date->day;

@@ -253,4 +253,5 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
+{{-- HALAMAN INI SUDAH TIDAK TERPAKAI KARENA FUNGSI ADD DATA PINDAH KE MODAL DI INDEX.BLADE.PHP --}}
 </html>

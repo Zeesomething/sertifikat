@@ -28,32 +28,6 @@ class WelcomeController extends Controller
     }
     public function index()
     {
-        // $training = Training::orderBy('created_at', 'desc')->get();
-
-        // Retrieve all trainings ordered by the created date
-
-// Add formatted date range to each training
-        // foreach ($training as $data) {
-        //     $startDate = Carbon::parse($data->tanggal_mulai);
-        //     $endDate = Carbon::parse($data->tanggal_selesai);
-
-        //     // Format dates with ordinal suffix
-        //     $formattedStartDate = $this->formatWithOrdinal($startDate);
-        //     $formattedEndDate = $this->formatWithOrdinal($endDate);
-
-        //     if ($startDate->format('F Y') === $endDate->format('F Y')) {
-        //         $formattedMonth = $startDate->translatedFormat('F');
-        //         $formattedYear = $startDate->translatedFormat('Y');
-
-        //         $data->formatted_tanggal = "{$formattedMonth} {$formattedStartDate} - {$formattedEndDate} , {$formattedYear}";
-        //     } else {
-        //         // Different months
-        //         $formattedStartDate = $startDate->format('F j');
-        //         $formattedEndDate = $endDate->format('F j ,Y');
-
-        //         $data->formatted_tanggal = "{$formattedStartDate} - {$formattedEndDate}";
-        //     }
-        // }
         $limitTraining = Training::orderBy('created_at', 'desc')->limit(4)->get();
         foreach ($limitTraining as $data) {
             $startTanggal = Carbon::parse($data->tanggal_mulai);
@@ -176,17 +150,5 @@ class WelcomeController extends Controller
             ], compact('limitTraining'));
         }
     }
-
-//     public function checkCertificate(Request $request)
-// {
-//     $nomor_sertifikat = $request->input('nomor_sertifikat');
-
-//     // Logika untuk mengecek sertifikat
-//     if ($nomor_sertifikat === 'valid') {
-//         return response()->json(['status' => 'success', 'message' => 'Sertifikat valid!']);
-//     } else {
-//         return response()->json(['status' => 'error', 'message' => 'Sertifikat tidak ditemukan!']);
-//     }
-// }
 
 }

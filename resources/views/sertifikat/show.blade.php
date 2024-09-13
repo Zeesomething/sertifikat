@@ -6,9 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
     <meta name="description" content="" />
 
     <!-- Favicon -->
@@ -33,10 +31,8 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <!-- Page CSS -->
 </head>
 
 <body>
@@ -160,7 +156,7 @@
                                 <div class="col-xxl">
                                     <div class="card" style="height: 100px">
                                         <!-- Embed PDF preview in an iframe -->
-                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta <b>belum</b> selesai pelatihan</h3></center>
+                                        <center><h3 style="margin-top : 35px;">Sertifikat belum tersedia karena peserta <b>belum</b> menyelesaikan pelatihan</h3></center>
                                     </div>
                                 </div>
                             </div>
@@ -183,28 +179,16 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    {{-- date range --}}
-    {{-- <script>
-        $(function() {
-            $('#date_range').daterangepicker({
-                locale: {
-                    format: 'DD MMMM YYYY'
-                }
-            });
-        });
-    </script> --}}
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
