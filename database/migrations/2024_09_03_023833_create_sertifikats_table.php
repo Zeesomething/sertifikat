@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_penerima');
             $table->unsignedBigInteger('id_training');
+            $table->string('email');
             $table->boolean('status')->default(0);
-
+            
             $table->timestamps();
 
             $table->foreign('id_training')->references('id')->on('trainings')->onDelete('cascade');

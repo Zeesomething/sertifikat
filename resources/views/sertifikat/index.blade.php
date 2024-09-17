@@ -128,8 +128,8 @@
                                     <form method="GET" action="{{ route('sertifikat.index') }}">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <select class="form-select placement-dropdown" name="id_training"
-                                                    style="margin-left: 250px; margin-top: 16px;"
+                                                <select class="form-select placement-dropdown" name="id_training" 
+                                                    style="margin-left: 225px; margin-top: 16px;"
                                                     id="exampleSelectGender">
                                                     <option value=""
                                                         {{ is_null(request()->get('id_training')) ? 'selected' : '' }}>
@@ -143,9 +143,11 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="submit" class="btn btn-primary d-block"
-                                                    style="margin-left: 240px; margin-top: 16px;">Filter
+                                                <button type="submit" class="btn btn-info d-flex align-items-center"
+                                                    style="margin-left: 215px; margin-top: 16px;">
+                                                    <i class='bx bx-filter-alt' style="margin-right: 8px;"></i> Filter
                                                 </button>
+
                                             </div>
                                         </div>
                                     </form>
@@ -171,6 +173,16 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
+                                                    {{-- VALIDATION --}}
+                                                    @if ($errors->any())
+                                                        <div class="alert alert-danger">
+                                                            <ul>
+                                                                @foreach ($errors->all() as $error)
+                                                                    <li>{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
                                                     <form action="{{ route('sertifikat.store') }}" method="post"
                                                         role="form" enctype="multipart/form-data">
                                                         @csrf
@@ -184,11 +196,11 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-fullname2"
                                                                                 class="input-group-text"><i
-                                                                                    class='bx bx-category'></i></span>
+                                                                                    class='bx bx-user'></i></span>
                                                                             <input type="text" class="form-control"
                                                                                 id="basic-icon-default-fullname"
                                                                                 placeholder="Enter Name" required
-                                                                                aria-label="John Doe"
+                                                                                style="padding-left: 15px;"
                                                                                 name="nama_penerima"
                                                                                 aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
@@ -216,6 +228,23 @@
                                                                                     </option>
                                                                                 @endforeach
                                                                             </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2 col-form-label"
+                                                                        for="basic-icon-default-fullname">Email</label>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="input-group input-group-merge">
+                                                                            <span id="basic-icon-default-fullname2"
+                                                                                class="input-group-text"><i
+                                                                                    class='bx bx-envelope'></i></span>
+                                                                            <input type="email" class="form-control"
+                                                                                id="basic-icon-default-fullname"
+                                                                                style="padding-left: 15px;"
+                                                                                placeholder="Enter Email" required
+                                                                                name="email"
+                                                                                aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -312,7 +341,7 @@
                                                                                             class="input-group-text"><i
                                                                                                 class='bx bx-user'></i></span>
                                                                                         <input
-                                                                                            style="font-weight: bold"
+                                                                                            style="font-weight: bold; padding-left: 15px;"
                                                                                             type="text"
                                                                                             id="nameWithTitle" required
                                                                                             class="form-control"
@@ -346,6 +375,26 @@
                                                                                                 </option>
                                                                                             @endforeach
                                                                                         </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Email</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-user'></i></span>
+                                                                                        <input
+                                                                                            style="font-weight: bold; padding-left: 15px;"
+                                                                                            type="text"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control"
+                                                                                            name="email"
+                                                                                            value="{{ $data->email }}" />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

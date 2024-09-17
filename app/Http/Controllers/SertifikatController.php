@@ -64,11 +64,13 @@ class SertifikatController extends Controller
         $request->validate([
             'nama_penerima' => 'required|string|max:255',
             'id_training' => 'required',
+            'email' => 'required|email',
         ]);
 
         $sertifikat = new Sertifikat;
         $sertifikat->nama_penerima = $request->nama_penerima;
         $sertifikat->id_training = $request->id_training;
+        $sertifikat->email = $request->email;
 
         $sertifikat->save();
 
@@ -96,9 +98,16 @@ class SertifikatController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_penerima' => 'required|string|max:255',
+            'id_training' => 'required',
+            'email' => 'required|email',
+        ]);
+        
         $sertifikat = Sertifikat::findOrFail($id);
         $sertifikat->nama_penerima = $request->nama_penerima;
         $sertifikat->id_training = $request->id_training;
+        $sertifikat->email = $request->email;
         $sertifikat->status = $request->status;
 
         $sertifikat->save();
