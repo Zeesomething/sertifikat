@@ -120,9 +120,37 @@
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-10">
+                                <div class="col-4">
                                     <h5 class="card-header">Data Sertifikat Tables</h5>
                                 </div>
+                                {{-- FILTER BY TRAINING --}}
+                                <div class="col-6">
+                                    <form method="GET" action="{{ route('sertifikat.index') }}">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <select class="form-select placement-dropdown" name="id_training"
+                                                    style="margin-left: 250px; margin-top: 16px;"
+                                                    id="exampleSelectGender">
+                                                    <option value=""
+                                                        {{ is_null(request()->get('id_training')) ? 'selected' : '' }}>
+                                                        Tampilkan Semua Data</option>
+                                                    @foreach ($training as $data)
+                                                        <option value="{{ $data->id }}"
+                                                            {{ request()->get('id_training') == $data->id ? 'selected' : '' }}>
+                                                            {{ $data->nama_training }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="submit" class="btn btn-primary d-block"
+                                                    style="margin-left: 240px; margin-top: 16px;">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                                 {{-- CREATE DATA --}}
                                 <div class="col-2">
                                     <div class="mt-3">
@@ -221,6 +249,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             @php $no=1; @endphp
                                             @foreach ($sertifikat as $data)
                                                 <tr>
@@ -379,6 +408,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
 
                                     </table>
