@@ -146,7 +146,6 @@ class SertifikatController extends Controller
         return $date->format('j') . $suffix;
     }
 
-    
     // Metode untuk mencetak sertifikat berdasarkan ID
     public function printCertificate($id)
     {
