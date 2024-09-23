@@ -82,7 +82,6 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2" style="text-align: center;">Register</h4>
 
               <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('register') }}">
                     @csrf

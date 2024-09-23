@@ -19,7 +19,10 @@ class HomeController extends Controller
 
         $total_sertifikat = Sertifikat::count('id');
         $total_pelatihan = Training::count('id');
-        return view('home', compact('total_sertifikat', 'total_pelatihan' , 'training', 'sertifikat', 'limitTraining'));
+        $total_terdaftar = Sertifikat::where('status', '0')->count('id'); 
+        $total_selesai = Sertifikat::where('status', '1')->count('id');
+
+        return view('home', compact('total_sertifikat', 'total_pelatihan' , 'training', 'sertifikat', 'limitTraining' , 'total_terdaftar', 'total_selesai'));       
  
     }
 

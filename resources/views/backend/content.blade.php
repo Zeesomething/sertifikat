@@ -10,19 +10,21 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-lg-12 mb-4 order-0">
-                    <div class="card">
+                    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="0">
                         <div class="d-flex align-items-end row">
                             <div class="col-sm-7">
                                 <div class="card-body">
-                                    <h5 class="card-title text-primary">Welcome John! 🎉</h5>
+                                    <h5 class="card-title text-primary">Selamat Datang, {{ Auth::user()->name }}!</h5>
                                     <p class="mb-4">
-                                        You have done <span class="fw-bold">72%</span> more sales today. Check your new
-                                        badge in
-                                        your profile.
+                                        Anda telah mengelola <span class="fw-bold">{{ $total_sertifikat }}
+                                            sertifikat</span> minggu ini. Terus tingkatkan performa Anda dan cek
+                                        statistik terbaru di dashboard.
                                     </p>
 
-                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+                                    <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">Lihat
+                                        Statistik</a>
                                 </div>
+
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
                                 <div class="card-body pb-0 px-0 px-md-4">
@@ -35,31 +37,29 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Order Statistics -->
                 <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="300">
                         <div class="card-header d-flex align-items-center justify-content-between pb-0">
                             <div class="card-title mb-0">
                                 <h5 class="m-0 me-2">Statistics</h5>
                             </div>
-                            {{-- <div class="dropdown">
+                            <div class="dropdown">
                                 <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                                    <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="{{route ('training.index')}}">View More</a>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex flex-column align-items-center gap-1">
                                     <h2 class="mb-2"> {{ $total_pelatihan }} </h2>
-                                    <span>Total Jumlah <br> Kelas Pelatihan</span>
+                                    <span>Total Jumlah <br> kelas Pelatihan</span>
                                 </div>
                                 <div id="orderStatisticsChart"></div>
                             </div>
@@ -85,10 +85,11 @@
                         </div>
                     </div>
                 </div>
+
                 <!--/ Order Statistics -->
                 <div class="col">
                     <div class="col-12 mb-4">
-                        <div class="card">
+                        <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="500">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
                                     <div
@@ -110,12 +111,15 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <div class="card">
-                            <div class="card-body">
-                                <div class="card-title d-flex align-items-start justify-content-between">
-                                    <div class="avatar flex-shrink-0">
-                                        <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
-                                            class="rounded" />
+                            <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="700">
+                                <div class="card-body d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <span class="fw-semibold d-block mb-1">Total Jumlah peserta Pelatihan</span><br>
+                                        <h3 style="margin-left: 25px;" class="card-title mb-2">
+                                            <b>{{ $total_sertifikat }}</b> &nbsp; <b style="font-size: 15px">Peserta</b>
+                                        </h3><br>
+                                        <small class="text-body fw-semibold"><i class='bx bxs-user'></i>&nbsp;
+                                            Peserta</small>
                                     </div>
                                     <div class="dropdown">
                                         <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"
@@ -123,46 +127,39 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            <a class="dropdown-item" href="{{route ('sertifikat.index')}}">View More</a>
                                         </div>
                                     </div>
                                 </div>
-                                <span class="fw-semibold d-block mb-1">Profit</span>
-                                <h3 class="card-title mb-2">$12,628</h3>
-                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
-                                    +72.80%</small>
+
                             </div>
-                        </div>
                         </div>
                         <div class="col-4">
-                            <div class="card">
-                            <div class="card-body">
-                                <div class="card-title d-flex align-items-start justify-content-between">
-                                    <div class="avatar flex-shrink-0">
-                                        <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
-                                            class="rounded" />
-                                    </div>
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                        </div>
-                                    </div>
+                            <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="900">
+                                <div class="card-body">
+                                    <span class="fw-semibold d-block mb-1">Total peserta <b
+                                            style="color: blue">Terdaftar</b> Pelatihan</span><br>
+                                    <h3 style="margin-left: 25px;" class="card-title mb-2"><b>{{ $total_terdaftar }}</b>
+                                        &nbsp; <b style="font-size: 15px">Peserta</b></h3><br>
+                                    <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i>
+                                        Sertifikat tidak tersedia</small>
                                 </div>
-                                <span class="fw-semibold d-block mb-1">Profit</span>
-                                <h3 class="card-title mb-2">$12,628</h3>
-                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
-                                    +72.80%</small>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="1100">
+                                <div class="card-body">
+                                    <span class="fw-semibold d-block mb-1">Total peserta <b
+                                            style="color: green">Selesai</b> Pelatihan</span><br>
+                                    <h3 style="margin-left: 25px;" class="card-title mb-2"><b>{{ $total_selesai }}</b>
+                                        &nbsp; <b style="font-size: 15px">Peserta</b></h3><br>
+                                    <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+                                        Sertifikat tersedia</small>
+                                </div>
+                            </div>
                         </div>
-                        
                     </div>
+
 
                 </div>
 

@@ -1,5 +1,5 @@
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" >
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
             <img src="{{ asset('assets/img/icons/logo-bartech.png') }}"
@@ -15,6 +15,9 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">MAIN</span>
+        </li>
         <li class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -23,7 +26,7 @@
         </li>
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Halaman</span>
+            <span class="menu-header-text">Data Master</span>
         </li>
         <li
             class="menu-item {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'active open' : '' }}">

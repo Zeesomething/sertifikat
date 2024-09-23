@@ -43,8 +43,11 @@
     <!-- Datatables CSS -->
     <link
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -112,7 +115,8 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Training /</span> Data Table
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data Table /</span> <b
+                                data-aos="fade-left" data-aos-duration="500">Training</b>
                         </h4>
 
                         <!-- Bordered Table -->
@@ -385,6 +389,12 @@
 
     <!-- Toast SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

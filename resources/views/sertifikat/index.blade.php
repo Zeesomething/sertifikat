@@ -49,6 +49,9 @@
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         .swal2-container {
             z-index: 9999 !important;
@@ -114,7 +117,8 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sertifikat /</span> Data Table
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data Table /</span> <b
+                                data-aos="fade-left" data-aos-duration="500">Sertifikat</b>
                         </h4>
 
                         <!-- Bordered Table -->
@@ -128,7 +132,7 @@
                                     <form method="GET" action="{{ route('sertifikat.index') }}">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <select class="form-select placement-dropdown" name="id_training" 
+                                                <select class="form-select placement-dropdown" name="id_training"
                                                     style="margin-left: 225px; margin-top: 16px;"
                                                     id="exampleSelectGender">
                                                     <option value=""
@@ -505,6 +509,12 @@
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <!-- Toast SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
