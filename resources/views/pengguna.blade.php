@@ -181,6 +181,7 @@
                                                 <th>No</th>
                                                 <th>Username</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -191,6 +192,7 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td><b>{{ $data->name }}</b></td>
                                                     <td>{{ $data->email }}</td>
+                                                    <td>{{ $data->role }}</td>
                                                     <td>
                                                         {{-- SHOW DATA --}}
                                                         <a href="#"
@@ -210,7 +212,7 @@
 
                                                         {{-- DELETE DATA --}}
                                                         <form id="deleteForm{{ $data->id }}"
-                                                            action="#"
+                                                            action="{{ route('pengguna.destroy', $data->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')

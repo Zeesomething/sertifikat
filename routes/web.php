@@ -22,7 +22,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
 
-    Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
+    Route::resource('pengguna', PenggunaController::class);
 });
 
 // FRONTEND ROUTE

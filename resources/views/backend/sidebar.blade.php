@@ -48,20 +48,20 @@
                 </li>
             </ul>
         </li>
-        {{-- <li class="menu-item {{ request()->routeIs('pengguna') ? 'active open' : '' }} ">
+        <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bxs-data'></i>
+                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Role Access </div>
             </a>
-            <ul class="menu-sub {{ request()->routeIs('pengguna') ? 'show' : '' }} ">
-                <li class="menu-item {{ request()->routeIs('pengguna') ? 'active' : '' }} ">
-                    <a href="{{ route('pengguna') }}" class="menu-link">
+            <ul class="menu-sub {{ request()->routeIs('pengguna.index') ? 'show' : '' }} ">
+                <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active' : '' }} ">
+                    <a href="{{ route('pengguna.index') }}" class="menu-link">
                         <div data-i18n="Account">User</div>
                     </a>
 
                 </li>
             </ul>
-        </li> --}}
+        </li>
     </ul>
 </aside>
 <!-- / Menu -->

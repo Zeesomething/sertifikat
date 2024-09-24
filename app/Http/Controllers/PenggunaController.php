@@ -14,33 +14,11 @@ class PenggunaController extends Controller
         return view('pengguna', compact('user'));
     }
 
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // public function show(string $id)
-    // {
-    //     //
-    // }
-
-    // public function edit(string $id)
-    // {
-    //     //
-    // }
-
-    // public function update(Request $request, string $id)
-    // {
-    //     //
-    // }
-
-    // public function destroy(string $id)
-    // {
-    //     //
-    // }
+    public function destroy($id)
+    {
+        $user = User::FindOrFail($id);
+        $user->delete();
+        toast('Data has been Deleted!', 'success')->position('top-end');
+        return redirect()->route('pengguna.index');
+    }
 }

@@ -226,5 +226,4 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
-{{-- HALAMAN INI SUDAH TIDAK TERPAKAI KARENA FUNGSI EDIT DATA PINDAH KE MODAL DI INDEX.BALDE.PHP --}}
 </html>
