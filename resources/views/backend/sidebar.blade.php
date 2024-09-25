@@ -1,5 +1,5 @@
 <!-- Menu -->
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" >
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
             <img src="{{ asset('assets/img/icons/logo-bartech.png') }}"
@@ -24,7 +24,6 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Data Master</span>
         </li>
@@ -48,20 +47,29 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active open' : '' }} ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Account Settings">Role Access </div>
-            </a>
-            <ul class="menu-sub {{ request()->routeIs('pengguna.index') ? 'show' : '' }} ">
-                <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active' : '' }} ">
-                    <a href="{{ route('pengguna.index') }}" class="menu-link">
-                        <div data-i18n="Account">User</div>
-                    </a>
 
-                </li>
-            </ul>
-        </li>
+        @if (Auth::check() && Auth::user()->roles_id == 2)
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Role</span>
+            </li>
+            {{-- 2 untuk Super Admin --}}
+            <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active open' : '' }} ">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                    <div data-i18n="Account Settings">Role Access </div>
+                </a>
+                <ul class="menu-sub {{ request()->routeIs('pengguna.index') ? 'show' : '' }} ">
+                    <li class="menu-item {{ request()->routeIs('pengguna.index') ? 'active' : '' }} ">
+                        <a href="{{ route('pengguna.index') }}" class="menu-link">
+                            <div data-i18n="Account">User</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
+
+
     </ul>
 </aside>
 <!-- / Menu -->
