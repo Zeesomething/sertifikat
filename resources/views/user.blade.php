@@ -349,19 +349,21 @@
                                                         </div>
 
                                                         {{-- DELETE DATA --}}
-                                                        <form id="deleteForm{{ $data->id }}"
-                                                            action="{{ route('user.destroy', $data->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="btn btn-sm btn-danger"
-                                                                id="deleteButton{{ $data->id }}"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Delete</span>">
-                                                                <i class='bx bx-trash'></i>
-                                                            </button>
-                                                        </form>
+                                                        @if (auth()->user()->id != $data->id)
+                                                            <form id="deleteForm{{ $data->id }}"
+                                                                action="{{ route('user.destroy', $data->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                    id="deleteButton{{ $data->id }}"
+                                                                    data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                    data-bs-placement="top" data-bs-html="true"
+                                                                    title="<span>Delete</span>">
+                                                                    <i class='bx bx-trash'></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

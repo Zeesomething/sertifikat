@@ -121,7 +121,7 @@
                         <div class="card">
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-10">
-                                    <h5 class="card-header">Data User Tables</h5>
+                                    <h5 class="card-header">Data Role Tables</h5>
                                 </div>
                                 {{-- CREATE DATA --}}
                                 {{-- <div class="col-2">

@@ -50,23 +50,23 @@
 
         @if (Auth::check() && Auth::user()->roles_id == 2)
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Role</span>
+                <span class="menu-header-text">Role ( Super Admin Only )</span>
             </li>
             {{-- 2 untuk Super Admin --}}
-            <li class="menu-item {{ request()->routeIs('user.index') ? 'active open' : '' }} ">
+            <li
+                class="menu-item {{ request()->routeIs('user.index') || request()->routeIs('role.index') ? 'active open' : '' }} ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                     <div data-i18n="Account Settings">Role Access </div>
                 </a>
-                <ul class="menu-sub {{ request()->routeIs('user.index') ? 'show' : '' }} ">
-                    <li class="menu-item {{ request()->routeIs('user.index') ? 'active' : '' }} ">
+                <ul
+                    class="menu-sub {{ request()->routeIs('user.index') || request()->routeIs('role.index') ? 'show' : '' }}">
+                    <li class="menu-item {{ request()->routeIs('user.index') ? 'active' : '' }}">
                         <a href="{{ route('user.index') }}" class="menu-link">
                             <div data-i18n="Account">User</div>
                         </a>
                     </li>
-                </ul>
-                <ul class="menu-sub {{ request()->routeIs('role.index') ? 'show' : '' }} ">
-                    <li class="menu-item {{ request()->routeIs('role.index') ? 'active' : '' }} ">
+                    <li class="menu-item {{ request()->routeIs('role.index') ? 'active' : '' }}">
                         <a href="{{ route('role.index') }}" class="menu-link">
                             <div data-i18n="Account">Role</div>
                         </a>
