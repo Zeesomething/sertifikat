@@ -12,11 +12,13 @@
     <link rel="icon" href="assets/img/logo-bartech-no-text.png" type="image/png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico"') }}" />
+    <link rel="icon" type="image/x-icon"
+        href="{{ asset('assets/img/favicon/favicon.ico"') }}' />
 
     {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,10 +45,11 @@
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
         rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Helpers -->
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
     <style>
         .swal2-container {
@@ -55,9 +58,40 @@
         }
     </style>
 
+    <!-- SweetAlert2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Event handler untuk tombol delete
+            $('button[id^="deleteButton"]').on('click', function(e) {
+                e.preventDefault();
 
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+                // Mengambil ID form dari tombol yang diklik
+                var formId = $(this).closest('form').attr('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit form jika user mengonfirmasi penghapusan
+                        $('#' + formId).submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -220,13 +254,13 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="EditTitle">
                                                                             Edit
-                                                                            Data Sertifikat</h5>
+                                                                            Data User</h5>
                                                                         <button type="button" class="btn-close"
                                                                             data-bs-dismiss="modal"
                                                                             aria-label="Close"></button>
                                                                     </div>
                                                                     <form
-                                                                        action="{{ route('pengguna.update', $data->id) }}"
+                                                                        action="{{ route('user.update', $data->id) }}"
                                                                         method="post" role="form"
                                                                         enctype="multipart/form-data">
                                                                         @csrf
@@ -236,7 +270,7 @@
                                                                                 <div class="col mb-3">
                                                                                     <label for="nameWithTitle"
                                                                                         class="form-label">Nama
-                                                                                        Peserta</label>
+                                                                                        User</label>
                                                                                     <div
                                                                                         class="input-group input-group-merge">
                                                                                         <span
@@ -295,7 +329,7 @@
                                                                                             type="text"
                                                                                             id="nameWithTitle" required
                                                                                             class="form-control"
-                                                                                            name="email"
+                                                                                            disabled name="email"
                                                                                             value="{{ $data->email }}" />
                                                                                     </div>
                                                                                 </div>
@@ -316,7 +350,7 @@
 
                                                         {{-- DELETE DATA --}}
                                                         <form id="deleteForm{{ $data->id }}"
-                                                            action="{{ route('pengguna.destroy', $data->id) }}"
+                                                            action="{{ route('user.destroy', $data->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
@@ -367,55 +401,29 @@
         });
     </script>
 
-    <!-- SweetAlert2 -->
-    @include('sweetalert::alert')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // Event handler untuk tombol delete
-            $('button[id^="deleteButton"]').on('click', function(e) {
-                e.preventDefault();
-
-                // Mengambil ID form dari tombol yang diklik
-                var formId = $(this).closest('form').attr('id');
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Submit form jika user mengonfirmasi penghapusan
-                        $('#' + formId).submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        );
-                    }
-                });
-            });
-        });
-    </script>
-
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @include('sweetalert::alert')
     <!-- endbuild -->
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- Toast SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>

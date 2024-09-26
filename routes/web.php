@@ -4,7 +4,9 @@
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
 
 // FRONTEND
 use App\Http\Controllers\WelcomeController;
@@ -24,21 +26,20 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
 
-    Route::get('/pengguna', function (Request $request) {
+    Route::get('/user', function (Request $request) {
         $middleware = new CheckRole();
         // Menjalankan middleware secara manual dengan passing request
         $response = $middleware->handle($request, function ($request) {
-            return app()->call('App\Http\Controllers\PenggunaController@index');
+            return app()->call('App\Http\Controllers\UserController@index');
         }, 2); // Ganti 2 dengan ID role untuk Super Admin
 
         return $response;
-    })->name('pengguna.index');
+    })->name('user.index');
 
-    Route::put('pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update');
-    Route::delete('pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
+    Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-
-    
+    Route::resource('role', RoleController::class);
 
 });
 
