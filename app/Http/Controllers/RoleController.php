@@ -35,9 +35,11 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $role = Role::FindOrFail($id);
+        return view('role.show', compact('role'));
+
     }
 
     /**

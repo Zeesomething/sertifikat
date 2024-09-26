@@ -25,6 +25,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/sertifikat/{id}/preview', [SertifikatController::class, 'printCertificate'])->name('sertifikat.preview')->defaults('isPreview', true);
     Route::get('/sertifikat/{id}/print', [SertifikatController::class, 'printCertificate'])->name('sertifikat.print');
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
+    Route::resource('role', RoleController::class);
+
 
     Route::get('/user', function (Request $request) {
         $middleware = new CheckRole();
@@ -35,12 +37,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
         return $response;
     })->name('user.index');
-
     Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-
-    Route::resource('role', RoleController::class);
-
+    Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 });
 
 // FRONTEND ROUTE

@@ -227,11 +227,84 @@
                                                     <td>{{ $data->deskripsi_role }}</td>
                                                     <td>
                                                         {{-- SHOW DATA --}}
-                                                        <a href="#" class="btn btn-sm btn-warning"
-                                                            data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                            data-bs-placement="top" data-bs-html="true" title="Show">
-                                                            <i class='bx bx-show-alt'></i>
-                                                        </a>
+                                                        <!-- Button yang nge-trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-warning"
+                                                            data-bs-target="#Show{{ $data->id }}"
+                                                            data-bs-toggle="modal">
+                                                            <i class='bx bx-show-alt' data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Show"
+                                                                data-bs-offset="0,4" data-bs-html="true"></i>
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="Show{{ $data->id }}"
+                                                            tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="EditTitle">
+                                                                            Show
+                                                                            Data Role</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ route('role.update', $data->id) }}"
+                                                                        method="post" role="form"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Nama
+                                                                                        Role</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-user'></i></span>
+                                                                                        <input
+                                                                                            style="font-weight: bold; padding-left: 15px;"
+                                                                                            type="text"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control"
+                                                                                            name="nama_role" disabled
+                                                                                            value="{{ $data->nama_role }}" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Dekripsi</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i class='bx bxs-edit-alt'></i></span>
+                                                                                        <textarea
+                                                                                            style="font-weight: bold; padding-left: 15px;"
+                                                                                            type="text-area"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control" disabled
+                                                                                            name="deskripsi_role">{{ $data->deskripsi_role }}</textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary"
+                                                                                data-bs-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                         {{-- EDIT DATA --}}
                                                         <!-- Button yang nge-trigger modal -->
@@ -292,8 +365,7 @@
                                                                                         class="input-group input-group-merge">
                                                                                         <span
                                                                                             id="basic-icon-default-fullname2"
-                                                                                            class="input-group-text"><i
-                                                                                                class='bx bx-user'></i></span>
+                                                                                            class="input-group-text"><i class='bx bxs-edit-alt'></i></span>
                                                                                         <textarea
                                                                                             style="font-weight: bold; padding-left: 15px;"
                                                                                             type="text-area"

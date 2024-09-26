@@ -18,6 +18,13 @@ class UserController extends Controller
         return view('user', compact('user', 'roles'));
     }
 
+    public function show($id)
+    {
+        $user = User::FindOrFail($id);
+        return view('user.show', compact('user'));
+
+    }
+
     public function edit($id)
     {
         $user = User::FindOrFail($id);
