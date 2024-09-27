@@ -150,7 +150,6 @@
                                                         @csrf
                                                         <div class="modal-body">
                                                             <div class="row">
-
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2 col-form-label"
                                                                         for="basic-icon-default-fullname">Nama
@@ -252,7 +251,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
