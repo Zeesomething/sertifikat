@@ -45,23 +45,22 @@
         href="https://cdn.datatables.net/v/bs5/dt-2.1.5/b-3.1.2/b-html5-3.1.2/r-3.0.3/sc-2.4.3/sb-1.8.0/datatables.min.css"
         rel="stylesheet">
 
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
-    {{-- aos --}}
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
         .swal2-container {
             z-index: 9999 !important;
+            /* Atur z-index tinggi agar SweetAlert menutupi semua elemen lain */
         }
     </style>
 
     <!-- SweetAlert2 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             // Event handler untuk tombol delete
@@ -94,7 +93,6 @@
         });
     </script>
 
-
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
@@ -116,48 +114,17 @@
                     <!-- Content -->
 
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel Data  /</span> <b
-                                data-aos="fade-left" data-aos-duration="200">Sertifikat</b>
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data Table /</span> User
                         </h4>
 
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-4">
-                                    <h5 class="card-header">Data Sertifikat Tables</h5>
+                                <div class="col-10">
+                                    <h5 class="card-header">Data User Tables</h5>
                                 </div>
-                                {{-- FILTER BY TRAINING --}}
-                                <div class="col-6">
-                                    <form method="GET" action="{{ route('sertifikat.index') }}">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <select class="form-select placement-dropdown" name="id_training"
-                                                    style="margin-left: 225px; margin-top: 16px;"
-                                                    id="exampleSelectGender">
-                                                    <option value=""
-                                                        {{ is_null(request()->get('id_training')) ? 'selected' : '' }}>
-                                                        Tampilkan Semua Data</option>
-                                                    @foreach ($training as $data)
-                                                        <option value="{{ $data->id }}"
-                                                            {{ request()->get('id_training') == $data->id ? 'selected' : '' }}>
-                                                            {{ $data->nama_training }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button type="submit" class="btn btn-info d-flex align-items-center"
-                                                    style="margin-left: 215px; margin-top: 16px;">
-                                                    <i class='bx bx-filter-alt' style="margin-right: 8px;"></i> Filter
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
                                 {{-- CREATE DATA --}}
-                                <div class="col-2">
+                                {{-- <div class="col-2">
                                     <div class="mt-3">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -176,16 +143,6 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    {{-- VALIDATION --}}
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-danger">
-                                                            <ul>
-                                                                @foreach ($errors->all() as $error)
-                                                                    <li>{{ $error }}</li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </div>
-                                                    @endif
                                                     <form action="{{ route('sertifikat.store') }}" method="post"
                                                         role="form" enctype="multipart/form-data">
                                                         @csrf
@@ -199,11 +156,11 @@
                                                                         <div class="input-group input-group-merge">
                                                                             <span id="basic-icon-default-fullname2"
                                                                                 class="input-group-text"><i
-                                                                                    class='bx bx-user'></i></span>
+                                                                                    class='bx bx-category'></i></span>
                                                                             <input type="text" class="form-control"
                                                                                 id="basic-icon-default-fullname"
                                                                                 placeholder="Enter Name" required
-                                                                                style="padding-left: 15px;"
+                                                                                aria-label="John Doe"
                                                                                 name="nama_penerima"
                                                                                 aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
@@ -221,8 +178,7 @@
                                                                             <select id="defaultSelect"
                                                                                 class="form-select" required
                                                                                 name="id_training">
-                                                                                <option value="">Pilih
-                                                                                    Pelatihan
+                                                                                <option value="">Pilih Pelatihan
                                                                                 </option>
                                                                                 @foreach ($training as $data)
                                                                                     <option
@@ -231,23 +187,6 @@
                                                                                     </option>
                                                                                 @endforeach
                                                                             </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label class="col-sm-2 col-form-label"
-                                                                        for="basic-icon-default-fullname">Email</label>
-                                                                    <div class="col-sm-10">
-                                                                        <div class="input-group input-group-merge">
-                                                                            <span id="basic-icon-default-fullname2"
-                                                                                class="input-group-text"><i
-                                                                                    class='bx bx-envelope'></i></span>
-                                                                            <input type="email" class="form-control"
-                                                                                id="basic-icon-default-fullname"
-                                                                                style="padding-left: 15px;"
-                                                                                placeholder="Enter Email" required
-                                                                                name="email"
-                                                                                aria-describedby="basic-icon-default-fullname2" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -266,7 +205,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
@@ -274,33 +213,129 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Penerima</th>
-                                                <th>Nama Pelatihan</th>
-                                                <th>Status Pelatihan</th>
+                                                <th>Username</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @php $no=1; @endphp
-                                            @foreach ($sertifikat as $data)
+                                            @foreach ($user as $data)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td><b>{{ $data->nama_penerima }}</b></td>
-                                                    <td><b>{{ Str::limit($data->training->nama_training, 25) }}</b>
-                                                    </td>
-                                                    <td
-                                                        style="color: {{ $data->status ? 'green' : 'blue' }}; font-weight: bold">
-                                                        {{ $data->status ? 'Selesai Pelatihan' : 'Terdaftar' }}
+                                                    <td><b>{{ $data->name }}</b></td>
+                                                    <td>{{ $data->email }}</td>
+                                                    <td>{{ $data->roles->nama_role }}
                                                     </td>
                                                     <td>
                                                         {{-- SHOW DATA --}}
-                                                        <a href="{{ route('sertifikat.show', $data->id) }}"
-                                                            class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                                                            data-bs-offset="0,4" data-bs-placement="top"
-                                                            data-bs-html="true" title="Show">
-                                                            <i class='bx bx-show-alt'></i>
-                                                        </a>
+                                                        <!-- Button yang nge-trigger modal -->
+                                                        <button type="button" class="btn btn-sm btn-warning"
+                                                            data-bs-target="#Show{{ $data->id }}"
+                                                            data-bs-toggle="modal">
+                                                            <i class='bx bx-show-alt' data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Show"
+                                                                data-bs-offset="0,4" data-bs-html="true"></i>
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="Show{{ $data->id }}"
+                                                            tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="EditTitle">
+                                                                            Show
+                                                                            Data User</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ route('user.show', $data->id) }}"
+                                                                        method="post" role="form"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Nama
+                                                                                        User</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-user'></i></span>
+                                                                                        <input
+                                                                                            style="font-weight: bold; padding-left: 15px;"
+                                                                                            type="text"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control"
+                                                                                            name="name" disabled
+                                                                                            value="{{ $data->name }}" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Roles</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i
+                                                                                                class='bx bx-category'></i></span>
+                                                                                        <select id="defaultSelect"
+                                                                                            class="form-select" disabled
+                                                                                            name="roles_id">
+                                                                                            <option>Default
+                                                                                                select
+                                                                                            </option>
+                                                                                            @foreach ($roles as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}"
+                                                                                                    {{ $item->id == $data->roles_id ? 'selected' : '' }}>
+                                                                                                    {{ $item->nama_role }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="nameWithTitle"
+                                                                                        class="form-label">Email</label>
+                                                                                    <div
+                                                                                        class="input-group input-group-merge">
+                                                                                        <span
+                                                                                            id="basic-icon-default-fullname2"
+                                                                                            class="input-group-text"><i class='bx bxs-envelope'></i></span>
+                                                                                        <input
+                                                                                            style="font-weight: bold; padding-left: 15px;"
+                                                                                            type="text"
+                                                                                            id="nameWithTitle" required
+                                                                                            class="form-control" 
+                                                                                            disabled name="email"
+                                                                                            value="{{ $data->email }}" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary"
+                                                                                data-bs-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                         {{-- EDIT DATA --}}
                                                         <!-- Button yang nge-trigger modal -->
@@ -320,13 +355,13 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="EditTitle">
                                                                             Edit
-                                                                            Data Sertifikat</h5>
+                                                                            Data User</h5>
                                                                         <button type="button" class="btn-close"
                                                                             data-bs-dismiss="modal"
                                                                             aria-label="Close"></button>
                                                                     </div>
                                                                     <form
-                                                                        action="{{ route('sertifikat.update', $data->id) }}"
+                                                                        action="{{ route('user.update', $data->id) }}"
                                                                         method="post" role="form"
                                                                         enctype="multipart/form-data">
                                                                         @csrf
@@ -336,7 +371,7 @@
                                                                                 <div class="col mb-3">
                                                                                     <label for="nameWithTitle"
                                                                                         class="form-label">Nama
-                                                                                        Peserta</label>
+                                                                                        User</label>
                                                                                     <div
                                                                                         class="input-group input-group-merge">
                                                                                         <span
@@ -348,16 +383,15 @@
                                                                                             type="text"
                                                                                             id="nameWithTitle" required
                                                                                             class="form-control"
-                                                                                            name="nama_penerima"
-                                                                                            value="{{ $data->nama_penerima }}" />
+                                                                                            name="name"
+                                                                                            value="{{ $data->name }}" />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col mb-3">
                                                                                     <label for="nameWithTitle"
-                                                                                        class="form-label">Nama
-                                                                                        Pelatihan</label>
+                                                                                        class="form-label">Roles</label>
                                                                                     <div
                                                                                         class="input-group input-group-merge">
                                                                                         <span
@@ -366,15 +400,15 @@
                                                                                                 class='bx bx-category'></i></span>
                                                                                         <select id="defaultSelect"
                                                                                             class="form-select"
-                                                                                            name="id_training">
+                                                                                            name="roles_id">
                                                                                             <option>Default
                                                                                                 select
                                                                                             </option>
-                                                                                            @foreach ($training as $item)
+                                                                                            @foreach ($roles as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
-                                                                                                    {{ $item->id == $data->id_training ? 'selected' : '' }}>
-                                                                                                    {{ $item->nama_training }}
+                                                                                                    {{ $item->id == $data->roles_id ? 'selected' : '' }}>
+                                                                                                    {{ $item->nama_role }}
                                                                                                 </option>
                                                                                             @endforeach
                                                                                         </select>
@@ -389,43 +423,14 @@
                                                                                         class="input-group input-group-merge">
                                                                                         <span
                                                                                             id="basic-icon-default-fullname2"
-                                                                                            class="input-group-text"><i
-                                                                                                class='bx bx-user'></i></span>
+                                                                                            class="input-group-text"><i class='bx bxs-envelope'></i></span>
                                                                                         <input
                                                                                             style="font-weight: bold; padding-left: 15px;"
                                                                                             type="text"
                                                                                             id="nameWithTitle" required
                                                                                             class="form-control"
-                                                                                            name="email"
+                                                                                            disabled name="email"
                                                                                             value="{{ $data->email }}" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col mb-3">
-                                                                                    <label for="nameWithTitle"
-                                                                                        class="form-label">Status
-                                                                                        Pelatihan</label>
-                                                                                    <div
-                                                                                        class="input-group input-group-merge">
-                                                                                        <span
-                                                                                            id="basic-icon-default-fullname2"
-                                                                                            class="input-group-text"><i
-                                                                                                class='bx bx-category'></i></span>
-                                                                                        <select id="defaultSelect"
-                                                                                            class="form-select"
-                                                                                            required name="status"
-                                                                                            aria-describedby="basic-icon-default-fullname2">
-                                                                                            <option value="0"
-                                                                                                {{ $data->status == 0 ? 'selected' : '' }}>
-                                                                                                Terdaftar
-                                                                                            </option>
-                                                                                            <option value="1"
-                                                                                                {{ $data->status == 1 ? 'selected' : '' }}>
-                                                                                                Selesai
-                                                                                                Pelatihan
-                                                                                            </option>
-                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -444,23 +449,24 @@
                                                         </div>
 
                                                         {{-- DELETE DATA --}}
-                                                        <form id="deleteForm{{ $data->id }}"
-                                                            action="{{ route('sertifikat.destroy', $data->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="btn btn-sm btn-danger"
-                                                                id="deleteButton{{ $data->id }}"
-                                                                data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                                data-bs-placement="top" data-bs-html="true"
-                                                                title="<span>Delete</span>">
-                                                                <i class='bx bx-trash'></i>
-                                                            </button>
-                                                        </form>
+                                                        @if (auth()->user()->id != $data->id)
+                                                            <form id="deleteForm{{ $data->id }}"
+                                                                action="{{ route('user.destroy', $data->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                    id="deleteButton{{ $data->id }}"
+                                                                    data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                                    data-bs-placement="top" data-bs-html="true"
+                                                                    title="<span>Delete</span>">
+                                                                    <i class='bx bx-trash'></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
 
                                     </table>

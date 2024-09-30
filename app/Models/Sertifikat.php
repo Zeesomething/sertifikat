@@ -12,6 +12,7 @@ class Sertifikat extends Model
     protected $fillable = [
         'nama_penerima',
         'id_training',
+        'email',
         'status',
     ];
     public $timestamps = true;

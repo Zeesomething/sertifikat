@@ -11,10 +11,10 @@
             <div class="carousel-caption">
                 <div class="carousel-caption-inner text-start p-3">
                     <h1 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated" data-animation="fadeInUp"
-                        data-delay="1.3s" style="animation-delay: 1.3s;">The most
+                        data-delay="0.3s" style="animation-delay: 0.3s;">The most
                         prestigious Investments company in worldwide.</h1>
-                    <p class="mb-5 fs-5 fadeInUp animate__animated" data-animation="fadeInUp" data-delay="1.5s"
-                        style="animation-delay: 1.5s;">Lorem Ipsum is simply dummy text of the printing and
+                    <p class="mb-5 fs-5 fadeInUp animate__animated" data-animation="fadeInUp" data-delay="0.5s"
+                        style="animation-delay: 0.5s;">Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
                         1500s,
                     </p>
@@ -112,27 +112,32 @@
                         @foreach ($limitTraining as $data)
                             <div class="col-md-6 col-lg-4 col-xl-3  wow fadeInUp" data-wow-delay="0.1s">
                                 <a href="{{ url('pelatihan', $data->id) }}">
+
                                     <div class="service-item bg-light rounded">
                                         <div class="service-img ">
+
+                                    <div class="service-item bg-light rounded d-flex flex-column h-100">
+                                        <div class="service-img">
+
                                             <img src="{{ asset('images/training/' . $data->cover) }}"
-                                                class="img-fluid w-100 rounded-top" alt="">
+                                                class="img-fluid w-100 rounded-top fixed-img" alt="">
                                         </div>
-                                        <div class="service-content text-center p-4">
-                                            <div class="service-content-inner">
+                                        <div class="service-content text-center p-4 flex-grow-1 d-flex flex-column">
+                                            <div class="service-content-inner mb-auto">
                                                 <a href="#" class="h4 mb-4 d-inline-flex text-start"><i
                                                         class="fas fa-donate fa-2x me-2"></i>{{ $data->nama_training }}</a>
                                                 <p class="mb-4">
                                                     {{ $data->formatted_tanggal_training }}
                                                 </p>
-                                                <a class="btn btn-light rounded-pill py-2 px-4"
-                                                    href="{{ url('pelatihan', $data->id) }}">Read
-                                                    More</a>
                                             </div>
+                                            <a class="btn btn-light rounded-pill py-2 px-4 mt-auto" id="read_more"
+                                                href="{{ url('pelatihan', $data->id) }}">Read More</a>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         @endforeach
+
                         <div class="col-12">
                             <a class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s"
                                 href="{{ route('more') }}">Services More</a>

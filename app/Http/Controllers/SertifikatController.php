@@ -9,21 +9,21 @@ use setasign\Fpdi\Fpdi;
 
 class SertifikatController extends Controller
 {
-    public function status($id)
-    {
-        $sertifikat = Sertifikat::findOrFail($id); // Cari sertifikat berdasarkan ID
-        $sertifikat->status = !$sertifikat->status; // Ganti status: on menjadi off atau sebaliknya
-        $sertifikat->save(); // Simpan perubahan
-
-        return redirect()->back()->with('success', 'Status sertifikat berhasil diubah!');
-    }
-
-    public function index()
+    public function index( Request $request)
     {
         $training = Training::all();
 
-        // Retrieve all trainings ordered by the created date
-        $sertifikat = Sertifikat::orderBy('created_at', 'desc')->get();
+        // Ambil ID kategori dari request
+        $id_training = $request->get('id_training');
+
+        // Jika kategori_id ada dan tidak kosong, filter artikel berdasarkan kategori tersebut
+        if ($id_training) {
+            $sertifikat = Sertifikat::where('id_training', $id_training)->get();
+        } else {
+            // Jika tidak, ambil semua artikel
+            $sertifikat = Sertifikat::orderBy('created_at', 'desc')->get();
+
+        }
 
         // Add formatted date range to each serti$sertifikat
         foreach ($sertifikat as $data) {
@@ -47,7 +47,8 @@ class SertifikatController extends Controller
             }
         }
 
-        return view('sertifikat.index', compact('sertifikat', 'training'));
+
+        return view('sertifikat.index', compact('sertifikat', 'training' , 'id_training')); 
     }
 
     public function create()
@@ -63,11 +64,13 @@ class SertifikatController extends Controller
         $request->validate([
             'nama_penerima' => 'required|string|max:255',
             'id_training' => 'required',
+            'email' => 'required|email',
         ]);
 
         $sertifikat = new Sertifikat;
         $sertifikat->nama_penerima = $request->nama_penerima;
         $sertifikat->id_training = $request->id_training;
+        $sertifikat->email = $request->email;
 
         $sertifikat->save();
 
@@ -95,9 +98,16 @@ class SertifikatController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_penerima' => 'required|string|max:255',
+            'id_training' => 'required',
+            'email' => 'required|email',
+        ]);
+        
         $sertifikat = Sertifikat::findOrFail($id);
         $sertifikat->nama_penerima = $request->nama_penerima;
         $sertifikat->id_training = $request->id_training;
+        $sertifikat->email = $request->email;
         $sertifikat->status = $request->status;
 
         $sertifikat->save();
@@ -136,7 +146,7 @@ class SertifikatController extends Controller
         return $date->format('j') . $suffix;
     }
 
-    // Fungsi untuk mencetak sertifikat
+    // Metode untuk mencetak sertifikat berdasarkan ID
     public function printCertificate($id)
     {
         // Ambil data sertifikat dari database berdasarkan ID, termasuk data relasi dengan 'training'
@@ -145,7 +155,6 @@ class SertifikatController extends Controller
         // Ambil data training terkait
         $training = $sertifikat->training;
 
-        // Pastikan ada data training
         if (!$training) {
             return abort(404, 'Training data not found');
         }
@@ -224,7 +233,7 @@ class SertifikatController extends Controller
         $pdf->Write(0, $nomorSertifikat);
 
         // Nama Pelatihan
-        $pdf->SetFont('Helvetica', '', 15.5);
+        $pdf->SetFont('Helvetica', '', 17);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->SetXY(4, 115);
         $pdf->Cell(0, 10, 'for ' . $sertifikat->training->nama_training, 0, 1, 'C');
@@ -242,7 +251,6 @@ class SertifikatController extends Controller
         return response($pdf->Output('S'), 200)
             ->header('Content-Type', 'application/pdf')
             ->header('Content-Disposition', "inline; filename=\"{$fileName}\"");
-
     }
 
     // Fungsi untuk mengecek sertifikat

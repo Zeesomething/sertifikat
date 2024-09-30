@@ -15,15 +15,17 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">MAIN</span>
+        </li>
         <li class="menu-item {{ request()->routeIs('home') ? 'active' : '' }}">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Halaman</span>
+            <span class="menu-header-text">Data Master</span>
         </li>
         <li
             class="menu-item {{ request()->routeIs('training.index') || request()->routeIs('sertifikat.index') ? 'active open' : '' }}">
@@ -45,20 +47,34 @@
                 </li>
             </ul>
         </li>
-        {{-- <li class="menu-item {{ request()->routeIs('pengguna') ? 'active open' : '' }} ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bxs-data'></i>
-                <div data-i18n="Account Settings">Role Access </div>
-            </a>
-            <ul class="menu-sub {{ request()->routeIs('pengguna') ? 'show' : '' }} ">
-                <li class="menu-item {{ request()->routeIs('pengguna') ? 'active' : '' }} ">
-                    <a href="{{ route('pengguna') }}" class="menu-link">
-                        <div data-i18n="Account">User</div>
-                    </a>
 
-                </li>
-            </ul>
-        </li> --}}
+        @if (Auth::check() && Auth::user()->roles_id == 2)
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Role ( Super Admin Only )</span>
+            </li>
+            {{-- 2 untuk Super Admin --}}
+            <li
+                class="menu-item {{ request()->routeIs('user.index') || request()->routeIs('role.index') ? 'active open' : '' }} ">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                    <div data-i18n="Account Settings">Role Access </div>
+                </a>
+                <ul
+                    class="menu-sub {{ request()->routeIs('user.index') || request()->routeIs('role.index') ? 'show' : '' }}">
+                    <li class="menu-item {{ request()->routeIs('user.index') ? 'active' : '' }}">
+                        <a href="{{ route('user.index') }}" class="menu-link">
+                            <div data-i18n="Account">User</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs('role.index') ? 'active' : '' }}">
+                        <a href="{{ route('role.index') }}" class="menu-link">
+                            <div data-i18n="Account">Role</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
     </ul>
 </aside>
 <!-- / Menu -->

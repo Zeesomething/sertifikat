@@ -20,7 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'roles_id',
     ];
+
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'roles_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +50,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    
 }
