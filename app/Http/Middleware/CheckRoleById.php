@@ -17,11 +17,10 @@ class CheckRoleById
      */
     public function handle($request, Closure $next, $roleId)
     {
-        // Pastikan user sudah login
         if (Auth::check()) {
             // Cek apakah role_id dari user yang login sesuai dengan roleId yang diinginkan
             if (Auth::user()->roles_id != $roleId) {
-                // Jika role_id tidak sesuai, kembalikan dengan error 403 Forbidden
+                // Jika role_id tidak sesuai, akan muncul error 403
                 return abort(403, 'Unauthorized');
             }
         }
