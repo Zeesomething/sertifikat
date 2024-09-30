@@ -7,6 +7,12 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^3.0",
+        "illuminate/console": "^10.10.0|^11.0",
+        "illuminate/contracts": "^10.10.0|^11.0",
+        "illuminate/events": "^10.10.0|^11.0",
+        "illuminate/filesystem": "^10.10.0|^11.0",
+        "illuminate/notifications": "^10.10.0|^11.0",
+        "illuminate/support": "^10.10.0|^11.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
@@ -14,6 +20,7 @@
         "realrashid/sweet-alert": "^7.2",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.6",
+        "spatie/laravel-backup": "dev-main",
         "spatie/pdf-to-image": "^1.2",
         "tecnickcom/tcpdf": "^6.7",
         "yajra/laravel-datatables-oracle": "11.0"

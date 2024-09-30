@@ -50,7 +50,7 @@
 
         @if (Auth::check() && Auth::user()->roles_id == 2)
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Role ( Super Admin Only )</span>
+                <span class="menu-header-text">( Super Admin Only )</span>
             </li>
             {{-- 2 untuk Super Admin --}}
             <li
@@ -71,8 +71,14 @@
                             <div data-i18n="Account">Role</div>
                         </a>
                     </li>
+                    
+
                 </ul>
             </li>
+            <!-- Sidebar (misalnya di resources/views/layouts/sidebar.blade.php) -->
+            <div class="" style="margin-left: 5%; ">
+                <a href="{{ route('backup.create') }}" class="btn btn-primary">Backup Database</a>
+            </div>
         @endif
 
     </ul>
