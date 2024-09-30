@@ -110,10 +110,15 @@
                     <div class="row g-4 justify-content-center text-center">
 
                         @foreach ($limitTraining as $data)
-                            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="col-md-6 col-lg-4 col-xl-3  wow fadeInUp" data-wow-delay="0.1s">
                                 <a href="{{ url('pelatihan', $data->id) }}">
+
+                                    <div class="service-item bg-light rounded">
+                                        <div class="service-img ">
+
                                     <div class="service-item bg-light rounded d-flex flex-column h-100">
                                         <div class="service-img">
+
                                             <img src="{{ asset('images/training/' . $data->cover) }}"
                                                 class="img-fluid w-100 rounded-top fixed-img" alt="">
                                         </div>
