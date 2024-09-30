@@ -43,6 +43,12 @@
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="layout-container">
 
             {{-- SIDEBAR --}}
@@ -80,7 +86,7 @@
     <script>
         AOS.init();
     </script>
-    
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

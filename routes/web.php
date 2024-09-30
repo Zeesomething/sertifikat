@@ -1,12 +1,12 @@
 <?php
 
 // BACKEND
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
-
 
 // FRONTEND
 use App\Http\Controllers\WelcomeController;
@@ -27,7 +27,6 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::post('/sertifikat/{id}/status', [SertifikatController::class, 'status'])->name('sertifikat.status');
     Route::resource('role', RoleController::class);
 
-
     Route::get('/user', function (Request $request) {
         $middleware = new CheckRole();
         // Menjalankan middleware secara manual dengan passing request
@@ -40,6 +39,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
+
+    // BACKUP ROUTE
+    // routes/web.php
+    Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');
+
 });
 
 // FRONTEND ROUTE
