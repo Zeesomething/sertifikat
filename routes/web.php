@@ -8,9 +8,12 @@ use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Middleware\CheckRole;
+
+
 // FRONTEND
 use App\Http\Controllers\WelcomeController;
-use App\Http\Middleware\CheckRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,13 +32,13 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     Route::get('/user', function (Request $request) {
         $middleware = new CheckRole();
-        // Menjalankan middleware secara manual dengan passing request
         $response = $middleware->handle($request, function ($request) {
             return app()->call('App\Http\Controllers\UserController@index');
-        }, 2); // Ganti 2 dengan ID role untuk Super Admin
+        }, 2); // role id = 2 (superadmin)
 
         return $response;
     })->name('user.index');
+
     Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
