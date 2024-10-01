@@ -1,7 +1,6 @@
 @extends('layouts.user')
 
 @section('content')
-
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel" id="carosel">
         <div class="header-carousel-item">
@@ -10,8 +9,9 @@
             </div>
             <div class="carousel-caption">
                 <div class="carousel-caption-inner text-start p-3">
-                    <h1 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated" data-animation="fadeInUp"
-                        data-delay="0.3s" style="animation-delay: 0.3s;">Pelatihan Berkualitas & Sertifikasi Terpercaya</h1>
+                    <h1 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated"
+                        data-animation="fadeInUp" data-delay="0.3s" style="animation-delay: 0.3s;">Pelatihan Berkualitas &
+                        Sertifikasi Terpercaya</h1>
                     <p class="mb-5 fs-5 fadeInUp animate__animated" data-animation="fadeInUp" data-delay="0.5s"
                         style="animation-delay: 0.5s;">Tingkatkan keahlianmu dengan pelatihan profesional dan dapatkan
                         sertifikat resmi yang diakui. Kami menyediakan platform untuk memastikan kesuksesan karirmu.</p>
@@ -56,7 +56,7 @@
     <!-- Cek Sertifikat Start -->
     <div class="container-fluid sertifikat py-5 bg-light" id="sertifikat">
         <div class="container py-5 mt-5" style="margin-bottom: 5rem;">
-            <div class="card py-5 shadow-lg border-0 rounded wow fadeInUp" data-wow-delay="0.1s"
+            <div id="result" class="card py-5 shadow-lg border-0 rounded wow fadeInUp" data-wow-delay="0.1s"
                 style="margin-bottom: 5rem;">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px">
                     <h4 class="text-primary">Sertifikat</h4>
@@ -72,7 +72,7 @@
                         <form action="{{ route('checkCertificate') }}" method="POST">
                             @csrf
                             <label for="no_sertifikat" class="form-label text-center">
-                                <h3>Masukan No. Sertifikat</h3>
+                                <h3 >Masukan No. Sertifikat</h3>
                             </label>
                             <input type="text" class="form-control text-center nomor_sertifikat"
                                 placeholder="NO. XXX/XX-XXX/XX/XXXX" id="no_sertifikat" name="nomor_sertifikat"
@@ -80,14 +80,13 @@
                             <button class="btn btn-primary mt-4 w-100" type="submit">Cek</button>
                         </form>
                         <!-- Tempat untuk menampilkan hasil -->
-                        <div id="result" class="mt-4">
-                            @if (isset($message))
-                                @if ($status == 'success')
-                                    <div class="alert alert-success">{!! $message !!}</div>
-                                @else
-                                    <div class="alert alert-danger">{!! $message !!}</div>
-                                @endif
+                        <div id="" class="mt-4">
+                            @if (session('status') && session('message'))
+                                <div class="alert alert-{{ session('status') }}">
+                                    {!! session('message') !!}
+                                </div>
                             @endif
+
                         </div>
                     </div>
                 </div>
@@ -111,12 +110,9 @@
                             <div class="col-md-6 col-lg-4 col-xl-3  wow fadeInUp" data-wow-delay="0.1s">
                                 <a href="{{ url('pelatihan', $data->id) }}">
 
-                                    <div class="service-item bg-light rounded">
-                                        <div class="service-img ">
-
                                     <div class="service-item bg-light rounded d-flex flex-column h-100">
-                                        <div class="service-img">
 
+                                        <div class="service-img">
                                             <img src="{{ asset('images/training/' . $data->cover) }}"
                                                 class="img-fluid w-100 rounded-top fixed-img" alt="">
                                         </div>
@@ -143,111 +139,110 @@
                     </div>
                 </div>
             </div>
-            <!-- Services End -->
+        </div>
+    </div>
+    <!-- Services End -->
 
-            <!-- About Start -->
-            <div class="container-fluid about bg-light py-5" id="about">
-                <div class="container py-5">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6 col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
-                            <div class="about-img">
-                                <img src="{{ asset('User/img/about-3.png') }}"
-                                    class="img-fluid w-100 rounded-top bg-white" alt="Image">
-                                <img src="{{ asset('User/img/about-2.jpg') }}" class="img-fluid w-100 rounded-bottom"
+    <!-- About Start -->
+    <div class="container-fluid about bg-light py-5" id="about">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="about-img">
+                        <img src="{{ asset('User/img/about-3.png') }}" class="img-fluid w-100 rounded-top bg-white"
+                            alt="Image">
+                        <img src="{{ asset('User/img/about-2.jpg') }}" class="img-fluid w-100 rounded-bottom"
+                            alt="Image">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
+                    <h4 class="text-primary">Tentang Kami</h4>
+                    <h1 class="display-5 mb-4">Solusi Pelatihan dan Sertifikasi Terbaik untuk Masa Depan Anda</h1>
+                    <p class="text ps-4 mb-4">Kami berkomitmen untuk menyediakan pelatihan berkualitas tinggi yang
+                        mendukung pengembangan karier Anda. Dengan sertifikat yang diakui secara global, Anda akan
+                        diperlengkapi dengan keahlian terbaik untuk bersaing di dunia kerja.</p>
+                    <div class="row g-4 justify-content-between mb-5">
+                        <div class="col-lg-6 col-xl-5">
+                            <p class="text-dark"><i class="fas fa-check-circle text-primary me-1"></i> Pelatihan
+                                Berkualitas</p>
+                            <p class="text-dark mb-0"><i class="fas fa-check-circle text-primary me-1"></i>
+                                Sertifikasi Resmi</p>
+                        </div>
+                        <div class="col-lg-6 col-xl-7">
+                            <p class="text-dark"><i class="fas fa-check-circle text-primary me-1"></i> Program
+                                Fleksibel</p>
+                            <p class="text-dark mb-0"><i class="fas fa-check-circle text-primary me-1"></i>
+                                Instruktur Berpengalaman</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 justify-content-between mb-5">
+                        {{-- <div class="col-xl-5"><a href="#"
+                                        class="btn btn-primary rounded-pill py-3 px-5">Temukan Lebih Lanjut</a></div> --}}
+                        <div class="col-xl-7 mb-5">
+                            <div class="about-customer d-flex position-relative">
+                                <img src="{{ asset('User/img/customer-img-1.jpg') }}"
+                                    class="img-fluid btn-xl-square position-absolute" style="left: 0; top: 0;"
                                     alt="Image">
+                                <img src="{{ asset('User/img/customer-img-2.jpg') }}"
+                                    class="img-fluid btn-xl-square position-absolute" style="left: 45px; top: 0;"
+                                    alt="Image">
+                                <img src="{{ asset('User/img/customer-img-3.jpg') }}"
+                                    class="img-fluid btn-xl-square position-absolute" style="left: 90px; top: 0;"
+                                    alt="Image">
+                                <img src="{{ asset('User/img/customer-img-1.jpg') }}"
+                                    class="img-fluid btn-xl-square position-absolute" style="left: 135px; top: 0;"
+                                    alt="Image">
+                                <div class="position-absolute text-dark" style="left: 220px; top: 10px;">
+                                    <p class="mb-0">5m+ Terpercaya</p>
+                                    <p class="mb-0">Pelanggan Global</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
-                            <h4 class="text-primary">Tentang Kami</h4>
-                            <h1 class="display-5 mb-4">Solusi Pelatihan dan Sertifikasi Terbaik untuk Masa Depan Anda</h1>
-                            <p class="text ps-4 mb-4">Kami berkomitmen untuk menyediakan pelatihan berkualitas tinggi yang
-                                mendukung pengembangan karier Anda. Dengan sertifikat yang diakui secara global, Anda akan
-                                diperlengkapi dengan keahlian terbaik untuk bersaing di dunia kerja.</p>
-                            <div class="row g-4 justify-content-between mb-5">
-                                <div class="col-lg-6 col-xl-5">
-                                    <p class="text-dark"><i class="fas fa-check-circle text-primary me-1"></i> Pelatihan
-                                        Berkualitas</p>
-                                    <p class="text-dark mb-0"><i class="fas fa-check-circle text-primary me-1"></i>
-                                        Sertifikasi Resmi</p>
+                    </div>
+                    <div class="row g-4 text-center align-items-center justify-content-center">
+                        <div class="col-sm-4">
+                            <div class="bg-primary rounded p-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="counter-value fs-1 fw-bold text-dark" data-toggle="counter-up">32</span>
+                                    <h4 class="text-dark fs-1 mb-0" style="font-weight: 600; font-size: 25px;">k+
+                                    </h4>
                                 </div>
-                                <div class="col-lg-6 col-xl-7">
-                                    <p class="text-dark"><i class="fas fa-check-circle text-primary me-1"></i> Program
-                                        Fleksibel</p>
-                                    <p class="text-dark mb-0"><i class="fas fa-check-circle text-primary me-1"></i>
-                                        Instruktur Berpengalaman</p>
+                                <div class="w-100 d-flex align-items-center justify-content-center">
+                                    <p class="text-white mb-0">Proyek Selesai</p>
                                 </div>
                             </div>
-                            <div class="row g-4 justify-content-between mb-5">
-                                <div class="col-xl-5"><a href="#"
-                                        class="btn btn-primary rounded-pill py-3 px-5">Temukan Lebih Lanjut</a></div>
-                                <div class="col-xl-7 mb-5">
-                                    <div class="about-customer d-flex position-relative">
-                                        <img src="{{ asset('User/img/customer-img-1.jpg') }}"
-                                            class="img-fluid btn-xl-square position-absolute" style="left: 0; top: 0;"
-                                            alt="Image">
-                                        <img src="{{ asset('User/img/customer-img-2.jpg') }}"
-                                            class="img-fluid btn-xl-square position-absolute" style="left: 45px; top: 0;"
-                                            alt="Image">
-                                        <img src="{{ asset('User/img/customer-img-3.jpg') }}"
-                                            class="img-fluid btn-xl-square position-absolute" style="left: 90px; top: 0;"
-                                            alt="Image">
-                                        <img src="{{ asset('User/img/customer-img-1.jpg') }}"
-                                            class="img-fluid btn-xl-square position-absolute" style="left: 135px; top: 0;"
-                                            alt="Image">
-                                        <div class="position-absolute text-dark" style="left: 220px; top: 10px;">
-                                            <p class="mb-0">5m+ Terpercaya</p>
-                                            <p class="mb-0">Pelanggan Global</p>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="bg-dark rounded p-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="counter-value fs-1 fw-bold text-white" data-toggle="counter-up">21</span>
+                                    <h4 class="text-white fs-1 mb-0" style="font-weight: 600; font-size: 25px;">+
+                                    </h4>
+                                </div>
+                                <div class="w-100 d-flex align-items-center justify-content-center">
+                                    <p class="mb-0">Tahun Pengalaman</p>
                                 </div>
                             </div>
-                            <div class="row g-4 text-center align-items-center justify-content-center">
-                                <div class="col-sm-4">
-                                    <div class="bg-primary rounded p-4">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="counter-value fs-1 fw-bold text-dark"
-                                                data-toggle="counter-up">32</span>
-                                            <h4 class="text-dark fs-1 mb-0" style="font-weight: 600; font-size: 25px;">k+
-                                            </h4>
-                                        </div>
-                                        <div class="w-100 d-flex align-items-center justify-content-center">
-                                            <p class="text-white mb-0">Proyek Selesai</p>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="bg-primary rounded p-4">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="counter-value fs-1 fw-bold text-dark" data-toggle="counter-up">97</span>
+                                    <h4 class="text-dark fs-1 mb-0" style="font-weight: 600; font-size: 25px;">+
+                                    </h4>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="bg-dark rounded p-4">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="counter-value fs-1 fw-bold text-white"
-                                                data-toggle="counter-up">21</span>
-                                            <h4 class="text-white fs-1 mb-0" style="font-weight: 600; font-size: 25px;">+
-                                            </h4>
-                                        </div>
-                                        <div class="w-100 d-flex align-items-center justify-content-center">
-                                            <p class="mb-0">Tahun Pengalaman</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="bg-primary rounded p-4">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="counter-value fs-1 fw-bold text-dark"
-                                                data-toggle="counter-up">97</span>
-                                            <h4 class="text-dark fs-1 mb-0" style="font-weight: 600; font-size: 25px;">+
-                                            </h4>
-                                        </div>
-                                        <div class="w-100 d-flex align-items-center justify-content-center">
-                                            <p class="text-white mb-0">Anggota Tim</p>
-                                        </div>
-                                    </div>
+                                <div class="w-100 d-flex align-items-center justify-content-center">
+                                    <p class="text-white mb-0">Anggota Tim</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
+    <!-- About End -->
+    </div>
+    </div>
+    <!-- Cek Sertifikat End -->
 @endsection

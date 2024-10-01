@@ -1,7 +1,7 @@
 <!-- Layout container -->
 <div class="layout-page">
 
-    @include('backend.navbar')
+    
 
     <!-- Content wrapper -->
     <div class="content-wrapper">

@@ -7,8 +7,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
-
-use App\Http\Controllers\RoleController;
 use App\Http\Middleware\CheckRole;
 
 
